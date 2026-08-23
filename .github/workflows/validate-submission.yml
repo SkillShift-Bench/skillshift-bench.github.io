@@ -133,7 +133,7 @@ jobs:
         if: steps.changed.outputs.count != '0'
         run: |
           set -euo pipefail
-          status=0
+          failed=0
           while read -r file; do
             [ -n "$file" ] || continue
             echo "::group::skillshift validate $file"
@@ -143,10 +143,10 @@ jobs:
               args="--receipt $receipt"
             fi
             # shellcheck disable=SC2086
-            skillshift validate "$file" $args $DIGEST_ARGS || status=1
+            skillshift validate "$file" $args $DIGEST_ARGS || failed=1
             echo "::endgroup::"
           done < changed.txt
-          exit "$status"
+          exit "$failed"
 
       # ---------------------------------------------------------------------
       # Naming convention + the rendered pull-request preview: ranking position,
