@@ -1,0 +1,110 @@
+{
+  "schema_version": "1.0",
+  "submission": {
+    "name": "ASI",
+    "date": "2026-08-23",
+    "contact": null,
+    "method": {
+      "name": "Agent Skill Induction",
+      "description": "Induces executable programmatic skills and calls them as actions.",
+      "paper_url": "https://openreview.net/forum?id=lsAY6fWsog",
+      "code_url": null
+    },
+    "model": {
+      "id": "mixed (DeepSeek-V3.2 / GPT-5 mini / Claude Haiku 4.5)",
+      "temperature": null,
+      "vision": null
+    },
+    "provenance": {
+      "label": "reported-only",
+      "source": "paper Table 1",
+      "code_released": false
+    },
+    "repro_command": null
+  },
+  "harness_version": "n/a",
+  "metrics": {
+    "SR": {
+      "websites": {
+        "gitlab": 20.81,
+        "magento": 27.78,
+        "wordpress": 60.27
+      },
+      "conditions": {
+        "src": 53.65,
+        "src-perc": 48.8,
+        "src-exec": 24.43,
+        "tgt": 41.84,
+        "tgt-perc": 33.19,
+        "tgt-exec": 15.79
+      },
+      "overall": 36.29
+    },
+    "AS": {
+      "websites": {
+        "gitlab": 7.87,
+        "magento": 8.06,
+        "wordpress": 4.73
+      },
+      "conditions": {
+        "src": 5.9,
+        "src-perc": 5.95,
+        "src-exec": 8.23,
+        "tgt": 6.29,
+        "tgt-perc": 6.7,
+        "tgt-exec": 8.24
+      },
+      "overall": 6.89
+    },
+    "ASC": {
+      "websites": {
+        "gitlab": 0.12,
+        "magento": 0.19,
+        "wordpress": 0.17
+      },
+      "conditions": {
+        "src": 0.18,
+        "src-perc": 0.26,
+        "src-exec": 0.29,
+        "tgt": 0.1,
+        "tgt-perc": 0.1,
+        "tgt-exec": 0.05
+      },
+      "overall": 0.16
+    },
+    "SFR": {
+      "websites": {
+        "gitlab": 19.55,
+        "magento": 48.27,
+        "wordpress": 16.26
+      },
+      "conditions": {
+        "src": 9.83,
+        "src-perc": 24.85,
+        "src-exec": 55.2,
+        "tgt": 13.53,
+        "tgt-perc": 28.77,
+        "tgt-exec": 35.98
+      },
+      "overall": 28.03
+    }
+  },
+  "n": {
+    "websites": {
+      "gitlab": 162,
+      "magento": 114,
+      "wordpress": 79
+    },
+    "conditions": {
+      "src": 355,
+      "src-perc": 355,
+      "src-exec": 355,
+      "tgt": 355,
+      "tgt-perc": 355,
+      "tgt-exec": 355
+    },
+    "skill_calls": null
+  },
+  "reasons": {},
+  "notes": "Transcribed from Table 1 of the SkillShift-Bench paper, which pools DeepSeek-V3.2, GPT-5 mini and Claude Haiku 4.5. The website and condition values are macro-averages over the same eighteen cells, so they agree with the overall value by construction."
+}

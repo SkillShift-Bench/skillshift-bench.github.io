@@ -1,0 +1,92 @@
+name: Comment on submission
+
+# Posts the preview that "Validate submission" rendered.
+#
+# It exists as a separate workflow because pull requests from forks -- which is
+# how every external submission arrives -- run with a read-only token and
+# cannot comment on themselves. `workflow_run` runs in the base repository with
+# its own permissions. It never checks out or executes the pull request's code:
+# it only downloads the markdown artifact and posts it.
+
+on:
+  workflow_run:
+    workflows: ["Validate submission"]
+    types: [completed]
+
+permissions:
+  pull-requests: write
+  actions: read
+
+jobs:
+  comment:
+    if: github.event.workflow_run.event == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download the preview
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const artifacts = await github.rest.actions.listWorkflowRunArtifacts({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              run_id: context.payload.workflow_run.id,
+            });
+            const match = artifacts.data.artifacts.find(a => a.name === 'submission-preview');
+            if (!match) {
+              core.info('No preview artifact: nothing to comment.');
+              return;
+            }
+            const zip = await github.rest.actions.downloadArtifact({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              artifact_id: match.id,
+              archive_format: 'zip',
+            });
+            fs.writeFileSync('preview.zip', Buffer.from(zip.data));
+
+      - name: Unpack
+        run: |
+          set -euo pipefail
+          if [ -f preview.zip ]; then
+            unzip -o preview.zip
+          fi
+
+      - name: Post or update the comment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            if (!fs.existsSync('comment.md') || !fs.existsSync('pr-number.txt')) {
+              core.info('Nothing to post.');
+              return;
+            }
+            const issue_number = parseInt(fs.readFileSync('pr-number.txt', 'utf8').trim(), 10);
+            const marker = '<!-- skillshift-leaderboard-preview -->';
+            const conclusion = context.payload.workflow_run.conclusion;
+            const verdict = conclusion === 'success'
+              ? 'All checks passed.'
+              : `Checks did not pass (\`${conclusion}\`). See the run log for details.`;
+            const body = [marker, '', `**${verdict}**`, '', fs.readFileSync('comment.md', 'utf8')].join('\n');
+
+            const existing = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number,
+            });
+            const mine = existing.data.find(c => c.body && c.body.includes(marker));
+            if (mine) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: mine.id,
+                body,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number,
+                body,
+              });
+            }

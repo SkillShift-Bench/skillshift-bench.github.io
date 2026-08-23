@@ -1,0 +1,113 @@
+{
+  "schema_version": "1.0",
+  "submission": {
+    "name": "AWM",
+    "date": "2026-08-23",
+    "contact": null,
+    "method": {
+      "name": "Agent Workflow Memory",
+      "description": "Induces reusable textual workflows from experience and prepends them to the prompt.",
+      "paper_url": "https://proceedings.mlr.press/v267/wang25bx.html",
+      "code_url": null
+    },
+    "model": {
+      "id": "mixed (DeepSeek-V3.2 / GPT-5 mini / Claude Haiku 4.5)",
+      "temperature": null,
+      "vision": null
+    },
+    "provenance": {
+      "label": "reported-only",
+      "source": "paper Table 1",
+      "code_released": false
+    },
+    "repro_command": null
+  },
+  "harness_version": "n/a",
+  "metrics": {
+    "SR": {
+      "websites": {
+        "gitlab": 17.71,
+        "magento": 25.49,
+        "wordpress": 62.66
+      },
+      "conditions": {
+        "src": 50.07,
+        "src-perc": 43.35,
+        "src-exec": 22.45,
+        "tgt": 41.28,
+        "tgt-perc": 37.65,
+        "tgt-exec": 16.9
+      },
+      "overall": 35.29
+    },
+    "AS": {
+      "websites": {
+        "gitlab": 8.03,
+        "magento": 8.22,
+        "wordpress": 4.76
+      },
+      "conditions": {
+        "src": 6.04,
+        "src-perc": 6.32,
+        "src-exec": 8.31,
+        "tgt": 6.34,
+        "tgt-perc": 6.59,
+        "tgt-exec": 8.44
+      },
+      "overall": 7.01
+    },
+    "ASC": {
+      "websites": {
+        "gitlab": null,
+        "magento": null,
+        "wordpress": null
+      },
+      "conditions": {
+        "src": null,
+        "src-perc": null,
+        "src-exec": null,
+        "tgt": null,
+        "tgt-perc": null,
+        "tgt-exec": null
+      },
+      "overall": null
+    },
+    "SFR": {
+      "websites": {
+        "gitlab": null,
+        "magento": null,
+        "wordpress": null
+      },
+      "conditions": {
+        "src": null,
+        "src-perc": null,
+        "src-exec": null,
+        "tgt": null,
+        "tgt-perc": null,
+        "tgt-exec": null
+      },
+      "overall": null
+    }
+  },
+  "n": {
+    "websites": {
+      "gitlab": 162,
+      "magento": 114,
+      "wordpress": 79
+    },
+    "conditions": {
+      "src": 355,
+      "src-perc": 355,
+      "src-exec": 355,
+      "tgt": 355,
+      "tgt-perc": 355,
+      "tgt-exec": 355
+    },
+    "skill_calls": null
+  },
+  "reasons": {
+    "ASC": "Not applicable to AWM: it reuses prompted textual workflows rather than executable skill invocations, so there is nothing to count (paper Table 1, '--').",
+    "SFR": "Not applicable to AWM: no executable skill invocations, so the ratio has no denominator (paper Table 1, '--')."
+  },
+  "notes": "Transcribed from Table 1 of the SkillShift-Bench paper, which pools DeepSeek-V3.2, GPT-5 mini and Claude Haiku 4.5. The website and condition values are macro-averages over the same eighteen cells, so they agree with the overall value by construction."
+}

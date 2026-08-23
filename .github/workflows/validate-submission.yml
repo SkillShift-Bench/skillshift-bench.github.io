@@ -1,0 +1,192 @@
+name: Validate submission
+
+# The five leaderboard checks of docs/submit.md, run on every pull request that
+# touches submissions/. The checks themselves are NOT reimplemented here: this
+# workflow installs the harness and calls `skillshift validate`, which is the
+# same command a submitter runs locally. If the two ever disagree, that is a bug
+# in one place, not two.
+
+on:
+  pull_request:
+    paths:
+      - 'submissions/**'
+
+# Read-only on purpose. A pull request from a fork gets a read-only token no
+# matter what is requested here, so the comment is posted by
+# comment-submission.yml, which runs on workflow_run with the base repository's
+# permissions. This workflow only produces the comment; it never posts it.
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+env:
+  # Pin these to a released tag before announcing the leaderboard. `main` is
+  # right during development and wrong the moment an entry's verdict has to be
+  # reproducible six months later.
+  HARNESS_REF: main
+  ENVS_REF: main
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the leaderboard
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check out the harness
+        uses: actions/checkout@v4
+        with:
+          repository: SkillShift-Bench/skillshift-bench
+          ref: ${{ env.HARNESS_REF }}
+          path: harness
+
+      - name: Check out the environment definitions
+        uses: actions/checkout@v4
+        with:
+          repository: SkillShift-Bench/skillshift-envs
+          ref: ${{ env.ENVS_REF }}
+          path: envs
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install the harness
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e ./harness
+          skillshift --version
+
+      # ---------------------------------------------------------------------
+      # Hard boundary: per-task judgements and traces are never published.
+      # This runs before anything else so that a pull request carrying them is
+      # rejected without its contents being processed further.
+      # ---------------------------------------------------------------------
+      - name: Refuse per-task judgements and traces
+        run: |
+          set -euo pipefail
+          if git ls-files | grep -E '(^|/)(per_task\.jsonl|trajectories/|runs/)'; then
+            echo "::error::This pull request carries per-task judgements or traces."
+            echo "::error::SkillShift-Bench publishes aggregate numbers only."
+            echo "::error::See docs/results-policy.md in the main repository."
+            exit 1
+          fi
+          echo "no per-task judgements or traces tracked"
+
+      - name: List the submissions this pull request adds or changes
+        id: changed
+        run: |
+          set -euo pipefail
+          BASE="origin/${{ github.base_ref }}"
+          git fetch --no-tags --depth=1 origin "${{ github.base_ref }}"
+          # Receipts are validated together with the results file they belong
+          # to, so they are not listed as targets in their own right.
+          git diff --name-only --diff-filter=ACM "$BASE"...HEAD -- 'submissions/*.json' \
+            | grep -v '\.receipt\.json$' > changed.txt || true
+          echo "count=$(wc -l < changed.txt | tr -d ' ')" >> "$GITHUB_OUTPUT"
+          echo "changed submissions:"
+          cat changed.txt
+
+      # ---------------------------------------------------------------------
+      # Check 5 of the five compares every receipt's `env_digests` against the
+      # officially published image digests in skillshift-envs/DIGESTS.json.
+      #
+      # LENIENT (current state): the environment images have not been published
+      # yet, so DIGESTS.json holds `null` under every key and there is nothing
+      # to compare against. `--digests` is therefore NOT passed, and
+      # `skillshift validate` emits an explicit warning -- "no official image
+      # digests supplied; env_digests not checked" -- instead of a silent pass.
+      # This is a stated gap. Do not read a green run as evidence that a
+      # submission used the published environment.
+      #
+      # STRICT: the moment any key in DIGESTS.json is non-null, the file is
+      # passed through and a receipt naming a different image becomes a hard
+      # error. Nothing in this workflow has to change for that to happen; it
+      # flips on the data. Remove this comment when it has flipped.
+      # ---------------------------------------------------------------------
+      - name: Decide digest strictness
+        id: digests
+        run: |
+          set -euo pipefail
+          DIGESTS="$PWD/envs/DIGESTS.json"
+          if [ -f "$DIGESTS" ] && jq -e '[to_entries[] | select(.value != null)] | length > 0' "$DIGESTS" > /dev/null; then
+            echo "DIGEST_ARGS=--digests $DIGESTS" >> "$GITHUB_ENV"
+            echo "DIGEST_MODE=strict" >> "$GITHUB_ENV"
+            echo "::notice::Image digests are published: receipt env_digests are checked strictly."
+          else
+            echo "DIGEST_ARGS=" >> "$GITHUB_ENV"
+            echo "DIGEST_MODE=lenient" >> "$GITHUB_ENV"
+            echo "::warning::LENIENT MODE -- skillshift-envs/DIGESTS.json has no published digests yet, so check 5 does NOT verify that this run used the official environment images. Everything else is checked normally."
+          fi
+
+      # ---------------------------------------------------------------------
+      # The five checks. `skillshift validate` is the single implementation;
+      # this step is a loop around it, not a second copy of it.
+      # ---------------------------------------------------------------------
+      - name: Validate each submission
+        if: steps.changed.outputs.count != '0'
+        run: |
+          set -euo pipefail
+          status=0
+          while read -r file; do
+            [ -n "$file" ] || continue
+            echo "::group::skillshift validate $file"
+            receipt="${file%.json}.receipt.json"
+            args=""
+            if [ -f "$receipt" ]; then
+              args="--receipt $receipt"
+            fi
+            # shellcheck disable=SC2086
+            skillshift validate "$file" $args $DIGEST_ARGS || status=1
+            echo "::endgroup::"
+          done < changed.txt
+          exit "$status"
+
+      # ---------------------------------------------------------------------
+      # Naming convention + the rendered pull-request preview: ranking position,
+      # full breakdown, and the suggested labels. Runs even when validation
+      # failed, so the comment can explain why.
+      # ---------------------------------------------------------------------
+      - name: Render the pull-request preview
+        if: always() && steps.changed.outputs.count != '0'
+        run: |
+          set -uo pipefail
+          : > comment.md
+          while read -r file; do
+            [ -n "$file" ] || continue
+            # shellcheck disable=SC2086
+            skillshift leaderboard check submissions --new "$file" \
+              --comment section.md $DIGEST_ARGS > /dev/null || true
+            cat section.md >> comment.md
+            printf '\n' >> comment.md
+          done < changed.txt
+          if [ "$DIGEST_MODE" = "lenient" ]; then
+            {
+              printf '\n---\n\n'
+              printf '> **Environment digests were not verified.** The benchmark images are not\n'
+              printf '> published yet, so `skillshift-envs/DIGESTS.json` is still empty and check 5\n'
+              printf '> could not compare this run against an official image. Every other check ran\n'
+              printf '> normally.\n'
+            } >> comment.md
+          fi
+          cat comment.md
+
+      - name: Save the pull request number
+        if: always() && steps.changed.outputs.count != '0'
+        run: echo "${{ github.event.pull_request.number }}" > pr-number.txt
+
+      - name: Upload the preview for commenting
+        if: always() && steps.changed.outputs.count != '0'
+        uses: actions/upload-artifact@v4
+        with:
+          name: submission-preview
+          path: |
+            comment.md
+            pr-number.txt
+          retention-days: 3

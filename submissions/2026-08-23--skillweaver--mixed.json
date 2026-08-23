@@ -1,0 +1,110 @@
+{
+  "schema_version": "1.0",
+  "submission": {
+    "name": "SkillWeaver",
+    "date": "2026-08-23",
+    "contact": null,
+    "method": {
+      "name": "SkillWeaver",
+      "description": "Self-improves by discovering and honing reusable web skills through exploration.",
+      "paper_url": "https://arxiv.org/abs/2504.07079",
+      "code_url": null
+    },
+    "model": {
+      "id": "mixed (DeepSeek-V3.2 / GPT-5 mini / Claude Haiku 4.5)",
+      "temperature": null,
+      "vision": null
+    },
+    "provenance": {
+      "label": "reported-only",
+      "source": "paper Table 1",
+      "code_released": false
+    },
+    "repro_command": null
+  },
+  "harness_version": "n/a",
+  "metrics": {
+    "SR": {
+      "websites": {
+        "gitlab": 13.78,
+        "magento": 14.37,
+        "wordpress": 32.29
+      },
+      "conditions": {
+        "src": 35.13,
+        "src-perc": 28.75,
+        "src-exec": 15.63,
+        "tgt": 17.8,
+        "tgt-perc": 13.85,
+        "tgt-exec": 9.71
+      },
+      "overall": 20.15
+    },
+    "AS": {
+      "websites": {
+        "gitlab": 14.79,
+        "magento": 17.96,
+        "wordpress": 12.63
+      },
+      "conditions": {
+        "src": 11.34,
+        "src-perc": 13.48,
+        "src-exec": 19.82,
+        "tgt": 12.59,
+        "tgt-perc": 14.74,
+        "tgt-exec": 18.8
+      },
+      "overall": 15.13
+    },
+    "ASC": {
+      "websites": {
+        "gitlab": 0.78,
+        "magento": 0.63,
+        "wordpress": 2.64
+      },
+      "conditions": {
+        "src": 1.13,
+        "src-perc": 1.16,
+        "src-exec": 1.14,
+        "tgt": 1.45,
+        "tgt-perc": 1.5,
+        "tgt-exec": 1.73
+      },
+      "overall": 1.35
+    },
+    "SFR": {
+      "websites": {
+        "gitlab": 4.61,
+        "magento": 1.11,
+        "wordpress": 0.21
+      },
+      "conditions": {
+        "src": 0.0,
+        "src-perc": 0.41,
+        "src-exec": 0.0,
+        "tgt": 2.03,
+        "tgt-perc": 4.24,
+        "tgt-exec": 5.17
+      },
+      "overall": 1.97
+    }
+  },
+  "n": {
+    "websites": {
+      "gitlab": 162,
+      "magento": 114,
+      "wordpress": 79
+    },
+    "conditions": {
+      "src": 355,
+      "src-perc": 355,
+      "src-exec": 355,
+      "tgt": 355,
+      "tgt-perc": 355,
+      "tgt-exec": 355
+    },
+    "skill_calls": null
+  },
+  "reasons": {},
+  "notes": "Transcribed from Table 1 of the SkillShift-Bench paper, which pools DeepSeek-V3.2, GPT-5 mini and Claude Haiku 4.5. The website and condition values are macro-averages over the same eighteen cells, so they agree with the overall value by construction."
+}

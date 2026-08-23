@@ -1,0 +1,26 @@
+# ---------------------------------------------------------------------------
+# Per-task judgements and execution traces are NOT published, here or anywhere.
+# A leaderboard pull request carries aggregate numbers and a receipt, nothing
+# else. See docs/results-policy.md in the main repository.
+# ---------------------------------------------------------------------------
+per_task.jsonl
+**/per_task.jsonl
+trajectories/
+runs/
+results/
+
+# CI scratch
+harness/
+envs/
+comment.md
+pr-number.txt
+
+# Python / OS / editor
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.DS_Store
+.vscode/
+.idea/
+.claude/

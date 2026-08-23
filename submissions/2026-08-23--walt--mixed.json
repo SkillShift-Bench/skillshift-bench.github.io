@@ -1,0 +1,110 @@
+{
+  "schema_version": "1.0",
+  "submission": {
+    "name": "WALT",
+    "date": "2026-08-23",
+    "contact": null,
+    "method": {
+      "name": "WALT: Web Agents that Learn Tools",
+      "description": "Reverse-engineers website functionality into structured, callable tools.",
+      "paper_url": "https://openreview.net/forum?id=cgIDqcJcoI",
+      "code_url": null
+    },
+    "model": {
+      "id": "mixed (DeepSeek-V3.2 / GPT-5 mini / Claude Haiku 4.5)",
+      "temperature": null,
+      "vision": null
+    },
+    "provenance": {
+      "label": "reported-only",
+      "source": "paper Table 1",
+      "code_released": false
+    },
+    "repro_command": null
+  },
+  "harness_version": "n/a",
+  "metrics": {
+    "SR": {
+      "websites": {
+        "gitlab": 21.07,
+        "magento": 27.95,
+        "wordpress": 55.38
+      },
+      "conditions": {
+        "src": 46.82,
+        "src-perc": 43.53,
+        "src-exec": 25.46,
+        "tgt": 41.17,
+        "tgt-perc": 32.74,
+        "tgt-exec": 19.09
+      },
+      "overall": 34.8
+    },
+    "AS": {
+      "websites": {
+        "gitlab": 12.39,
+        "magento": 11.46,
+        "wordpress": 8.53
+      },
+      "conditions": {
+        "src": 8.77,
+        "src-perc": 9.92,
+        "src-exec": 12.09,
+        "tgt": 10.66,
+        "tgt-perc": 11.36,
+        "tgt-exec": 11.96
+      },
+      "overall": 10.79
+    },
+    "ASC": {
+      "websites": {
+        "gitlab": 0.07,
+        "magento": 0.19,
+        "wordpress": 0.0
+      },
+      "conditions": {
+        "src": 0.05,
+        "src-perc": 0.05,
+        "src-exec": 0.21,
+        "tgt": 0.08,
+        "tgt-perc": 0.03,
+        "tgt-exec": 0.11
+      },
+      "overall": 0.09
+    },
+    "SFR": {
+      "websites": {
+        "gitlab": 48.52,
+        "magento": 23.88,
+        "wordpress": 0.0
+      },
+      "conditions": {
+        "src": 10.3,
+        "src-perc": 23.29,
+        "src-exec": 31.5,
+        "tgt": 23.28,
+        "tgt-perc": 18.64,
+        "tgt-exec": 37.76
+      },
+      "overall": 24.13
+    }
+  },
+  "n": {
+    "websites": {
+      "gitlab": 162,
+      "magento": 114,
+      "wordpress": 79
+    },
+    "conditions": {
+      "src": 355,
+      "src-perc": 355,
+      "src-exec": 355,
+      "tgt": 355,
+      "tgt-perc": 355,
+      "tgt-exec": 355
+    },
+    "skill_calls": null
+  },
+  "reasons": {},
+  "notes": "Transcribed from Table 1 of the SkillShift-Bench paper, which pools DeepSeek-V3.2, GPT-5 mini and Claude Haiku 4.5. The website and condition values are macro-averages over the same eighteen cells, so they agree with the overall value by construction."
+}
