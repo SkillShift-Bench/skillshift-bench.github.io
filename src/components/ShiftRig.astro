@@ -27,9 +27,9 @@ const objects = [
 <div class="shift-rig" style="--ctx: 0; --perc: 0; --exec: 0">
   <svg
     class="stage"
-    viewBox="0 0 720 308"
-    width="720"
-    height="308"
+    viewBox="16 12 688 284"
+    width="688"
+    height="284"
     role="img"
     aria-labelledby="shift-rig-title shift-rig-desc"
   >
@@ -63,9 +63,7 @@ const objects = [
       y="12"
       width="688"
       height="284"
-      fill="var(--plate)"
-      stroke="var(--ink)"
-      stroke-width="3"></rect>
+      fill="var(--plate)"></rect>
 
     <rect x="16" y="12" width="688" height="32" fill="var(--titlebar)"></rect>
     <rect
@@ -400,7 +398,8 @@ const objects = [
     display: block;
     width: 100%;
     height: auto;
-    aspect-ratio: 720 / 308;
+    aspect-ratio: 688 / 284;
+    overflow: hidden;
     background: var(--plate);
     font-family: var(--font-sans);
   }
