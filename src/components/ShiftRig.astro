@@ -581,6 +581,16 @@ const objects = [
   const HOMES: Record<string, number> = { a: 40, b: 204, c: 368 };
   const Y = 124;
   const SLOT = 164;
+  const AXIS_MS = 700;
+  const AXES = ["ctx", "perc", "exec"] as const;
+
+  function reducedMotion() {
+    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  }
+
+  function easeOut(t: number) {
+    return 1 - (1 - t) * (1 - t);
+  }
 
   function phrase(shift: string, n: number): string {
     if (shift === "exec") {
@@ -598,6 +608,10 @@ const objects = [
   function bind(root: HTMLElement) {
     const live = root.querySelector<HTMLElement>("[data-live]");
     const objs = [...root.querySelectorAll<SVGGElement>("[data-obj]")];
+    let raf = 0;
+    let cancelled = false;
+    let playing = false;
+    let played = false;
 
     function paint() {
       const values: Record<string, number> = { ctx: 0, perc: 0, exec: 0 };
@@ -640,8 +654,91 @@ const objects = [
       live.textContent = `Contextual ${phrase("ctx", values.ctx)}. Perceptual ${phrase("perc", values.perc)}. Execution ${phrase("exec", values.exec)}.`;
     }
 
+    function allZero() {
+      return [...root.querySelectorAll<HTMLInputElement>("[data-shift]")].every(
+        (input) => Number(input.value) === 0,
+      );
+    }
+
+    function setAxis(key: string, n: number) {
+      const input = root.querySelector<HTMLInputElement>(`[data-shift="${key}"]`);
+      if (input) input.value = String(Math.round(n));
+    }
+
+    function cancelPlay() {
+      cancelled = true;
+      playing = false;
+      if (raf) {
+        cancelAnimationFrame(raf);
+        raf = 0;
+      }
+    }
+
+    function runAxis(key: string): Promise<void> {
+      return new Promise((resolve) => {
+        const start = performance.now();
+        const tick = (now: number) => {
+          if (cancelled) {
+            resolve();
+            return;
+          }
+          const t = Math.min(1, (now - start) / AXIS_MS);
+          setAxis(key, easeOut(t) * 100);
+          paint();
+          if (t < 1) {
+            raf = requestAnimationFrame(tick);
+          } else {
+            resolve();
+          }
+        };
+        raf = requestAnimationFrame(tick);
+      });
+    }
+
+    async function autoplay() {
+      if (played || playing || reducedMotion() || !allZero()) return;
+      played = true;
+      playing = true;
+      cancelled = false;
+      for (const axis of AXES) {
+        if (cancelled) break;
+        await runAxis(axis);
+      }
+      playing = false;
+      announce(paint());
+    }
+
+    function stopForUser() {
+      played = true;
+      if (playing) {
+        cancelPlay();
+        announce(paint());
+      }
+    }
+
+    function armPlay() {
+      if (reducedMotion() || played) return;
+      if (!("IntersectionObserver" in window)) {
+        void autoplay();
+        return;
+      }
+      const io = new IntersectionObserver(
+        (entries, obs) => {
+          for (const entry of entries) {
+            if (!entry.isIntersecting) continue;
+            obs.disconnect();
+            void autoplay();
+          }
+        },
+        { threshold: 0.35 },
+      );
+      io.observe(root);
+    }
+
     root.querySelectorAll<HTMLInputElement>("[data-shift]").forEach((input) => {
+      input.addEventListener("pointerdown", stopForUser);
       input.addEventListener("input", () => {
+        stopForUser();
         paint();
       });
       input.addEventListener("change", () => {
@@ -650,6 +747,7 @@ const objects = [
     });
 
     root.querySelector("[data-reset]")?.addEventListener("click", () => {
+      stopForUser();
       root
         .querySelectorAll<HTMLInputElement>("[data-shift]")
         .forEach((input) => {
@@ -659,6 +757,7 @@ const objects = [
     });
 
     paint();
+    armPlay();
   }
 
   function bindRigs() {

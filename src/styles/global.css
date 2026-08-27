@@ -1063,6 +1063,53 @@ details > summary::-webkit-details-marker {
   color: var(--ink);
 }
 
+@keyframes os-land {
+  from {
+    transform: translateY(-4px);
+  }
+  to {
+    transform: none;
+  }
+}
+
+.os-window:not(.is-land) {
+  transform: translateY(-4px);
+}
+
+.os-window.is-land {
+  animation-name: os-land;
+  animation-duration: 220ms;
+  animation-timing-function: ease-out;
+  animation-fill-mode: both;
+  animation-delay: calc(var(--land-i, 0) * 70ms);
+}
+
+@keyframes socket-insert {
+  from {
+    transform: translateY(-4px);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+.faceplate.is-insert .socket {
+  animation-name: socket-insert;
+  animation-duration: 200ms;
+  animation-timing-function: ease-out;
+  animation-fill-mode: both;
+  animation-delay: calc(var(--sock-i, 0) * 40ms);
+}
+
+[data-entry].is-flip {
+  transition-property: transform;
+  transition-duration: 220ms;
+  transition-timing-function: ease-out;
+  will-change: transform;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -1090,6 +1137,14 @@ details > summary::-webkit-details-marker {
   .score-bar-exec,
   .score-bar:not(.is-in) .score-bar-src,
   .score-bar:not(.is-in) .score-bar-exec {
+    transform: none;
+  }
+
+  .os-window,
+  .os-window:not(.is-land),
+  .os-window.is-land,
+  .faceplate.is-insert .socket,
+  [data-entry].is-flip {
     transform: none;
   }
 }

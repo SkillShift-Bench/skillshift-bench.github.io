@@ -22,3 +22,15 @@ const { filename, badge, class: className } = Astro.props;
     <slot />
   </div>
 </section>
+
+<script>
+  function landWindows() {
+    document.querySelectorAll<HTMLElement>(".os-window").forEach((el, i) => {
+      if (el.classList.contains("is-land")) return;
+      el.style.setProperty("--land-i", String(i));
+      el.classList.add("is-land");
+    });
+  }
+
+  landWindows();
+</script>

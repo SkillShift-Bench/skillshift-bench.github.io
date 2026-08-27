@@ -148,6 +148,10 @@ const initialModel = MODEL_LISTINGS.some((l) => l.model === requestedModel)
 </style>
 
 <script>
+  function reducedMotion() {
+    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  }
+
   function setOpen(row: HTMLElement, open: boolean, instant = false) {
     const btn = row.querySelector<HTMLButtonElement>(".row-toggle");
     const detail = row.querySelector<HTMLElement>(".board-detail");
@@ -180,70 +184,138 @@ const initialModel = MODEL_LISTINGS.some((l) => l.model === requestedModel)
     target.scrollIntoView({ block: "start" });
   }
 
+  function num(el: Element, key: string): number | null {
+    const raw = (el as HTMLElement).dataset[key];
+    if (raw === undefined || raw === "") return null;
+    const n = Number(raw);
+    return Number.isFinite(n) ? n : null;
+  }
+
+  function parseBoardState() {
+    const params = new URLSearchParams(location.search);
+    const ignored = document.getElementById("sfr-ignored");
+    let sort = (params.get("sort") || "sr").toLowerCase();
+    if (sort === "sfr") {
+      ignored?.removeAttribute("hidden");
+      sort = "sr";
+    } else {
+      ignored?.setAttribute("hidden", "");
+    }
+    if (!["sr", "as", "asc"].includes(sort)) sort = "sr";
+    const dir = params.get("dir") === "asc" ? "asc" : "desc";
+    const listingIds = [
+      ...document.querySelectorAll<HTMLElement>("[data-listing]"),
+    ].map((el) => el.dataset.listing || "");
+    let model = params.get("model") || "";
+    const legacyBank = params.get("bank") || "";
+    if (!model) {
+      if (legacyBank === "mini") model = "gpt-5-mini";
+      else model = "mixed";
+    }
+    if (!listingIds.includes(model)) model = listingIds[0] || "mixed";
+    return { sort, dir, model };
+  }
+
+  function sortHost(host: Element, sort: string, dir: string) {
+    const rows = [...host.querySelectorAll("[data-entry]")];
+    rows.sort((a, b) => {
+      const av = num(a, sort);
+      const bv = num(b, sort);
+      if (av === null && bv === null) return 0;
+      if (av === null) return 1;
+      if (bv === null) return -1;
+      return dir === "desc" ? bv - av : av - bv;
+    });
+    rows.forEach((row, i) => {
+      host.append(row);
+      const rank = row.querySelector("[data-rank]");
+      if (rank) rank.textContent = String(i + 1);
+    });
+  }
+
+  function flipSort(host: Element, sort: string, dir: string) {
+    const rows = [...host.querySelectorAll<HTMLElement>("[data-entry]")];
+    if (reducedMotion() || rows.length === 0) {
+      sortHost(host, sort, dir);
+      return;
+    }
+    const tops = new Map(rows.map((row) => [row, row.getBoundingClientRect().top]));
+    sortHost(host, sort, dir);
+    rows.forEach((row) => {
+      const from = tops.get(row);
+      if (from === undefined) return;
+      const dy = from - row.getBoundingClientRect().top;
+      if (Math.abs(dy) < 0.5) return;
+      row.classList.add("is-flip");
+      row.style.transition = "none";
+      row.style.transform = `translateY(${dy}px)`;
+      void row.offsetWidth;
+      row.style.transition = "";
+      row.style.transform = "";
+      const done = (event: TransitionEvent) => {
+        if (event.propertyName !== "transform") return;
+        row.classList.remove("is-flip");
+        row.removeEventListener("transitionend", done);
+      };
+      row.addEventListener("transitionend", done);
+    });
+  }
+
+  function replayScoreBars(scope: ParentNode) {
+    scope.querySelectorAll(".score-bar").forEach((bar) => {
+      bar.classList.remove("is-in");
+    });
+    document.dispatchEvent(new Event("ssb:reveal-bars"));
+  }
+
+  function applyBoard(opts: { flip: boolean }) {
+    const { sort, dir, model } = parseBoardState();
+
+    document.querySelectorAll<HTMLElement>("[data-listing]").forEach((section) => {
+      section.hidden = section.dataset.listing !== model;
+    });
+
+    document.querySelectorAll(".board-table").forEach((host) => {
+      const listing = host.closest<HTMLElement>("[data-listing]");
+      const visible = Boolean(listing && !listing.hidden);
+      if (opts.flip && visible) flipSort(host, sort, dir);
+      else sortHost(host, sort, dir);
+    });
+
+    document.querySelectorAll<HTMLElement>("[data-overall]").forEach((el) => {
+      el.hidden = el.dataset.overall !== sort;
+    });
+    document.querySelectorAll("[data-overall-head]").forEach((el) => {
+      el.textContent = sort.toUpperCase();
+      el.setAttribute("aria-sort", dir === "asc" ? "ascending" : "descending");
+    });
+
+    document.querySelectorAll<HTMLAnchorElement>("[data-q]").forEach((a) => {
+      const [k, v] = (a.dataset.q || "=").split("=");
+      a.classList.remove("is-active");
+      a.removeAttribute("aria-current");
+      if (k === "sort" && v === sort) {
+        a.classList.add("is-active");
+        a.setAttribute("aria-current", "true");
+      }
+      if (k === "model" && v === model) {
+        a.classList.add("is-active");
+        a.setAttribute("aria-current", "true");
+      }
+    });
+
+    const visibleListing = document.querySelector<HTMLElement>(
+      `[data-listing="${CSS.escape(model)}"]`,
+    );
+    if (visibleListing) replayScoreBars(visibleListing);
+  }
+
   function initBoard() {
     const board = document.getElementById("board");
     if (!board) return;
 
     if (!board.dataset.bound) {
       board.dataset.bound = "1";
-
-      const params = new URLSearchParams(location.search);
-      const ignored = document.getElementById("sfr-ignored");
-      let sort = (params.get("sort") || "sr").toLowerCase();
-      if (sort === "sfr") {
-        ignored?.removeAttribute("hidden");
-        sort = "sr";
-      }
-      if (!["sr", "as", "asc"].includes(sort)) sort = "sr";
-      const dir = params.get("dir") === "asc" ? "asc" : "desc";
-      const listingIds = [
-        ...document.querySelectorAll<HTMLElement>("[data-listing]"),
-      ].map((el) => el.dataset.listing || "");
-      let model = params.get("model") || "";
-      const legacyBank = params.get("bank") || "";
-      if (!model) {
-        if (legacyBank === "mini") model = "gpt-5-mini";
-        else model = "mixed";
-      }
-      if (!listingIds.includes(model)) model = listingIds[0] || "mixed";
-
-      document.querySelectorAll<HTMLElement>("[data-listing]").forEach((section) => {
-        section.hidden = section.dataset.listing !== model;
-      });
-
-      function num(el: Element, key: string): number | null {
-        const raw = (el as HTMLElement).dataset[key];
-        if (raw === undefined || raw === "") return null;
-        const n = Number(raw);
-        return Number.isFinite(n) ? n : null;
-      }
-
-      function sortHost(host: Element) {
-        const rows = [...host.querySelectorAll("[data-entry]")];
-        rows.sort((a, b) => {
-          const av = num(a, sort);
-          const bv = num(b, sort);
-          if (av === null && bv === null) return 0;
-          if (av === null) return 1;
-          if (bv === null) return -1;
-          return dir === "desc" ? bv - av : av - bv;
-        });
-        rows.forEach((row, i) => {
-          host.append(row);
-          const rank = row.querySelector("[data-rank]");
-          if (rank) rank.textContent = String(i + 1);
-        });
-      }
-
-      document.querySelectorAll(".board-table").forEach(sortHost);
-
-      document.querySelectorAll<HTMLElement>("[data-overall]").forEach((el) => {
-        el.hidden = el.dataset.overall !== sort;
-      });
-      document.querySelectorAll("[data-overall-head]").forEach((el) => {
-        el.textContent = sort.toUpperCase();
-        el.setAttribute("aria-sort", dir === "asc" ? "ascending" : "descending");
-      });
 
       document.querySelectorAll<HTMLElement>("[data-entry]").forEach((row) => {
         const btn = row.querySelector<HTMLButtonElement>(".row-toggle");
@@ -254,27 +326,20 @@ const initialModel = MODEL_LISTINGS.some((l) => l.model === requestedModel)
       });
 
       document.querySelectorAll<HTMLAnchorElement>("[data-q]").forEach((a) => {
-        const [k, v] = (a.dataset.q || "=").split("=");
-        if (k === "sort" && v === sort) {
-          a.classList.add("is-active");
-          a.setAttribute("aria-current", "true");
-        }
-        if (k === "model" && v === model) {
-          a.classList.add("is-active");
-          a.setAttribute("aria-current", "true");
-        }
         a.addEventListener("click", (event) => {
           event.preventDefault();
+          const [k, v] = (a.dataset.q || "=").split("=");
           if (k === "sort" && v === "sfr") return;
           const url = new URL(location.href);
           url.searchParams.set(k, v);
           if (k === "model") url.searchParams.delete("bank");
           history.replaceState(null, "", url);
-          location.reload();
+          applyBoard({ flip: k === "sort" });
         });
       });
     }
 
+    applyBoard({ flip: false });
     openFromHash();
   }
 

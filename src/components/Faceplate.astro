@@ -379,3 +379,102 @@ const sitesUnmeasured = siteCells.every((s) => s.cell.kind === "unmeasured");
     }
   }
 </style>
+
+<script>
+  function reducedMotion() {
+    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  }
+
+  function parseOverall(text: string): number | null {
+    const trimmed = text.trim();
+    if (!trimmed || trimmed === "—" || trimmed === "--" || trimmed === "–") {
+      return null;
+    }
+    const n = Number(trimmed);
+    return Number.isFinite(n) ? n : null;
+  }
+
+  function visibleFaceplate(host: Element): HTMLElement | null {
+    if (host.classList.contains("series-switch")) {
+      const series = host.querySelector<HTMLInputElement>("input:checked")
+        ?.dataset.series;
+      if (!series) return null;
+      return host.querySelector(
+        `[data-series="${CSS.escape(series)}"] .faceplate`,
+      );
+    }
+    const metric = host.querySelector<HTMLInputElement>("input:checked")?.value;
+    if (!metric) return null;
+    return host.querySelector(`[data-metric="${CSS.escape(metric)}"] .faceplate`);
+  }
+
+  function overallEl(faceplate: HTMLElement) {
+    return faceplate.querySelector<HTMLElement>(".overall-value:not(.is-blank)");
+  }
+
+  function rememberOverall(host: Element) {
+    const faceplate = visibleFaceplate(host);
+    if (!faceplate) return;
+    const value = overallEl(faceplate);
+    const n = value ? parseOverall(value.textContent || "") : null;
+    if (n === null) host.removeAttribute("data-prev-overall");
+    else host.setAttribute("data-prev-overall", String(n));
+  }
+
+  function countUp(el: HTMLElement, from: number, to: number) {
+    if (reducedMotion() || from === to) {
+      el.textContent = to.toFixed(2);
+      return;
+    }
+    el.textContent = from.toFixed(2);
+    const start = performance.now();
+    const duration = 280;
+    const tick = (now: number) => {
+      const t = Math.min(1, (now - start) / duration);
+      const eased = 1 - (1 - t) * (1 - t);
+      el.textContent = (from + (to - from) * eased).toFixed(2);
+      if (t < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }
+
+  function insertSockets(faceplate: HTMLElement) {
+    const sockets = [...faceplate.querySelectorAll<HTMLElement>(".socket")];
+    sockets.forEach((socket, i) => {
+      socket.style.setProperty("--sock-i", String(i));
+    });
+    faceplate.classList.remove("is-insert");
+    void faceplate.offsetWidth;
+    if (reducedMotion()) return;
+    faceplate.classList.add("is-insert");
+    const done = 200 + sockets.length * 40 + 40;
+    window.setTimeout(() => faceplate.classList.remove("is-insert"), done);
+  }
+
+  function onSwitchChange(host: Element) {
+    const faceplate = visibleFaceplate(host);
+    if (!faceplate) return;
+    const overall = overallEl(faceplate);
+    const to = overall ? parseOverall(overall.textContent || "") : null;
+    const prevRaw = host.getAttribute("data-prev-overall");
+    const from = prevRaw === null ? null : Number(prevRaw);
+    if (overall && to !== null && from !== null && Number.isFinite(from)) {
+      countUp(overall, from, to);
+    }
+    insertSockets(faceplate);
+    if (to !== null) host.setAttribute("data-prev-overall", String(to));
+    else rememberOverall(host);
+  }
+
+  function bindFaceplates() {
+    document.querySelectorAll(".series-switch, .metric-switch").forEach((host) => {
+      const el = host as HTMLElement;
+      if (el.dataset.fpBound) return;
+      el.dataset.fpBound = "1";
+      rememberOverall(el);
+      el.addEventListener("change", () => onSwitchChange(el));
+    });
+  }
+
+  bindFaceplates();
+</script>

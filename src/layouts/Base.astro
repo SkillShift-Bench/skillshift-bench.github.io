@@ -116,7 +116,9 @@ const path = Astro.url.pathname.replace(/\/$/, "") || "/";
         </div>
       </div>
     </header>
-    <p class="stage-wordmark" aria-hidden="true">SKILLSHIFT</p>
+    <p class="stage-wordmark" aria-hidden="true">
+      SKILLSHIFT
+    </p>
     <div class="stage-banner" aria-hidden="true"></div>
     <main
       id="main"
@@ -140,7 +142,8 @@ const path = Astro.url.pathname.replace(/\/$/, "") || "/";
     <script is:inline>
       (function () {
         var btn = document.querySelector("[data-theme-toggle]");
-        if (!btn) return;
+        if (!btn || btn.dataset.bound) return;
+        btn.dataset.bound = "1";
         function label() {
           var t = document.documentElement.getAttribute("data-theme");
           btn.textContent = t === "dark" ? "Light" : "Dark";
@@ -161,6 +164,7 @@ const path = Astro.url.pathname.replace(/\/$/, "") || "/";
     </script>
     <script>
       const COPY_MS = 1600;
+      const w = window as Window & { __ssbChrome?: boolean };
 
       async function copyText(text: string) {
         const fallback = () => {
@@ -188,31 +192,34 @@ const path = Astro.url.pathname.replace(/\/$/, "") || "/";
         }
       }
 
-      document.addEventListener("click", async (event) => {
-        const btn = (event.target as HTMLElement).closest<HTMLButtonElement>(
-          ".code-copy",
-        );
-        if (!btn) return;
-        const pre = btn.closest(".code-window")?.querySelector("pre");
-        const text = (pre?.textContent ?? "").replace(/\n$/, "");
-        if (!text) return;
-        const ok = await copyText(text);
-        if (!ok) return;
-        const prior = btn.dataset.label || btn.textContent || "Copy";
-        btn.dataset.label = prior;
-        btn.textContent = "Copied";
-        btn.classList.add("is-copied");
-        btn.setAttribute("aria-label", "Copied");
-        const priorTimer = Number(btn.dataset.timer || "");
-        if (priorTimer) window.clearTimeout(priorTimer);
-        btn.dataset.timer = String(
-          window.setTimeout(() => {
-            btn.textContent = btn.dataset.label || "Copy";
-            btn.classList.remove("is-copied");
-            btn.setAttribute("aria-label", "Copy code");
-          }, COPY_MS),
-        );
-      });
+      if (!w.__ssbChrome) {
+        w.__ssbChrome = true;
+        document.addEventListener("click", async (event) => {
+          const btn = (event.target as HTMLElement).closest<HTMLButtonElement>(
+            ".code-copy",
+          );
+          if (!btn) return;
+          const pre = btn.closest(".code-window")?.querySelector("pre");
+          const text = (pre?.textContent ?? "").replace(/\n$/, "");
+          if (!text) return;
+          const ok = await copyText(text);
+          if (!ok) return;
+          const prior = btn.dataset.label || btn.textContent || "Copy";
+          btn.dataset.label = prior;
+          btn.textContent = "Copied";
+          btn.classList.add("is-copied");
+          btn.setAttribute("aria-label", "Copied");
+          const priorTimer = Number(btn.dataset.timer || "");
+          if (priorTimer) window.clearTimeout(priorTimer);
+          btn.dataset.timer = String(
+            window.setTimeout(() => {
+              btn.textContent = btn.dataset.label || "Copy";
+              btn.classList.remove("is-copied");
+              btn.setAttribute("aria-label", "Copy code");
+            }, COPY_MS),
+          );
+        });
+      }
     </script>
   </body>
 </html>
