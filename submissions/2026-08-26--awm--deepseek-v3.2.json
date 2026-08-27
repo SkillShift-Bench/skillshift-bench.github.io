@@ -1,0 +1,113 @@
+{
+  "schema_version": "1.0",
+  "submission": {
+    "name": "AWM",
+    "date": "2026-08-26",
+    "contact": null,
+    "method": {
+      "name": "Agent Workflow Memory",
+      "description": "Induces reusable textual workflows from experience and prepends them to the prompt.",
+      "paper_url": "https://proceedings.mlr.press/v267/wang25bx.html",
+      "code_url": null
+    },
+    "model": {
+      "id": "DeepSeek-V3.2",
+      "temperature": null,
+      "vision": null
+    },
+    "provenance": {
+      "label": "reported-only",
+      "source": "experiment results.md",
+      "code_released": false
+    },
+    "repro_command": null
+  },
+  "harness_version": "n/a",
+  "metrics": {
+    "SR": {
+      "websites": {
+        "gitlab": 18.21,
+        "magento": 25.88,
+        "wordpress": 61.82
+      },
+      "conditions": {
+        "src": 54.52,
+        "src-perc": 39.74,
+        "src-exec": 23.46,
+        "tgt": 40.16,
+        "tgt-perc": 36.38,
+        "tgt-exec": 17.54
+      },
+      "overall": 35.3
+    },
+    "AS": {
+      "websites": {
+        "gitlab": 8.42,
+        "magento": 8.59,
+        "wordpress": 5.03
+      },
+      "conditions": {
+        "src": 6.05,
+        "src-perc": 6.75,
+        "src-exec": 8.52,
+        "tgt": 6.89,
+        "tgt-perc": 7.08,
+        "tgt-exec": 8.8
+      },
+      "overall": 7.35
+    },
+    "ASC": {
+      "websites": {
+        "gitlab": null,
+        "magento": null,
+        "wordpress": null
+      },
+      "conditions": {
+        "src": null,
+        "src-perc": null,
+        "src-exec": null,
+        "tgt": null,
+        "tgt-perc": null,
+        "tgt-exec": null
+      },
+      "overall": null
+    },
+    "SFR": {
+      "websites": {
+        "gitlab": null,
+        "magento": null,
+        "wordpress": null
+      },
+      "conditions": {
+        "src": null,
+        "src-perc": null,
+        "src-exec": null,
+        "tgt": null,
+        "tgt-perc": null,
+        "tgt-exec": null
+      },
+      "overall": null
+    }
+  },
+  "n": {
+    "websites": {
+      "gitlab": 162,
+      "magento": 114,
+      "wordpress": 79
+    },
+    "conditions": {
+      "src": 355,
+      "src-perc": 355,
+      "src-exec": 355,
+      "tgt": 355,
+      "tgt-perc": 355,
+      "tgt-exec": 355
+    },
+    "skill_calls": null
+  },
+  "reasons": {
+    "ASC": "Not applicable to AWM: it reuses prompted textual workflows rather than executable skill invocations, so there is nothing to count (experiment results.md, empty cells).",
+    "SFR": "Not applicable to AWM: no executable skill invocations, so the ratio has no denominator (experiment results.md, empty cells)."
+  },
+  "notes": "Transcribed from experiment_results/results.md. Website and condition values are unweighted means of the same eighteen cells, so they agree with the overall value by construction."
+}

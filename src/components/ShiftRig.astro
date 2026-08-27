@@ -1,0 +1,666 @@
+---
+const objects = [
+  {
+    id: "a",
+    x: 40,
+    label: "New project",
+    srcLoc: "#new-project",
+    tgtLoc: "//div[2]/button",
+  },
+  {
+    id: "b",
+    x: 204,
+    label: "Star repo",
+    srcLoc: "#star-btn",
+    tgtLoc: ".css-a8f2",
+  },
+  {
+    id: "c",
+    x: 368,
+    label: "Issue list",
+    srcLoc: "#issue-list",
+    tgtLoc: "[data-qa=x]",
+  },
+] as const;
+---
+
+<div class="shift-rig" style="--ctx: 0; --perc: 0; --exec: 0">
+  <svg
+    class="stage"
+    viewBox="0 0 720 308"
+    width="720"
+    height="308"
+    role="img"
+    aria-labelledby="shift-rig-title shift-rig-desc"
+  >
+    <title id="shift-rig-title">Schematic web UI under three named shifts</title>
+    <desc id="shift-rig-desc">
+      A toy admin window. Contextual replaces chrome, routes, and object
+      placement. Perceptual swaps locator attributes on the same three objects
+      without moving them. Execution raises an oxide runtime blocker over the
+      Run skill control.
+    </desc>
+    <defs>
+      <pattern
+        id="shift-rig-hatch"
+        width="8"
+        height="8"
+        patternUnits="userSpaceOnUse"
+        patternTransform="rotate(-45)"
+      >
+        <line
+          x1="0"
+          y1="0"
+          x2="0"
+          y2="8"
+          stroke="var(--oxide)"
+          stroke-width="3"></line>
+      </pattern>
+    </defs>
+
+    <rect
+      x="16"
+      y="12"
+      width="688"
+      height="284"
+      fill="var(--plate)"
+      stroke="var(--ink)"
+      stroke-width="3"></rect>
+
+    <rect x="16" y="12" width="688" height="32" fill="var(--titlebar)"></rect>
+    <rect
+      class="xfade as-tgt"
+      x="16"
+      y="12"
+      width="688"
+      height="32"
+      fill="var(--pink)"></rect>
+    <line
+      x1="16"
+      y1="44"
+      x2="704"
+      y2="44"
+      stroke="var(--ink)"
+      stroke-width="3"></line>
+    <g aria-hidden="true">
+      <circle
+        cx="36"
+        cy="28"
+        r="5"
+        fill="#ff5a5a"
+        stroke="var(--ink)"
+        stroke-width="2"></circle>
+      <circle
+        cx="52"
+        cy="28"
+        r="5"
+        fill="var(--canary)"
+        stroke="var(--ink)"
+        stroke-width="2"></circle>
+      <circle
+        cx="68"
+        cy="28"
+        r="5"
+        fill="var(--lime)"
+        stroke="var(--ink)"
+        stroke-width="2"></circle>
+    </g>
+    <text class="xfade chrome-src mono" x="88" y="33" fill="var(--ink)" font-size="12">
+      src.app / projects
+    </text>
+    <text class="xfade chrome-tgt mono" x="88" y="33" fill="var(--ink)" font-size="12">
+      tgt.app / home
+    </text>
+    <g class="xfade chrome-src">
+      <rect
+        x="620"
+        y="18"
+        width="72"
+        height="20"
+        fill="var(--lime)"
+        stroke="var(--ink)"
+        stroke-width="2"></rect>
+      <text
+        class="mono"
+        x="656"
+        y="32"
+        text-anchor="middle"
+        fill="var(--ink)"
+        font-size="11">v1</text>
+    </g>
+    <g class="xfade chrome-tgt">
+      <rect
+        x="620"
+        y="18"
+        width="72"
+        height="20"
+        fill="var(--canary)"
+        stroke="var(--ink)"
+        stroke-width="2"></rect>
+      <text
+        class="mono"
+        x="656"
+        y="32"
+        text-anchor="middle"
+        fill="var(--ink)"
+        font-size="11">v2</text>
+    </g>
+
+    <rect x="16" y="44" width="688" height="28" fill="var(--plate)"></rect>
+    <text class="xfade chrome-src mono" x="32" y="63" fill="var(--stamp)" font-size="12">
+      https://src.local/projects
+    </text>
+    <text class="xfade chrome-tgt mono" x="32" y="63" fill="var(--stamp)" font-size="12">
+      https://tgt.local/home?view=grid
+    </text>
+    <line
+      x1="16"
+      y1="72"
+      x2="704"
+      y2="72"
+      stroke="var(--ink)"
+      stroke-width="3"></line>
+
+    <rect x="16" y="72" width="688" height="36" fill="var(--steel)"></rect>
+    <g class="xfade chrome-src">
+      <text x="36" y="95" fill="var(--plate)" font-size="13" font-weight="600"
+        >Projects</text
+      >
+      <text x="132" y="95" fill="var(--plate)" font-size="13">Groups</text>
+      <text x="212" y="95" fill="var(--plate)" font-size="13">Activity</text>
+    </g>
+    <g class="xfade chrome-tgt">
+      <text x="36" y="95" fill="var(--canary)" font-size="13" font-weight="600"
+        >Home</text
+      >
+      <text x="108" y="95" fill="var(--plate)" font-size="13">Explore</text>
+      <text x="188" y="95" fill="var(--plate)" font-size="13">Search</text>
+    </g>
+    <line
+      x1="16"
+      y1="108"
+      x2="704"
+      y2="108"
+      stroke="var(--ink)"
+      stroke-width="3"></line>
+
+    {
+      objects.map((obj) => (
+        <g class="obj" data-obj={obj.id} transform={`translate(${obj.x} 124)`}>
+          <rect
+            width="148"
+            height="100"
+            fill="var(--plate)"
+            stroke="var(--ink)"
+            stroke-width="3"></rect>
+          <text x="12" y="28" fill="var(--ink)" font-size="13" font-weight="600">
+            {obj.label}
+          </text>
+          <text
+            class="xfade loc-src mono"
+            x="12"
+            y="52"
+            fill="var(--stamp)"
+            font-size="11">
+            {obj.srcLoc}
+          </text>
+          <text
+            class="xfade loc-tgt mono"
+            x="12"
+            y="52"
+            fill="var(--stamp)"
+            font-size="11">
+            {obj.tgtLoc}
+          </text>
+          <text class="mono" x="12" y="84" fill="var(--ink)" font-size="10">
+            same object
+          </text>
+        </g>
+      ))
+    }
+
+    <g transform="translate(532 124)">
+      <rect
+        width="156"
+        height="100"
+        fill="var(--titlebar)"
+        stroke="var(--ink)"
+        stroke-width="3"></rect>
+      <text x="10" y="22" fill="var(--ink)" font-size="11" font-weight="600"
+        >DOM evidence</text
+      >
+      <text class="xfade loc-src mono" x="10" y="48" fill="var(--stamp)" font-size="11">
+        ul &gt; li.card
+      </text>
+      <text class="xfade loc-src mono" x="10" y="66" fill="var(--stamp)" font-size="11">
+        button#new-project
+      </text>
+      <text class="xfade loc-tgt mono" x="10" y="48" fill="var(--stamp)" font-size="11">
+        div &gt; div &gt; span
+      </text>
+      <text class="xfade loc-tgt mono" x="10" y="66" fill="var(--stamp)" font-size="11">
+        [data-testid=n]
+      </text>
+      <text class="mono" x="10" y="88" fill="var(--ink)" font-size="10">
+        objects stay aligned
+      </text>
+    </g>
+
+    <g transform="translate(40 240)">
+      <rect
+        width="148"
+        height="40"
+        fill="var(--canary)"
+        stroke="var(--ink)"
+        stroke-width="3"></rect>
+      <text
+        x="74"
+        y="26"
+        text-anchor="middle"
+        fill="var(--ink)"
+        font-size="13"
+        font-weight="600">Run skill</text
+      >
+    </g>
+    <text class="mono" x="204" y="266" fill="var(--stamp)" font-size="11">
+      learned skill → this control
+    </text>
+
+    <g class="exec-layer">
+      <rect
+        x="16"
+        y="108"
+        width="688"
+        height="188"
+        fill="url(#shift-rig-hatch)"
+        opacity="0.55"></rect>
+      <rect
+        x="220"
+        y="158"
+        width="280"
+        height="88"
+        fill="var(--plate)"
+        stroke="var(--oxide)"
+        stroke-width="3"></rect>
+      <text
+        x="360"
+        y="194"
+        text-anchor="middle"
+        fill="var(--oxide)"
+        font-size="16"
+        font-weight="600">Runtime blocker</text
+      >
+      <text
+        class="mono"
+        x="360"
+        y="218"
+        text-anchor="middle"
+        fill="var(--ink)"
+        font-size="12">500 · skill cannot execute</text
+      >
+    </g>
+  </svg>
+
+  <form class="controls" autocomplete="off">
+    <fieldset>
+      <legend class="legend">Shift intensity</legend>
+      <p class="hint">
+        Left is the source the skill was learned on. Right is a full named
+        shift.
+      </p>
+      <div class="sliders">
+        <div class="slider">
+          <label class="slider-name" for="shift-ctx">Contextual</label>
+          <span class="slider-ends" aria-hidden="true">
+            <span>source chrome</span>
+            <span>target chrome</span>
+          </span>
+          <input
+            id="shift-ctx"
+            type="range"
+            name="contextual"
+            data-shift="ctx"
+            min="0"
+            max="100"
+            value="0"
+            step="1"
+            aria-valuetext="source chrome"
+            aria-describedby="shift-rig-hint-ctx"
+          />
+          <span class="sr-only" id="shift-rig-hint-ctx">
+            Moves routes, window chrome, and object placement. The task goal
+            does not change.
+          </span>
+        </div>
+        <div class="slider">
+          <label class="slider-name" for="shift-perc">Perceptual</label>
+          <span class="slider-ends" aria-hidden="true">
+            <span>stable locators</span>
+            <span>reshuffled DOM</span>
+          </span>
+          <input
+            id="shift-perc"
+            type="range"
+            name="perceptual"
+            data-shift="perc"
+            min="0"
+            max="100"
+            value="0"
+            step="1"
+            aria-valuetext="stable locators"
+            aria-describedby="shift-rig-hint-perc"
+          />
+          <span class="sr-only" id="shift-rig-hint-perc">
+            Swaps locator attributes on the same three objects. Placement does
+            not move.
+          </span>
+        </div>
+        <div class="slider is-exec">
+          <label class="slider-name" for="shift-exec">Execution</label>
+          <span class="slider-ends" aria-hidden="true">
+            <span>clear path</span>
+            <span>runtime blocked</span>
+          </span>
+          <input
+            id="shift-exec"
+            type="range"
+            name="execution"
+            data-shift="exec"
+            min="0"
+            max="100"
+            value="0"
+            step="1"
+            aria-valuetext="clear path"
+            aria-describedby="shift-rig-hint-exec"
+          />
+          <span class="sr-only" id="shift-rig-hint-exec">
+            Raises a reproducible runtime blocker over the skill control. Oxide
+            marks execution only.
+          </span>
+        </div>
+      </div>
+    </fieldset>
+    <div class="toolbar">
+      <button type="button" class="btn-ghost" data-reset>Reset to source</button>
+      <p class="live" aria-live="polite" aria-atomic="true" data-live>
+        All three shifts at source.
+      </p>
+    </div>
+  </form>
+</div>
+
+<style>
+  .shift-rig {
+    --ctx: 0;
+    --perc: 0;
+    --exec: 0;
+  }
+
+  .stage {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 720 / 308;
+    background: var(--plate);
+    font-family: var(--font-sans);
+  }
+
+  .stage text.mono,
+  .mono {
+    font-family: var(--font-mono);
+  }
+
+  .xfade,
+  .exec-layer {
+    transition-property: opacity;
+    transition-duration: 180ms;
+    transition-timing-function: ease;
+  }
+
+  .as-tgt {
+    opacity: var(--ctx);
+  }
+
+  .chrome-tgt,
+  .loc-tgt {
+    opacity: 0;
+  }
+
+  .exec-layer {
+    opacity: var(--exec);
+    pointer-events: none;
+  }
+
+  .controls {
+    border-top: 3px solid var(--ink);
+    padding: 0.75rem 1.1rem 0.85rem;
+    background: var(--titlebar);
+  }
+
+  .controls fieldset {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    min-width: 0;
+  }
+
+  .legend {
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0;
+  }
+
+  .hint {
+    margin: 0.25rem 0 0.5rem;
+    font-size: 0.8rem;
+    max-width: 42rem;
+  }
+
+  .sliders {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.45rem 1.25rem;
+    width: 100%;
+  }
+
+  .slider {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "name"
+      "range"
+      "ends";
+    gap: 0.05rem;
+    align-items: center;
+    min-width: 0;
+    width: 100%;
+    max-width: 16rem;
+    justify-self: center;
+  }
+
+  .slider-name {
+    grid-area: name;
+    font-weight: 600;
+    font-size: 0.85rem;
+  }
+
+  .slider-ends {
+    grid-area: ends;
+    display: flex;
+    justify-content: space-between;
+    gap: 0.35rem;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  .slider input[type="range"] {
+    grid-area: range;
+    width: 100%;
+    max-width: 16rem;
+    height: 2.25rem;
+    margin: 0;
+    background: transparent;
+    cursor: pointer;
+    touch-action: manipulation;
+    -webkit-appearance: none;
+    appearance: none;
+    accent-color: var(--canary);
+  }
+
+  .slider.is-exec input[type="range"] {
+    accent-color: var(--oxide);
+  }
+
+  .slider input[type="range"]:focus-visible {
+    outline: 3px solid var(--canary);
+    outline-offset: 3px;
+  }
+
+  .slider input[type="range"]::-webkit-slider-runnable-track {
+    height: 0.55rem;
+    border: 3px solid var(--ink);
+    background: var(--plate);
+  }
+
+  .slider input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 1.35rem;
+    height: 1.35rem;
+    margin-top: -0.5rem;
+    background: var(--canary);
+    border: 3px solid var(--ink);
+    box-shadow: 3px 3px 0 var(--ink);
+  }
+
+  .slider.is-exec input[type="range"]::-webkit-slider-thumb {
+    background: var(--oxide);
+  }
+
+  .slider input[type="range"]::-moz-range-track {
+    height: 0.55rem;
+    border: 3px solid var(--ink);
+    background: var(--plate);
+  }
+
+  .slider input[type="range"]::-moz-range-thumb {
+    width: 1.35rem;
+    height: 1.35rem;
+    background: var(--canary);
+    border: 3px solid var(--ink);
+    border-radius: 0;
+    box-shadow: 3px 3px 0 var(--ink);
+  }
+
+  .slider.is-exec input[type="range"]::-moz-range-thumb {
+    background: var(--oxide);
+  }
+
+  .toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1rem;
+    margin-top: 0.65rem;
+  }
+
+  .live {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+  }
+
+  @media (max-width: 639px) {
+    .sliders {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>
+
+<script>
+  const HOMES: Record<string, number> = { a: 40, b: 204, c: 368 };
+  const Y = 124;
+  const SLOT = 164;
+
+  function phrase(shift: string, n: number): string {
+    if (shift === "exec") {
+      if (n === 0) return "clear path";
+      if (n === 100) return "runtime blocked";
+      return `${n} percent blocked`;
+    }
+    const src = shift === "ctx" ? "source chrome" : "stable locators";
+    const tgt = shift === "ctx" ? "target chrome" : "reshuffled DOM";
+    if (n === 0) return src;
+    if (n === 100) return tgt;
+    return `${n} percent shifted`;
+  }
+
+  function bind(root: HTMLElement) {
+    const live = root.querySelector<HTMLElement>("[data-live]");
+    const objs = [...root.querySelectorAll<SVGGElement>("[data-obj]")];
+
+    function paint() {
+      const values: Record<string, number> = { ctx: 0, perc: 0, exec: 0 };
+      root
+        .querySelectorAll<HTMLInputElement>("[data-shift]")
+        .forEach((input) => {
+          const key = input.dataset.shift || "";
+          const n = Number(input.value);
+          values[key] = n;
+          root.style.setProperty(`--${key}`, String(n / 100));
+          input.setAttribute("aria-valuetext", phrase(key, n));
+        });
+      const t = values.ctx / 100;
+      objs.forEach((g) => {
+        const id = g.dataset.obj || "";
+        const home = HOMES[id] ?? 0;
+        let dx = 0;
+        if (id === "a" || id === "b") dx = t * SLOT;
+        if (id === "c") dx = t * -2 * SLOT;
+        g.setAttribute("transform", `translate(${home + dx} ${Y})`);
+      });
+      const setOp = (sel: string, on: boolean) => {
+        root.querySelectorAll<SVGElement>(sel).forEach((el) => {
+          el.style.opacity = on ? "1" : "0";
+        });
+      };
+      setOp(".chrome-src", values.ctx < 50);
+      setOp(".chrome-tgt", values.ctx >= 50);
+      setOp(".loc-src", values.perc < 50);
+      setOp(".loc-tgt", values.perc >= 50);
+      return values;
+    }
+
+    function announce(values: Record<string, number>) {
+      if (!live) return;
+      if (values.ctx === 0 && values.perc === 0 && values.exec === 0) {
+        live.textContent = "All three shifts at source.";
+        return;
+      }
+      live.textContent = `Contextual ${phrase("ctx", values.ctx)}. Perceptual ${phrase("perc", values.perc)}. Execution ${phrase("exec", values.exec)}.`;
+    }
+
+    root.querySelectorAll<HTMLInputElement>("[data-shift]").forEach((input) => {
+      input.addEventListener("input", () => {
+        paint();
+      });
+      input.addEventListener("change", () => {
+        announce(paint());
+      });
+    });
+
+    root.querySelector("[data-reset]")?.addEventListener("click", () => {
+      root
+        .querySelectorAll<HTMLInputElement>("[data-shift]")
+        .forEach((input) => {
+          input.value = "0";
+        });
+      announce(paint());
+    });
+
+    paint();
+  }
+
+  document.querySelectorAll<HTMLElement>(".shift-rig").forEach(bind);
+</script>

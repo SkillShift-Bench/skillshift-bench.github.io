@@ -1,0 +1,23 @@
+---
+import type { SlopeChartPayload } from "../lib/slope";
+
+interface Props {
+  payload: SlopeChartPayload;
+  class?: string;
+}
+
+const { payload, class: className } = Astro.props;
+---
+
+<div
+  class:list={["slope-chart", className]}
+  data-slope-chart={JSON.stringify(payload)}
+  role="img"
+  aria-label={`${payload.title}. Success rate by condition.`}
+>
+</div>
+
+<script>
+  import { mountSlopeCharts } from "../lib/slope-chart";
+  mountSlopeCharts();
+</script>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="SkillShift-Bench">
+  <rect width="32" height="32" fill="#E7E2D6"/>
+  <rect x="3" y="12" width="4" height="8" rx="1" fill="#3D5A73"/>
+  <rect x="8" y="12" width="4" height="8" rx="1" fill="#3D5A73"/>
+  <rect x="13" y="12" width="4" height="8" rx="1" fill="#B9B3A8"/>
+  <rect x="18" y="12" width="4" height="8" rx="1" fill="#B44122"/>
+  <rect x="23" y="12" width="4" height="8" rx="1" fill="#B44122"/>
+</svg>

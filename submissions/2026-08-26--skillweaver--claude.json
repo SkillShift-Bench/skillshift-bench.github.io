@@ -1,0 +1,110 @@
+{
+  "schema_version": "1.0",
+  "submission": {
+    "name": "SkillWeaver",
+    "date": "2026-08-26",
+    "contact": null,
+    "method": {
+      "name": "SkillWeaver",
+      "description": "Self-improves by discovering and honing reusable web skills through exploration.",
+      "paper_url": "https://arxiv.org/abs/2504.07079",
+      "code_url": null
+    },
+    "model": {
+      "id": "Claude Haiku 4.5",
+      "temperature": null,
+      "vision": null
+    },
+    "provenance": {
+      "label": "reported-only",
+      "source": "experiment results.md",
+      "code_released": false
+    },
+    "repro_command": null
+  },
+  "harness_version": "n/a",
+  "metrics": {
+    "SR": {
+      "websites": {
+        "gitlab": 12.32,
+        "magento": 12.57,
+        "wordpress": 30.07
+      },
+      "conditions": {
+        "src": 38.42,
+        "src-perc": 29.54,
+        "src-exec": 3.44,
+        "tgt": 17.98,
+        "tgt-perc": 13.1,
+        "tgt-exec": 7.45
+      },
+      "overall": 18.32
+    },
+    "AS": {
+      "websites": {
+        "gitlab": 12.37,
+        "magento": 17.7,
+        "wordpress": 15.09
+      },
+      "conditions": {
+        "src": 13.34,
+        "src-perc": 14.32,
+        "src-exec": 19.16,
+        "tgt": 11.45,
+        "tgt-perc": 14.69,
+        "tgt-exec": 17.36
+      },
+      "overall": 15.06
+    },
+    "ASC": {
+      "websites": {
+        "gitlab": 0.0,
+        "magento": 0.0,
+        "wordpress": 0.0
+      },
+      "conditions": {
+        "src": 0.0,
+        "src-perc": 0.0,
+        "src-exec": 0.0,
+        "tgt": 0.0,
+        "tgt-perc": 0.0,
+        "tgt-exec": 0.0
+      },
+      "overall": 0.0
+    },
+    "SFR": {
+      "websites": {
+        "gitlab": 0.0,
+        "magento": 0.0,
+        "wordpress": 0.0
+      },
+      "conditions": {
+        "src": 0.0,
+        "src-perc": 0.0,
+        "src-exec": 0.0,
+        "tgt": 0.0,
+        "tgt-perc": 0.0,
+        "tgt-exec": 0.0
+      },
+      "overall": 0.0
+    }
+  },
+  "n": {
+    "websites": {
+      "gitlab": 162,
+      "magento": 114,
+      "wordpress": 79
+    },
+    "conditions": {
+      "src": 355,
+      "src-perc": 355,
+      "src-exec": 355,
+      "tgt": 355,
+      "tgt-perc": 355,
+      "tgt-exec": 355
+    },
+    "skill_calls": null
+  },
+  "reasons": {},
+  "notes": "Transcribed from experiment_results/results.md. Website and condition values are unweighted means of the same eighteen cells, so they agree with the overall value by construction."
+}

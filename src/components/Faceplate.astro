@@ -1,0 +1,381 @@
+---
+import {
+  SLOT_IDS,
+  SLOT_LABELS,
+  WEBSITES,
+  type Cell,
+  type Metric,
+  type SlotId,
+} from "../lib/constants";
+
+interface Props {
+  cells: Cell[];
+  metric?: Metric;
+  heading?: string;
+  caption?: string;
+}
+
+const { cells, metric = "SR", heading, caption } = Astro.props;
+
+const SHIFT_COLS = [
+  { label: "Contextual", src: "src", tgt: "tgt", exec: false },
+  { label: "Perceptual", src: "src-perc", tgt: "tgt-perc", exec: false },
+  { label: "Execution", src: "src-exec", tgt: "tgt-exec", exec: true },
+] as const satisfies ReadonlyArray<{
+  label: string;
+  src: SlotId;
+  tgt: SlotId;
+  exec: boolean;
+}>;
+
+const ROWS = ["src", "tgt"] as const;
+
+function cellFor(slot: SlotId): Cell {
+  const i = SLOT_IDS.indexOf(slot);
+  return (
+    cells[i] ?? {
+      kind: "unmeasured",
+      value: null,
+      text: "",
+      a11y: `${SLOT_LABELS[slot]}: unmeasured`,
+    }
+  );
+}
+
+function socketClass(cell: Cell, exec = false) {
+  return [
+    "socket",
+    exec && "is-exec",
+    cell.kind === "unmeasured" && "is-empty",
+    cell.kind === "na" && "is-na",
+    cell.kind === "sfr-unverified" && "is-warn",
+  ];
+}
+
+const overall = cellFor("overall");
+const siteCells = WEBSITES.map((id) => ({ id, cell: cellFor(id) }));
+const sitesUnmeasured = siteCells.every((s) => s.cell.kind === "unmeasured");
+---
+
+<figure class="faceplate">
+  {
+    heading && (
+      <p class="faceplate-who">{heading}</p>
+    )
+  }
+
+  <div class:list={["faceplate-top", sitesUnmeasured && "is-bare"]}>
+    <div
+      class:list={[...socketClass(overall), "is-overall"]}
+      data-slot="overall"
+      aria-label={overall.a11y}
+    >
+      <span class="overall-kicker">Overall {metric}</span>
+      {
+        overall.kind === "unmeasured" ? (
+          <span class="overall-value is-blank" aria-hidden="true">
+            —
+          </span>
+        ) : (
+          <span class="overall-value tabular">{overall.text}</span>
+        )
+      }
+      {
+        overall.kind === "sfr-unverified" && (
+          <span class="slot-flag">⚠︎ n unverified</span>
+        )
+      }
+    </div>
+    {
+      sitesUnmeasured ? (
+        <p class="sites-empty">Website channels unmeasured in this listing.</p>
+      ) : (
+        <ul class="site-row" role="list">
+          {siteCells.map(({ id, cell }) => (
+            <li
+              class:list={socketClass(cell)}
+              data-slot={id}
+              aria-label={cell.a11y}
+            >
+              <span class="slot-name">{SLOT_LABELS[id]}</span>
+              {cell.kind === "unmeasured" ? (
+                <span class="slot-value empty" aria-hidden="true"></span>
+              ) : (
+                <span class="slot-value tabular">{cell.text}</span>
+              )}
+              {cell.kind === "sfr-unverified" && (
+                <span class="slot-flag">⚠︎ n unverified</span>
+              )}
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  </div>
+
+  <div class="shift-board">
+    <div class="shift-cols" aria-hidden="true">
+      <span class="shift-corner"></span>
+      {
+        SHIFT_COLS.map((col) => (
+          <span class:list={["shift-col-lab", col.exec && "is-exec"]}>
+            {col.label}
+          </span>
+        ))
+      }
+    </div>
+    {
+      ROWS.map((row) => (
+        <div class="shift-row">
+          <span class="shift-row-lab">{row}</span>
+          {SHIFT_COLS.map((col) => {
+            const slot = row === "src" ? col.src : col.tgt;
+            const cell = cellFor(slot);
+            return (
+              <div
+                class:list={socketClass(cell, col.exec)}
+                data-slot={slot}
+                aria-label={cell.a11y}
+              >
+                <span class="socket-shift">{col.label}</span>
+                {cell.kind === "unmeasured" ? (
+                  <span class="slot-value empty" aria-hidden="true"></span>
+                ) : (
+                  <span class="slot-value tabular">{cell.text}</span>
+                )}
+                <span class="slot-id">{SLOT_LABELS[slot]}</span>
+                {cell.kind === "sfr-unverified" && (
+                  <span class="slot-flag">⚠︎ n unverified</span>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      ))
+    }
+  </div>
+
+  {
+    caption && (
+      <figcaption class="mt-2 font-mono text-xs text-stamp">{caption}</figcaption>
+    )
+  }
+</figure>
+
+<style>
+  .faceplate {
+    margin: 0;
+  }
+
+  .faceplate-who {
+    margin: 0 0 0.5rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    max-width: 28rem;
+  }
+
+  .faceplate-top {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
+    column-gap: 1.25rem;
+    row-gap: 0.45rem;
+    align-items: stretch;
+    margin-bottom: 0.65rem;
+  }
+
+  .faceplate-top.is-bare {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
+  }
+
+  .slot-name,
+  .shift-col-lab,
+  .socket-shift {
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--stamp);
+  }
+
+  .overall-kicker {
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--steel);
+  }
+
+  .socket {
+    min-height: 4.25rem;
+    width: 100%;
+    border: var(--line) solid var(--ink);
+    padding: 0.4rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.12rem;
+    background: var(--plate);
+    box-shadow: var(--hard);
+    box-sizing: border-box;
+  }
+
+  .socket.is-exec {
+    background: color-mix(in srgb, var(--oxide) 22%, var(--plate));
+  }
+
+  .socket.is-empty {
+    background: repeating-linear-gradient(
+      -45deg,
+      var(--plate),
+      var(--plate) 6px,
+      var(--ink) 6px,
+      var(--ink) 7px
+    );
+  }
+
+  .socket.is-exec.is-empty {
+    background: repeating-linear-gradient(
+      -45deg,
+      color-mix(in srgb, var(--oxide) 22%, var(--plate)),
+      color-mix(in srgb, var(--oxide) 22%, var(--plate)) 6px,
+      var(--ink) 6px,
+      var(--ink) 7px
+    );
+  }
+
+  .socket.is-overall {
+    background: color-mix(in srgb, var(--steel) 12%, var(--plate));
+  }
+
+  .overall-value {
+    font-family: var(--font-mono);
+    font-size: 1.7rem;
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--steel);
+  }
+
+  .overall-value.is-blank {
+    color: color-mix(in srgb, var(--steel) 55%, var(--stamp));
+  }
+
+  .shift-board {
+    display: grid;
+    gap: 0.45rem;
+  }
+
+  .shift-cols,
+  .shift-row {
+    display: grid;
+    grid-template-columns: 2.6rem repeat(3, minmax(0, 1fr));
+    column-gap: 1.25rem;
+    row-gap: 0.45rem;
+    align-items: stretch;
+  }
+
+  .shift-col-lab {
+    display: flex;
+    align-items: flex-end;
+    padding: 0 0.15rem 0.15rem;
+  }
+
+  .shift-col-lab.is-exec {
+    color: var(--oxide);
+  }
+
+  .shift-row-lab {
+    display: flex;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .socket-shift {
+    display: none;
+  }
+
+  .slot-value {
+    font-family: var(--font-mono);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .socket.is-exec .slot-value {
+    color: var(--oxide);
+  }
+
+  .slot-value.empty {
+    flex: 1;
+    min-height: 1.15rem;
+  }
+
+  .slot-id {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--stamp);
+  }
+
+  .slot-flag {
+    font-size: 0.65rem;
+    color: var(--ink);
+    background: var(--canary);
+    border: 2px solid var(--ink);
+    padding: 0 0.2rem;
+    width: fit-content;
+  }
+
+  .site-row {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: 1.25rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    min-width: 0;
+  }
+
+  .sites-empty {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--stamp);
+  }
+
+  @media (max-width: 639px) {
+    .faceplate-top {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
+      column-gap: 0.75rem;
+    }
+
+    .shift-cols {
+      display: none;
+    }
+
+    .shift-row {
+      grid-template-columns: 2.2rem repeat(3, minmax(0, 1fr));
+      column-gap: 0.75rem;
+    }
+
+    .site-row {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      column-gap: 0.75rem;
+    }
+
+    .socket-shift {
+      display: block;
+    }
+
+    .slot-value {
+      font-size: 0.92rem;
+    }
+
+    .overall-value {
+      font-size: 1.4rem;
+    }
+  }
+</style>

@@ -1,0 +1,22 @@
+---
+import Docs from "../../layouts/Docs.astro";
+import { DOC_LINKS } from "../../lib/copy";
+---
+
+<Docs title="Docs">
+  <p class="mb-6">
+    Harness manuals. The site navigation stays; this list is the docs sidebar
+    too.
+  </p>
+  <ol class="space-y-3">
+    {
+      DOC_LINKS.map((item, i) => (
+        <li>
+          <a class="text-steel underline underline-offset-2" href={item.href}>
+            {String(i + 1).padStart(2, "0")} {item.label}
+          </a>
+        </li>
+      ))
+    }
+  </ol>
+</Docs>

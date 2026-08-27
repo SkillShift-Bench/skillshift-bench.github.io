@@ -1,0 +1,64 @@
+---
+import { formatNumber } from "../lib/cells";
+
+interface Props {
+  src: number | null;
+  tgtExec: number | null;
+  srcPct: number | null;
+  execPct: number | null;
+}
+
+const { src, tgtExec, srcPct, execPct } = Astro.props;
+const missing = srcPct === null || execPct === null;
+const label = missing
+  ? "Execution drop unmeasured"
+  : `src ${formatNumber(src as number)} percent, tgt-exec ${formatNumber(tgtExec as number)} percent`;
+---
+
+{
+  missing ? (
+    <span class="score-bar-empty" aria-label={label}>
+      —
+    </span>
+  ) : (
+    <div class="score-bar" role="img" aria-label={label}>
+      <span class="score-bar-track">
+        <span class="score-bar-src" style={`width: ${srcPct}%`}></span>
+        <span class="score-bar-exec" style={`width: ${execPct}%`}></span>
+      </span>
+    </div>
+  )
+}
+
+<style>
+  .score-bar {
+    display: block;
+    min-width: 7.5rem;
+    width: 100%;
+  }
+  .score-bar-track {
+    position: relative;
+    display: block;
+    height: 0.7rem;
+    border: 2px solid var(--ink);
+    background: color-mix(in srgb, var(--socket) 8%, var(--plate));
+    overflow: hidden;
+  }
+  .score-bar-src,
+  .score-bar-exec {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+  }
+  .score-bar-src {
+    background: color-mix(in srgb, var(--steel) 38%, var(--plate));
+  }
+  .score-bar-exec {
+    background: var(--oxide);
+  }
+  .score-bar-empty {
+    font-family: var(--font-mono);
+    color: var(--stamp);
+  }
+</style>

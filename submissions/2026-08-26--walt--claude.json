@@ -1,0 +1,110 @@
+{
+  "schema_version": "1.0",
+  "submission": {
+    "name": "WALT",
+    "date": "2026-08-26",
+    "contact": null,
+    "method": {
+      "name": "WALT: Web Agents that Learn Tools",
+      "description": "Reverse-engineers website functionality into structured, callable tools.",
+      "paper_url": "https://openreview.net/forum?id=cgIDqcJcoI",
+      "code_url": null
+    },
+    "model": {
+      "id": "Claude Haiku 4.5",
+      "temperature": null,
+      "vision": null
+    },
+    "provenance": {
+      "label": "reported-only",
+      "source": "experiment results.md",
+      "code_released": false
+    },
+    "repro_command": null
+  },
+  "harness_version": "n/a",
+  "metrics": {
+    "SR": {
+      "websites": {
+        "gitlab": 19.65,
+        "magento": 17.25,
+        "wordpress": 45.61
+      },
+      "conditions": {
+        "src": 44.77,
+        "src-perc": 43.39,
+        "src-exec": 17.27,
+        "tgt": 32.24,
+        "tgt-perc": 17.15,
+        "tgt-exec": 10.19
+      },
+      "overall": 27.5
+    },
+    "AS": {
+      "websites": {
+        "gitlab": 6.61,
+        "magento": 8.48,
+        "wordpress": 4.77
+      },
+      "conditions": {
+        "src": 6.4,
+        "src-perc": 7.14,
+        "src-exec": 6.38,
+        "tgt": 7.24,
+        "tgt-perc": 6.59,
+        "tgt-exec": 5.96
+      },
+      "overall": 6.62
+    },
+    "ASC": {
+      "websites": {
+        "gitlab": 0.06,
+        "magento": 0.1,
+        "wordpress": 0.0
+      },
+      "conditions": {
+        "src": 0.05,
+        "src-perc": 0.03,
+        "src-exec": 0.08,
+        "tgt": 0.06,
+        "tgt-perc": 0.04,
+        "tgt-exec": 0.05
+      },
+      "overall": 0.05
+    },
+    "SFR": {
+      "websites": {
+        "gitlab": 57.7,
+        "magento": 38.76,
+        "wordpress": 0.0
+      },
+      "conditions": {
+        "src": 19.05,
+        "src-perc": 37.5,
+        "src-exec": 40.61,
+        "tgt": 36.36,
+        "tgt-perc": 16.67,
+        "tgt-exec": 42.74
+      },
+      "overall": 32.15
+    }
+  },
+  "n": {
+    "websites": {
+      "gitlab": 162,
+      "magento": 114,
+      "wordpress": 79
+    },
+    "conditions": {
+      "src": 355,
+      "src-perc": 355,
+      "src-exec": 355,
+      "tgt": 355,
+      "tgt-perc": 355,
+      "tgt-exec": 355
+    },
+    "skill_calls": null
+  },
+  "reasons": {},
+  "notes": "Transcribed from experiment_results/results.md. Website and condition values are unweighted means of the same eighteen cells, so they agree with the overall value by construction."
+}

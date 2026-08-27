@@ -1,0 +1,376 @@
+---
+import Faceplate from "./Faceplate.astro";
+import LabelChip from "./LabelChip.astro";
+import ScoreBar from "./ScoreBar.astro";
+import { cellsForMetric } from "../lib/cells";
+import {
+  execDrop,
+  formatCell,
+  formatDelta,
+  hasReceipt,
+  overallAttr,
+} from "../lib/board";
+import {
+  displayLabel,
+  entryRowId,
+  type LeaderboardEntry,
+} from "../lib/submissions";
+
+interface Props {
+  listingId: string;
+  title: string;
+  lede: string;
+  entries: LeaderboardEntry[];
+  hidden?: boolean;
+}
+
+const { listingId, title, lede, entries, hidden = false } = Astro.props;
+const metrics = ["SR", "AS", "ASC", "SFR"] as const;
+---
+
+<section id={`listing-${listingId}`} data-listing={listingId} hidden={hidden}>
+  <h2 class="text-xl">{title}</h2>
+  <p class="mt-1 text-sm text-stamp">{lede}</p>
+  <div class="board-scroll mt-4">
+    <table class="board-table">
+      <caption class="sr-only">
+        {title}. Rank, method, overall, src, tgt-exec, execution drop, and bar.
+      </caption>
+      <colgroup>
+        <col class="col-rank" />
+        <col class="col-method" />
+        <col class="col-num" />
+        <col class="col-num" />
+        <col class="col-exec" />
+        <col class="col-delta" />
+        <col class="col-bar" />
+      </colgroup>
+      <thead>
+        <tr>
+          <th scope="col" class="col-rank">#</th>
+          <th scope="col" class="col-method">Method</th>
+          <th scope="col" class="col-num is-sort-col" data-overall-head aria-sort="descending">SR</th>
+          <th scope="col" class="col-num">src</th>
+          <th scope="col" class="col-num col-exec is-exec">tgt-exec</th>
+          <th scope="col" class="col-num col-delta">Δ</th>
+          <th scope="col" class="col-bar">src → tgt-exec</th>
+        </tr>
+      </thead>
+      {
+        entries.map((entry, i) => {
+          const drop = execDrop(entry);
+          const sr = overallAttr(entry, "SR");
+          const as = overallAttr(entry, "AS");
+          const asc = overallAttr(entry, "ASC");
+          const rowId = entryRowId(entry);
+          const detailId = `${rowId}-detail`;
+          const deltaKind =
+            drop.delta === null ? "empty" : drop.delta < 0 ? "drop" : "gain";
+          return (
+            <tbody
+              id={rowId}
+              data-entry
+              data-slug={entry.slug}
+              data-bank={entry.bank}
+              data-model={entry.model}
+              data-sr={sr}
+              data-as={as}
+              data-asc={asc}
+            >
+              <tr class="board-main">
+                <td class="col-rank tabular" data-rank>
+                  {i + 1}
+                </td>
+                <th scope="row" class="col-method">
+                  <button
+                    type="button"
+                    class="row-toggle"
+                    aria-expanded="false"
+                    aria-controls={detailId}
+                  >
+                    {entry.json.submission.name}
+                  </button>
+                  <div class="method-meta">
+                    <span class="model-id">{entry.json.submission.model.id}</span>
+                    <LabelChip
+                      label={displayLabel(entry.json.submission.provenance.label)}
+                    />
+                  </div>
+                </th>
+                <td class="col-num is-sort-col tabular">
+                  <span data-overall="sr">{formatCell(sr === "" ? null : Number(sr))}</span>
+                  <span data-overall="as" hidden>
+                    {formatCell(as === "" ? null : Number(as))}
+                  </span>
+                  <span data-overall="asc" hidden>
+                    {formatCell(asc === "" ? null : Number(asc))}
+                  </span>
+                </td>
+                <td class="col-num tabular">{formatCell(drop.src)}</td>
+                <td class="col-num col-exec is-exec tabular">{formatCell(drop.tgtExec)}</td>
+                <td class:list={["col-num", "col-delta", "tabular", `is-${deltaKind}`]}>
+                  {formatDelta(drop.delta)}
+                </td>
+                <td class="col-bar">
+                  <ScoreBar
+                    src={drop.src}
+                    tgtExec={drop.tgtExec}
+                    srcPct={drop.srcPct}
+                    execPct={drop.execPct}
+                  />
+                </td>
+              </tr>
+              <tr class="board-detail" id={detailId} hidden>
+                <td colspan="7">
+                  <div class="expand-body">
+                    <fieldset class="metric-switch">
+                      <legend class="text-xs uppercase tracking-wide text-stamp">
+                        Metric readout
+                      </legend>
+                      <div class="mt-2 flex flex-wrap gap-2">
+                        {metrics.map((m, mi) => (
+                          <label class="min-h-11 cursor-pointer border border-socket px-3 py-2 text-sm">
+                            <input
+                              type="radio"
+                              name={`m-${rowId}`}
+                              value={m}
+                              checked={mi === 0}
+                            />
+                            {m}
+                          </label>
+                        ))}
+                      </div>
+                      <div class="metric-plates mt-3">
+                        {metrics.map((m) => (
+                          <div data-metric={m}>
+                            <Faceplate
+                              cells={cellsForMetric(entry.json, m)}
+                              metric={m}
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    </fieldset>
+                    <dl class="mt-4 grid gap-2 text-sm md:grid-cols-2">
+                      <div>
+                        <dt class="text-stamp">Source</dt>
+                        <dd>{entry.json.submission.provenance.source}</dd>
+                      </div>
+                      <div>
+                        <dt class="text-stamp">Harness</dt>
+                        <dd class="tabular">{entry.json.harness_version}</dd>
+                      </div>
+                      <div>
+                        <dt class="text-stamp">n websites</dt>
+                        <dd class="tabular">
+                          GitLab {entry.json.n.websites.gitlab} · Magento{" "}
+                          {entry.json.n.websites.magento} · WordPress{" "}
+                          {entry.json.n.websites.wordpress}
+                        </dd>
+                      </div>
+                      <div>
+                        <dt class="text-stamp">skill_calls</dt>
+                        <dd class="tabular">
+                          {entry.json.n.skill_calls === null
+                            ? "null"
+                            : entry.json.n.skill_calls}
+                        </dd>
+                      </div>
+                    </dl>
+                    <p class="sticker is-plate mt-4">
+                      {hasReceipt(entry) ? "Harness receipt" : "No harness receipt"}
+                    </p>
+                    {entry.json.submission.method.paper_url && (
+                      <p class="mt-3 text-sm">
+                        <a
+                          class="text-steel underline underline-offset-2"
+                          href={entry.json.submission.method.paper_url}
+                        >
+                          Method paper
+                        </a>
+                      </p>
+                    )}
+                    <p class="mt-3 text-sm">{entry.json.notes}</p>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          );
+        })
+      }
+    </table>
+  </div>
+</section>
+
+<style>
+  .board-scroll {
+    overflow-x: auto;
+    border: var(--line) solid var(--ink);
+    box-shadow: var(--hard);
+    background: var(--plate);
+  }
+  .board-table {
+    width: 100%;
+    min-width: 56rem;
+    table-layout: fixed;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+  }
+  .board-table col.col-rank {
+    width: 2.75rem;
+  }
+  .board-table col.col-num {
+    width: 5.75rem;
+  }
+  .board-table col.col-exec {
+    width: 8.75rem;
+  }
+  .board-table col.col-delta {
+    width: 6.25rem;
+  }
+  .board-table col.col-bar {
+    width: 13rem;
+  }
+  .board-table th,
+  .board-table td {
+    box-sizing: border-box;
+    padding: 0.75rem 0.7rem;
+    text-align: left;
+    vertical-align: middle;
+    border-bottom: 1px solid color-mix(in srgb, var(--socket) 22%, transparent);
+  }
+  .board-table thead th {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+    text-transform: uppercase;
+    color: var(--ink);
+    background: var(--titlebar);
+    border-bottom: var(--line) solid var(--ink);
+    white-space: nowrap;
+    padding-top: 0.85rem;
+    padding-bottom: 0.85rem;
+  }
+  .board-table thead .col-method {
+    padding-left: 1.85rem;
+  }
+  .board-table .col-rank {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    text-align: center;
+    color: var(--stamp);
+  }
+  .board-table thead .col-num,
+  .board-table td.col-num {
+    font-variant-numeric: tabular-nums;
+    font-family: var(--font-mono);
+    white-space: nowrap;
+  }
+  .board-table .col-method {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    overflow-wrap: anywhere;
+  }
+  .board-table .col-bar {
+    min-width: 0;
+  }
+  .board-table .is-exec {
+    color: var(--oxide);
+    font-weight: 600;
+  }
+  .board-table thead .is-exec {
+    color: var(--oxide);
+  }
+  .board-table .is-drop {
+    color: var(--oxide);
+    font-weight: 600;
+  }
+  .board-table .is-gain {
+    color: var(--steel);
+    font-weight: 600;
+  }
+  .board-table .is-empty {
+    color: var(--stamp);
+    font-weight: 400;
+  }
+  .board-table .is-sort-col {
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .board-table tbody.is-open .board-main th,
+  .board-table tbody.is-open .board-main td {
+    background: color-mix(in srgb, var(--canary) 16%, var(--plate));
+  }
+  .board-table tbody:hover .board-main th,
+  .board-table tbody:hover .board-main td {
+    background: color-mix(in srgb, var(--lime) 16%, var(--plate));
+  }
+  .board-table tbody.is-open:hover .board-main th,
+  .board-table tbody.is-open:hover .board-main td {
+    background: color-mix(in srgb, var(--canary) 22%, var(--plate));
+  }
+  .board-table .board-detail td {
+    padding: 0;
+    background: color-mix(in srgb, var(--titlebar) 35%, var(--plate));
+    border-bottom: 2px solid var(--ink);
+    vertical-align: top;
+  }
+  .expand-body {
+    padding: 1rem 0.9rem 1.1rem;
+  }
+  .board-detail:not([hidden]) .expand-body {
+    animation: board-fade 200ms ease;
+  }
+  @keyframes board-fade {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  .row-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    min-height: 2.75rem;
+    margin: -0.35rem 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--ink);
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: left;
+  }
+  .row-toggle::before {
+    content: "▸";
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--stamp);
+  }
+  .board-table tbody.is-open .row-toggle::before {
+    content: "▾";
+  }
+  .method-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 0.15rem;
+    font-weight: 400;
+  }
+  .model-id {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--stamp);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .expand-body {
+      animation: none;
+    }
+  }
+</style>

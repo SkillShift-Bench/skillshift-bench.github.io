@@ -1,0 +1,110 @@
+{
+  "schema_version": "1.0",
+  "submission": {
+    "name": "MPCR",
+    "date": "2026-08-27",
+    "contact": null,
+    "method": {
+      "name": "Masked Prior-Guided Candidate Reranking",
+      "description": "Executor-side test-time adaptation: proposes primitive and skill-action candidates, verifies them against current-page feasibility evidence, and reranks the shortlist. Introduces no new skills.",
+      "paper_url": "https://skillshift-bench.github.io",
+      "code_url": null
+    },
+    "model": {
+      "id": "gpt-5-mini",
+      "temperature": null,
+      "vision": null
+    },
+    "provenance": {
+      "label": "reported-only",
+      "source": "experiment MPCR results.md",
+      "code_released": false
+    },
+    "repro_command": null
+  },
+  "harness_version": "n/a",
+  "metrics": {
+    "SR": {
+      "websites": {
+        "gitlab": 23.2,
+        "magento": 39.18,
+        "wordpress": 61.39
+      },
+      "conditions": {
+        "src": 56.67,
+        "src-perc": 57.09,
+        "src-exec": 33.23,
+        "tgt": 43.32,
+        "tgt-perc": 37.24,
+        "tgt-exec": 19.99
+      },
+      "overall": 41.26
+    },
+    "AS": {
+      "websites": {
+        "gitlab": 8.26,
+        "magento": 7.34,
+        "wordpress": 5.19
+      },
+      "conditions": {
+        "src": 5.56,
+        "src-perc": 5.66,
+        "src-exec": 8.19,
+        "tgt": 6.59,
+        "tgt-perc": 7.06,
+        "tgt-exec": 8.51
+      },
+      "overall": 6.93
+    },
+    "ASC": {
+      "websites": {
+        "gitlab": 0.13,
+        "magento": 0.24,
+        "wordpress": 0.08
+      },
+      "conditions": {
+        "src": 0.22,
+        "src-perc": 0.2,
+        "src-exec": 0.19,
+        "tgt": 0.12,
+        "tgt-perc": 0.14,
+        "tgt-exec": 0.03
+      },
+      "overall": 0.15
+    },
+    "SFR": {
+      "websites": {
+        "gitlab": 39.02,
+        "magento": 47.32,
+        "wordpress": 6.67
+      },
+      "conditions": {
+        "src": 28.93,
+        "src-perc": 27.93,
+        "src-exec": 54.63,
+        "tgt": 18.6,
+        "tgt-perc": 22.6,
+        "tgt-exec": 33.33
+      },
+      "overall": 31.0
+    }
+  },
+  "n": {
+    "websites": {
+      "gitlab": 162,
+      "magento": 114,
+      "wordpress": 79
+    },
+    "conditions": {
+      "src": 355,
+      "src-perc": 355,
+      "src-exec": 355,
+      "tgt": 355,
+      "tgt-perc": 355,
+      "tgt-exec": 355
+    },
+    "skill_calls": null
+  },
+  "reasons": {},
+  "notes": "Transcribed from experiment_results/改进方法结果.md. Website and condition values are unweighted means of the same eighteen cells, so they agree with the overall value by construction. Condition-level SR and ASC reproduce paper Table 3; this file adds the per-website breakdown plus AS and SFR from the same run."
+}

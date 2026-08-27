@@ -1,0 +1,5027 @@
+[
+  {
+    "family_id": "skillshift.gitlab.0",
+    "legacy_id": "myBenchmark.0",
+    "site": "gitlab",
+    "intent": "Check out my todos",
+    "intent_template": "Check out my todos",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.1",
+    "legacy_id": "myBenchmark.1",
+    "site": "gitlab",
+    "intent": "Check out the most recent open issues",
+    "intent_template": "Check out the most recent open issues",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.10",
+    "legacy_id": "myBenchmark.10",
+    "site": "gitlab",
+    "intent": "How many commits did kilian make to a11yproject on 3/1/2023?",
+    "intent_template": "How many commits did {{user}} make to {{repo}} on {{date}}?",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.100",
+    "legacy_id": "myBenchmark.100",
+    "site": "gitlab",
+    "intent": "Star the top one most stared repos in Gitlab",
+    "intent_template": "Star the top {{number}} most stared repos in Gitlab",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.101",
+    "legacy_id": "myBenchmark.101",
+    "site": "gitlab",
+    "intent": "Invite Jakub Klinkovsk\u00fd and Beno\u00eet Blanchon as collaborator to gimmiethat.space repo",
+    "intent_template": "Invite {{collaborator_account_list}} as collaborator to {{repo}} repo",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.102",
+    "legacy_id": "myBenchmark.102",
+    "site": "gitlab",
+    "intent": "Invite Abishek and Vinta as collaborator to a11yproject.com repo",
+    "intent_template": "Invite {{collaborator_account_list}} as collaborator to {{repo}} repo",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.103",
+    "legacy_id": "myBenchmark.103",
+    "site": "gitlab",
+    "intent": "Invite Beno\u00eet and Abishek as collaborator to my HTML5 markup extention repo",
+    "intent_template": "Invite {{collaborator_account_list}} as collaborator to {{repo}} repo",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.104",
+    "legacy_id": "myBenchmark.104",
+    "site": "gitlab",
+    "intent": "Invite Jakub K, Alex Dills, Alex Hutnik and Beno\u00eet Blanchon as collaborator to my time tracking tool project repo",
+    "intent_template": "Invite {{collaborator_account_list}} as collaborator to {{repo}} repo",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.105",
+    "legacy_id": "myBenchmark.105",
+    "site": "gitlab",
+    "intent": "Add the following users to repo a11y-webring.club as developer: ['abisubramanya27', 'lahwaacz']",
+    "intent_template": "Add the following users to repo {{repo}} as {{role}}: {{user_list}}",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.106",
+    "legacy_id": "myBenchmark.106",
+    "site": "gitlab",
+    "intent": "Add the following users to my GitHub timeline item management extension as maintainer: ['abisubramanya27', 'lahwaacz']",
+    "intent_template": "Add the following users to my {{repo}} as {{role}}: {{user_list}}",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.107",
+    "legacy_id": "myBenchmark.107",
+    "site": "gitlab",
+    "intent": "Add the following users to repo millennials-to-snake-people as reporter: ['yjlou', 'a11yproject']",
+    "intent_template": "Add the following users to repo {{repo}} as {{role}}: {{user_list}}",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.108",
+    "legacy_id": "myBenchmark.108",
+    "site": "gitlab",
+    "intent": "Add the following users to my time tracking tool as guest: ['yjlou']",
+    "intent_template": "Add the following users to my {{repo}} as {{role}}: {{user_list}}",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.109",
+    "legacy_id": "myBenchmark.109",
+    "site": "gitlab",
+    "intent": "Create a milestone for the upcoming event of product launch starting on 1/16/2023 and ending on 1/30/2023",
+    "intent_template": "Create a milestone for the upcoming {{event}} starting on {{start_date}} and ending on {{end_date}}",
+    "eval_types": [
+      "program_html",
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.11",
+    "legacy_id": "myBenchmark.11",
+    "site": "gitlab",
+    "intent": "How many commits did Eric and Kilian make to a11yproject on 1/3/2023?",
+    "intent_template": "How many commits did {{user}} make to {{repo}} on {{date}}?",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.110",
+    "legacy_id": "myBenchmark.110",
+    "site": "gitlab",
+    "intent": "Create a milestone for the upcoming practice of collective code review starting on 1/16/2023 and ending on in 20 days",
+    "intent_template": "Create a milestone for the upcoming {{event}} starting on {{start_date}} and ending on {{end_date}}",
+    "eval_types": [
+      "program_html",
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.111",
+    "legacy_id": "myBenchmark.111",
+    "site": "gitlab",
+    "intent": "Create a milestone for the upcoming task of cleaning sensitive information starting on 2/16/2023 and ending on in 20 days",
+    "intent_template": "Create a milestone for the upcoming {{event}} starting on {{start_date}} and ending on {{end_date}}",
+    "eval_types": [
+      "program_html",
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.112",
+    "legacy_id": "myBenchmark.112",
+    "site": "gitlab",
+    "intent": "Create a milestone for the upcoming task of merging all branches to main starting on March 15, 2044 and ending on March 30, 2044",
+    "intent_template": "Create a milestone for the upcoming {{event}} starting on {{start_date}} and ending on {{end_date}}",
+    "eval_types": [
+      "program_html",
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.113",
+    "legacy_id": "myBenchmark.113",
+    "site": "gitlab",
+    "intent": "Create a milestone for the upcoming task of adding a new branch for zsh comprehensive support starting on 5/1/2044 and ending on in 20 days",
+    "intent_template": "Create a milestone for the upcoming {{event}} starting on {{start_date}} and ending on {{end_date}}",
+    "eval_types": [
+      "program_html",
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.114",
+    "legacy_id": "myBenchmark.114",
+    "site": "gitlab",
+    "intent": "Create an issue in a11yproject repo with title \"401 bad gateway\". Assign the issue to Roshanjossey. Set due date to be the end of 2030",
+    "intent_template": "Create an issue in {{repo}} repo with title \"{{issue}}\". Assign the issue to {{account}}. Set due date to be {{due}}",
+    "eval_types": [
+      "program_html",
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.115",
+    "legacy_id": "myBenchmark.115",
+    "site": "gitlab",
+    "intent": "Create an issue in empathy-prompts repo with title \"Integrating LLMs for better prompts\". Assign the issue to Roshanjossey. Set due date to be the beginning of Q2 2033",
+    "intent_template": "Create an issue in {{repo}} repo with title \"{{issue}}\". Assign the issue to {{account}}. Set due date to be {{due}}",
+    "eval_types": [
+      "program_html",
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.116",
+    "legacy_id": "myBenchmark.116",
+    "site": "gitlab",
+    "intent": "Create an issue in dotfiles repo with title \"add support for oh-my-zsh\". Assign the issue to Abishek. Set due date to be July 18 2033",
+    "intent_template": "Create an issue in {{repo}} repo with title \"{{issue}}\". Assign the issue to {{account}}. Set due date to be {{due}}",
+    "eval_types": [
+      "program_html",
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.117",
+    "legacy_id": "myBenchmark.117",
+    "site": "gitlab",
+    "intent": "Open an issue to report the issue of connection refused in ChatGPT.",
+    "intent_template": "Open an issue to {{issue}} in {{repo}}.",
+    "eval_types": [
+      "program_html",
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.118",
+    "legacy_id": "myBenchmark.118",
+    "site": "gitlab",
+    "intent": "Open an issue to report experiencing \"OSError: [Errno 98] Address already in use\" during executions in aem-hacker.",
+    "intent_template": "Open an issue to {{issue}} in {{repo}}.",
+    "eval_types": [
+      "program_html",
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.119",
+    "legacy_id": "myBenchmark.119",
+    "site": "gitlab",
+    "intent": "Open an issue to ask their plan on supporting Llama and other llama family models in metaseq.",
+    "intent_template": "Open an issue to {{issue}} in {{repo}}.",
+    "eval_types": [
+      "program_html",
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.12",
+    "legacy_id": "myBenchmark.12",
+    "site": "gitlab",
+    "intent": "How many commits did Steven Woodson make to a11y-webring.club on 2/6/2023?",
+    "intent_template": "How many commits did {{user}} make to {{repo}} on {{date}}?",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.120",
+    "legacy_id": "myBenchmark.120",
+    "site": "gitlab",
+    "intent": "Open an issue to ask their plans on adding Python 3.11 related resources in awesome-python.",
+    "intent_template": "Open an issue to {{issue}} in {{repo}}.",
+    "eval_types": [
+      "program_html",
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.121",
+    "legacy_id": "myBenchmark.121",
+    "site": "gitlab",
+    "intent": "Open an issue to request adding support for MT theme editor in a11y-syntax-highlighting.",
+    "intent_template": "Open an issue to {{issue}} in {{repo}}.",
+    "eval_types": [
+      "program_html",
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.122",
+    "legacy_id": "myBenchmark.122",
+    "site": "gitlab",
+    "intent": "Submit a request to merge dialog-component branch into dialog branch, assign Carol as the reviewer",
+    "intent_template": "Submit a request to merge {{source_branch}} branch into {{target_branch}} branch, assign {{reviewer}} as the reviewer",
+    "eval_types": [
+      "program_html",
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.123",
+    "legacy_id": "myBenchmark.123",
+    "site": "gitlab",
+    "intent": "Submit a merge request for dialog-component branch to be merged into bump-doctocat branch, assign primer as the reviewer",
+    "intent_template": "Submit a merge request for {{source_branch}} branch to be merged into {{target_branch}} branch, assign {{reviewer}} as the reviewer",
+    "eval_types": [
+      "program_html",
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.124",
+    "legacy_id": "myBenchmark.124",
+    "site": "gitlab",
+    "intent": "Submit a merge request for a11yproject.com/redesign branch to be merged into master branch, assign Justin Armstrong as the reviewer",
+    "intent_template": "Submit a merge request for {{source_branch}} branch to be merged into {{target_branch}} branch, assign {{reviewer}} as the reviewer",
+    "eval_types": [
+      "program_html",
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.125",
+    "legacy_id": "myBenchmark.125",
+    "site": "gitlab",
+    "intent": "Open a new issue to discuss the implementation of dark mode",
+    "intent_template": "Open a new issue to discuss the implementation of {{feature}}",
+    "eval_types": [
+      "program_html",
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.126",
+    "legacy_id": "myBenchmark.126",
+    "site": "gitlab",
+    "intent": "Open a new issue to discuss the implementation of default plugins for .zsh",
+    "intent_template": "Open a new issue to discuss the implementation of {{feature}}",
+    "eval_types": [
+      "program_html",
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.127",
+    "legacy_id": "myBenchmark.127",
+    "site": "gitlab",
+    "intent": "Make the LICENSE of gimmiethat.space and dotfiles to MIT license.",
+    "intent_template": "Make the LICENSE of {{repo}} to MIT license.",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.128",
+    "legacy_id": "myBenchmark.128",
+    "site": "gitlab",
+    "intent": "Create a new private project \"planner\" and add Abishek, Vinta as members",
+    "intent_template": "Create a new {{scope}} project \"planner\" and add {{account_list}} as members",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.129",
+    "legacy_id": "myBenchmark.129",
+    "site": "gitlab",
+    "intent": "Create a new public project \"web_arena\" and add Abishek, Vinta as members",
+    "intent_template": "Create a new {{scope}} project \"web_arena\" and add {{account_list}} as members",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.13",
+    "legacy_id": "myBenchmark.13",
+    "site": "gitlab",
+    "intent": "Checkout merge requests assigned to me",
+    "intent_template": "Checkout merge requests assigned to me",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.130",
+    "legacy_id": "myBenchmark.130",
+    "site": "gitlab",
+    "intent": "Create a new public project \"AutoAGI\" and add primer as members",
+    "intent_template": "Create a new {{scope}} project \"AutoAGI\" and add {{account_list}} as members",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.131",
+    "legacy_id": "myBenchmark.131",
+    "site": "gitlab",
+    "intent": "Create a new public project \"awesome-llms\" and add primer, convexegg, abishek as members",
+    "intent_template": "Create a new {{scope}} project \"awesome-llms\" and add {{account_list}} as members",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.132",
+    "legacy_id": "myBenchmark.132",
+    "site": "gitlab",
+    "intent": "Create a new private project \"llm_bulk_inference\" and add primer, convexegg, abishek as members",
+    "intent_template": "Create a new {{scope}} project \"llm_bulk_inference\" and add {{account_list}} as members",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.133",
+    "legacy_id": "myBenchmark.133",
+    "site": "gitlab",
+    "intent": "Start a private project awesome_web_agents with blank template and add Abishek, Vinta as members",
+    "intent_template": "Start a private project {{project_name}} with {{template}} template and add {{account_list}} as members",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.134",
+    "legacy_id": "myBenchmark.134",
+    "site": "gitlab",
+    "intent": "Start a private project web_agent_android_xl with Android template and add primer, convexegg, abishek as members",
+    "intent_template": "Start a private project {{project_name}} with {{template}} template and add {{account_list}} as members",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.135",
+    "legacy_id": "myBenchmark.135",
+    "site": "gitlab",
+    "intent": "Start a private project project_site with NodeJS template and add primer, convexegg, vinta as members",
+    "intent_template": "Start a private project {{project_name}} with {{template}} template and add {{account_list}} as members",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.136",
+    "legacy_id": "myBenchmark.136",
+    "site": "gitlab",
+    "intent": "Start a private project agi_index with HTML template and add Vinta Chen as members",
+    "intent_template": "Start a private project {{project_name}} with {{template}} template and add {{account_list}} as members",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.137",
+    "legacy_id": "myBenchmark.137",
+    "site": "gitlab",
+    "intent": "Start a private project AGISite with JEKYLL template and add Rohan and Vinta as members",
+    "intent_template": "Start a private project {{project_name}} with {{template}} template and add {{account_list}} as members",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.138",
+    "legacy_id": "myBenchmark.138",
+    "site": "gitlab",
+    "intent": "Create a private blank repository called \"web_agent\" using the right template to speed up development.",
+    "intent_template": "Create a private {{template}} repository called \"{{project_name}}\" using the right template to speed up development.",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.139",
+    "legacy_id": "myBenchmark.139",
+    "site": "gitlab",
+    "intent": "Create a private Android repository called \"web_agent_android_xs\" using the right template to speed up development.",
+    "intent_template": "Create a private {{template}} repository called \"{{project_name}}\" using the right template to speed up development.",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.14",
+    "legacy_id": "myBenchmark.14",
+    "site": "gitlab",
+    "intent": "Tell me the full names of the repositories where I made contributions and they got more than 100 stars?",
+    "intent_template": "Tell me the full names of the repositories where I made contributions and they got {{description}} stars?",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.140",
+    "legacy_id": "myBenchmark.140",
+    "site": "gitlab",
+    "intent": "Create a private NodeJS repository called \"web_agent_nodejs\" using the right template to speed up development.",
+    "intent_template": "Create a private {{template}} repository called \"{{project_name}}\" using the right template to speed up development.",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.141",
+    "legacy_id": "myBenchmark.141",
+    "site": "gitlab",
+    "intent": "Create a private HTML repository called \"web_agent_index\" using the right template to speed up development.",
+    "intent_template": "Create a private {{template}} repository called \"{{project_name}}\" using the right template to speed up development.",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.142",
+    "legacy_id": "myBenchmark.142",
+    "site": "gitlab",
+    "intent": "Create a private JEKYLL repository called \"11711_gitlab\" using the right template to speed up development.",
+    "intent_template": "Create a private {{template}} repository called \"{{project_name}}\" using the right template to speed up development.",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.143",
+    "legacy_id": "myBenchmark.143",
+    "site": "gitlab",
+    "intent": "Add the following users to repo kkroening/ffmpeg-python as maintainer: ['yjlou', 'a11yproject']",
+    "intent_template": "Add the following users to repo {{repo}} as {{role}}: {{user_list}}",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.144",
+    "legacy_id": "myBenchmark.144",
+    "site": "gitlab",
+    "intent": "Tell me the email address of the contributor who has the most commits to branch main",
+    "intent_template": "Tell me the {{attribute}} of the contributor who has the most commits to branch {{branch_name}}",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.145",
+    "legacy_id": "myBenchmark.145",
+    "site": "gitlab",
+    "intent": "Tell me the email address of the contributor who has the most commits to branch gh-page",
+    "intent_template": "Tell me the {{attribute}} of the contributor who has the most commits to branch {{branch_name}}",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.146",
+    "legacy_id": "myBenchmark.146",
+    "site": "gitlab",
+    "intent": "Tell me the number of commits of the contributor who has the most commits to branch main",
+    "intent_template": "Tell me the {{attribute}} of the contributor who has the most commits to branch {{branch_name}}",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ],
+    "intent_v2": "Tell me the number of commits of the contributor who has the most commits to branch master"
+  },
+  {
+    "family_id": "skillshift.gitlab.147",
+    "legacy_id": "myBenchmark.147",
+    "site": "gitlab",
+    "intent": "Tell me the full name, gitlab account name, location and email address of the contributor who has the most commits to branch php52",
+    "intent_template": "Tell me the {{attribute}} of the contributor who has the most commits to branch {{branch_name}}",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.148",
+    "legacy_id": "myBenchmark.148",
+    "site": "gitlab",
+    "intent": "Create an issue asking about do they have any plan on supporting Webagent in the next quater in huggingface dataset.",
+    "intent_template": "Create an issue {{issue}} in {{repo}}.",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.149",
+    "legacy_id": "myBenchmark.149",
+    "site": "gitlab",
+    "intent": "create a new group \"n-lab\" with members patou, egpast, westurner, jontutcher",
+    "intent_template": "create a new group \"{{name}}\" with members {{members}}",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.15",
+    "legacy_id": "myBenchmark.15",
+    "site": "gitlab",
+    "intent": "Tell me the full names of the repositories where I made contributions and they got the most stars?",
+    "intent_template": "Tell me the full names of the repositories where I made contributions and they got {{description}} stars?",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.150",
+    "legacy_id": "myBenchmark.150",
+    "site": "gitlab",
+    "intent": "create a new group \"x-lab\" with members JonasVautherin, dilipchandima, dawiss1337, bmyun, DCMJY",
+    "intent_template": "create a new group \"{{name}}\" with members {{members}}",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.151",
+    "legacy_id": "myBenchmark.151",
+    "site": "gitlab",
+    "intent": "create a new group \"crew\" with members ASWATFZLLC, patrickhlauke, westurner, linkmatrix",
+    "intent_template": "create a new group \"{{name}}\" with members {{members}}",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.152",
+    "legacy_id": "myBenchmark.152",
+    "site": "gitlab",
+    "intent": "create a new group \"coding_friends\" with members qhduan, Agnes-U",
+    "intent_template": "create a new group \"{{name}}\" with members {{members}}",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.153",
+    "legacy_id": "myBenchmark.153",
+    "site": "gitlab",
+    "intent": "create a new group \"webagent\" with members pandey2000, sayakpaul, sayakpaul",
+    "intent_template": "create a new group \"{{name}}\" with members {{members}}",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.154",
+    "legacy_id": "myBenchmark.154",
+    "site": "gitlab",
+    "intent": "Assign the issue regarding flash alerts to myself and primer.",
+    "intent_template": "Assign the issue regarding {{issue}} to {{account}}.",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.155",
+    "legacy_id": "myBenchmark.155",
+    "site": "gitlab",
+    "intent": "Submit a merge request for the branch that implements the support of template strings to be merged into master branch, assign myself and Roshan as the reviewer",
+    "intent_template": "Submit a merge request for {{source_branch}} to be merged into {{target_branch}} branch, assign {{reviewer}} as the reviewer",
+    "eval_types": [
+      "program_html",
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.156",
+    "legacy_id": "myBenchmark.156",
+    "site": "gitlab",
+    "intent": "Submit a merge request for a11yproject.com/redesign branch to be merged into markdown-figure-block branch, assign myself as the reviewer",
+    "intent_template": "Submit a merge request for {{source_branch}} branch to be merged into {{target_branch}} branch, assign {{reviewer}} as the reviewer",
+    "eval_types": [
+      "program_html",
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.157",
+    "legacy_id": "myBenchmark.157",
+    "site": "gitlab",
+    "intent": "Submit a merge request for build time debug branch to be merged into main branch, assign myself as the reviewer",
+    "intent_template": "Submit a merge request for {{source_branch}} branch to be merged into {{target_branch}} branch, assign {{reviewer}} as the reviewer",
+    "eval_types": [
+      "program_html",
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.158",
+    "legacy_id": "myBenchmark.158",
+    "site": "gitlab",
+    "intent": "Create an issue in cloud-to-butt repo with title \"Let's keep the project alive\". Assign the issue to myself. Set due date to be the end of Q1 2033",
+    "intent_template": "Create an issue in {{repo}} repo with title \"{{issue}}\". Assign the issue to {{account}}. Set due date to be {{due}}",
+    "eval_types": [
+      "program_html",
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.159",
+    "legacy_id": "myBenchmark.159",
+    "site": "gitlab",
+    "intent": "Create an issue in a11yproject repo with title \"404 for many URLs\". Assign the issue to myself. Set due date to be 2030-1-3",
+    "intent_template": "Create an issue in {{repo}} repo with title \"{{issue}}\". Assign the issue to {{account}}. Set due date to be {{due}}",
+    "eval_types": [
+      "program_html",
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.16",
+    "legacy_id": "myBenchmark.16",
+    "site": "gitlab",
+    "intent": "Tell me the full names of the repositories where I made contributions and they got the least stars?",
+    "intent_template": "Tell me the full names of the repositories where I made contributions and they got {{description}} stars?",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.160",
+    "legacy_id": "myBenchmark.160",
+    "site": "gitlab",
+    "intent": "Assign the issue regarding flash alert in primer design guide repo to myself.",
+    "intent_template": "Assign the issue regarding {{issue}} in {{repo}} repo to {{account}}.",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.161",
+    "legacy_id": "myBenchmark.161",
+    "site": "gitlab",
+    "intent": "Assign the issue regarding 404 in a11yproject to myself.",
+    "intent_template": "Assign the issue regarding {{issue}} in {{repo}} to {{account}}.",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.17",
+    "legacy_id": "myBenchmark.17",
+    "site": "gitlab",
+    "intent": "Open my latest updated issue that has keyword \"better\" in its title to check if it is closed",
+    "intent_template": "Open my latest updated issue that has keyword \"{{keyword}}\" in its title to check if it is closed",
+    "eval_types": [
+      "string_match",
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.18",
+    "legacy_id": "myBenchmark.18",
+    "site": "gitlab",
+    "intent": "Open my latest updated issue that has keyword \"feature\" in its title to check if it is closed",
+    "intent_template": "Open my latest updated issue that has keyword \"{{keyword}}\" in its title to check if it is closed",
+    "eval_types": [
+      "string_match",
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.19",
+    "legacy_id": "myBenchmark.19",
+    "site": "gitlab",
+    "intent": "Open my latest updated issue that has keyword \"homepage content\" in its title to check if it is closed",
+    "intent_template": "Open my latest updated issue that has keyword \"{{keyword}}\" in its title to check if it is closed",
+    "eval_types": [
+      "string_match",
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.2",
+    "legacy_id": "myBenchmark.2",
+    "site": "gitlab",
+    "intent": "Check out the most recent open issues",
+    "intent_template": "Check out the most recent open issues",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.20",
+    "legacy_id": "myBenchmark.20",
+    "site": "gitlab",
+    "intent": "Open my latest created issue that has better in its title to check if it is closed",
+    "intent_template": "Open my latest created issue that has {{keyword}} in its title to check if it is closed",
+    "eval_types": [
+      "string_match",
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.21",
+    "legacy_id": "myBenchmark.21",
+    "site": "gitlab",
+    "intent": "Open my latest created issue that has feature in its title to check if it is closed",
+    "intent_template": "Open my latest created issue that has {{keyword}} in its title to check if it is closed",
+    "eval_types": [
+      "string_match",
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.22",
+    "legacy_id": "myBenchmark.22",
+    "site": "gitlab",
+    "intent": "Open my latest created issue that has homepage content in its title to check if it is closed",
+    "intent_template": "Open my latest created issue that has {{keyword}} in its title to check if it is closed",
+    "eval_types": [
+      "string_match",
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.23",
+    "legacy_id": "myBenchmark.23",
+    "site": "gitlab",
+    "intent": "How many commits did kilian make on 3/5/2023?",
+    "intent_template": "How many commits did {{user}} make on {{date}}?",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.24",
+    "legacy_id": "myBenchmark.24",
+    "site": "gitlab",
+    "intent": "How many commits did Eric make on 3/2?",
+    "intent_template": "How many commits did {{user}} make on {{date}}?",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.25",
+    "legacy_id": "myBenchmark.25",
+    "site": "gitlab",
+    "intent": "How many commits did Eric and Kilian make on 1/3/2023 in total?",
+    "intent_template": "How many commits did {{user}} make on {{date}} in total?",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.26",
+    "legacy_id": "myBenchmark.26",
+    "site": "gitlab",
+    "intent": "See all public projects",
+    "intent_template": "See all public projects",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.27",
+    "legacy_id": "myBenchmark.27",
+    "site": "gitlab",
+    "intent": "Get me my RSS feed token",
+    "intent_template": "Get me my RSS feed token",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.28",
+    "legacy_id": "myBenchmark.28",
+    "site": "gitlab",
+    "intent": "Show me the command to clone Super_Awesome_Robot with SSH.",
+    "intent_template": "Show me the command to clone {{repo}} with SSH.",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.29",
+    "legacy_id": "myBenchmark.29",
+    "site": "gitlab",
+    "intent": "Show me the command to clone ChatGPT with SSH.",
+    "intent_template": "Show me the command to clone {{repo}} with SSH.",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.3",
+    "legacy_id": "myBenchmark.3",
+    "site": "gitlab",
+    "intent": "Display the list of issues in the a11yproject/a11yproject.com repository that have labels related to help needed",
+    "intent_template": "Display the list of issues in the {{repo}} repository that have labels related to {{label}}",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.30",
+    "legacy_id": "myBenchmark.30",
+    "site": "gitlab",
+    "intent": "Show me the command to clone metaseq with SSH.",
+    "intent_template": "Show me the command to clone {{repo}} with SSH.",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.31",
+    "legacy_id": "myBenchmark.31",
+    "site": "gitlab",
+    "intent": "Show me the command to clone the best GAN python implementation with SSH.",
+    "intent_template": "Show me the command to clone {{repo}} with SSH.",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.32",
+    "legacy_id": "myBenchmark.32",
+    "site": "gitlab",
+    "intent": "Show me the command to clone the most stared Covid location tracker with SSH.",
+    "intent_template": "Show me the command to clone {{repo}} with SSH.",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.33",
+    "legacy_id": "myBenchmark.33",
+    "site": "gitlab",
+    "intent": "How many commits did Kilian make durning 2023?",
+    "intent_template": "How many commits did {{user}} make {{period}}?",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.34",
+    "legacy_id": "myBenchmark.34",
+    "site": "gitlab",
+    "intent": "How many commits did Eric make between Feb 2023 and May 2023?",
+    "intent_template": "How many commits did {{user}} make {{period}}?",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.35",
+    "legacy_id": "myBenchmark.35",
+    "site": "gitlab",
+    "intent": "How many commits did Philip make in 2023/1?",
+    "intent_template": "How many commits did {{user}} make {{period}}?",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.36",
+    "legacy_id": "myBenchmark.36",
+    "site": "gitlab",
+    "intent": "How many commits did Anthony make between 08/2022-09/2022?",
+    "intent_template": "How many commits did {{user}} make {{period}}?",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.37",
+    "legacy_id": "myBenchmark.37",
+    "site": "gitlab",
+    "intent": "Tell me who has made the most contributions, in terms of number of commits, to the primer/design project",
+    "intent_template": "Tell me who has made the most contributions, in terms of number of commits, to the {{repo}} project",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.38",
+    "legacy_id": "myBenchmark.38",
+    "site": "gitlab",
+    "intent": "Tell me who has made the most contributions, in terms of number of commits, to the thoughtbot/administrate project",
+    "intent_template": "Tell me who has made the most contributions, in terms of number of commits, to the {{repo}} project",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.39",
+    "legacy_id": "myBenchmark.39",
+    "site": "gitlab",
+    "intent": "Tell me who has made the most contributions, in terms of number of commits, to the AndroidSlidingUpPanel project",
+    "intent_template": "Tell me who has made the most contributions, in terms of number of commits, to the {{repo}} project",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.4",
+    "legacy_id": "myBenchmark.4",
+    "site": "gitlab",
+    "intent": "Display the list of issues in the kkroening/ffmpeg-python repository that have labels related to questions",
+    "intent_template": "Display the list of issues in the {{repo}} repository that have labels related to {{label}}",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.40",
+    "legacy_id": "myBenchmark.40",
+    "site": "gitlab",
+    "intent": "Tell me who has made the most contributions, in terms of number of commits, to the Pytorch GAN project",
+    "intent_template": "Tell me who has made the most contributions, in terms of number of commits, to the {{repo}} project",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.41",
+    "legacy_id": "myBenchmark.41",
+    "site": "gitlab",
+    "intent": "Tell me who has made the most contributions, in terms of number of commits, to the csvkit project",
+    "intent_template": "Tell me who has made the most contributions, in terms of number of commits, to the {{repo}} project",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.42",
+    "legacy_id": "myBenchmark.42",
+    "site": "gitlab",
+    "intent": "List the name of the top 3 contributors to prime/design repo, ranked by the number of commits?",
+    "intent_template": "List the {{attribute}} of the top 3 contributors to {{repo}} repo, ranked by the number of commits?",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.43",
+    "legacy_id": "myBenchmark.43",
+    "site": "gitlab",
+    "intent": "List the email address of the top 3 contributors to Pytorch GAN repo, ranked by the number of commits?",
+    "intent_template": "List the {{attribute}} of the top 3 contributors to {{repo}} repo, ranked by the number of commits?",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.44",
+    "legacy_id": "myBenchmark.44",
+    "site": "gitlab",
+    "intent": "List the name of the top 3 contributors to facebook's guide on building react apps repo, ranked by the number of commits?",
+    "intent_template": "List the {{attribute}} of the top 3 contributors to {{repo}} repo, ranked by the number of commits?",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.45",
+    "legacy_id": "myBenchmark.45",
+    "site": "gitlab",
+    "intent": "List the name and number of commits of the top 3 contributors to metaseq repo, ranked by the number of commits?",
+    "intent_template": "List the {{attribute}} of the top 3 contributors to {{repo}} repo, ranked by the number of commits?",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.46",
+    "legacy_id": "myBenchmark.46",
+    "site": "gitlab",
+    "intent": "List the last names of the top 3 contributors to 2019-nCov repo, ranked by the number of commits?",
+    "intent_template": "List the {{attribute}} of the top 3 contributors to {{repo}} repo, ranked by the number of commits?",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.47",
+    "legacy_id": "myBenchmark.47",
+    "site": "gitlab",
+    "intent": "List all opened issues that report bugs",
+    "intent_template": "List all opened issues {{description}}",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.48",
+    "legacy_id": "myBenchmark.48",
+    "site": "gitlab",
+    "intent": "List all opened issues that report bugs",
+    "intent_template": "List all opened issues {{description}}",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.49",
+    "legacy_id": "myBenchmark.49",
+    "site": "gitlab",
+    "intent": "List all opened issues requesting new features",
+    "intent_template": "List all opened issues {{description}}",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.5",
+    "legacy_id": "myBenchmark.5",
+    "site": "gitlab",
+    "intent": "Display the list of issues in the keycloak/keycloak repository that have labels related to flaky-test",
+    "intent_template": "Display the list of issues in the {{repo}} repository that have labels related to {{label}}",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.50",
+    "legacy_id": "myBenchmark.50",
+    "site": "gitlab",
+    "intent": "List all opened issues that ask about OPT model related questions",
+    "intent_template": "List all opened issues {{description}}",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.51",
+    "legacy_id": "myBenchmark.51",
+    "site": "gitlab",
+    "intent": "List all opened issues that don't have any labels",
+    "intent_template": "List all opened issues {{description}}",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.52",
+    "legacy_id": "myBenchmark.52",
+    "site": "gitlab",
+    "intent": "Who else have access to my repo gimmiethat.space, show me their usernames",
+    "intent_template": "Who else have access to my repo {{repo}}, show me their usernames",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.53",
+    "legacy_id": "myBenchmark.53",
+    "site": "gitlab",
+    "intent": "Who else have access to my repo prism-theme, show me their usernames",
+    "intent_template": "Who else have access to my repo {{repo}}, show me their usernames",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.54",
+    "legacy_id": "myBenchmark.54",
+    "site": "gitlab",
+    "intent": "Checkout merge requests requiring my review",
+    "intent_template": "Checkout merge requests requiring my review",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.55",
+    "legacy_id": "myBenchmark.55",
+    "site": "gitlab",
+    "intent": "Post \"Thanks, working on reviews\" for the merge request related to octovisuals page in primer/design project",
+    "intent_template": "Post \"{{content}}\" for the merge request related to {{mr}} in {{repo}} project",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.56",
+    "legacy_id": "myBenchmark.56",
+    "site": "gitlab",
+    "intent": "Post \"lgtm\" for the merge request related to semantic HTML post in a11yproject/a11yproject.com project",
+    "intent_template": "Post \"{{content}}\" for the merge request related to {{mr}} in {{repo}} project",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.57",
+    "legacy_id": "myBenchmark.57",
+    "site": "gitlab",
+    "intent": "Post \"close because non reproducible\" for the merge request related to focus edge cases in a11yproject/a11yproject.com project",
+    "intent_template": "Post \"{{content}}\" for the merge request related to {{mr}} in {{repo}} project",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.58",
+    "legacy_id": "myBenchmark.58",
+    "site": "gitlab",
+    "intent": "Post \"Good idea\" for the merge request related to color ulitity in a11yproject.com project",
+    "intent_template": "Post \"{{content}}\" for the merge request related to {{mr}} in {{repo}} project",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.59",
+    "legacy_id": "myBenchmark.59",
+    "site": "gitlab",
+    "intent": "Fork 2019-nCov.",
+    "intent_template": "Fork {{repo}}.",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.6",
+    "legacy_id": "myBenchmark.6",
+    "site": "gitlab",
+    "intent": "Display the list of issues in the OpenAPITools/openapi-generator repository that have labels related to OpenAPI Generator CLI",
+    "intent_template": "Display the list of issues in the {{repo}} repository that have labels related to {{label}}",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.60",
+    "legacy_id": "myBenchmark.60",
+    "site": "gitlab",
+    "intent": "Fork the Pytorch GAN repo with most stars.",
+    "intent_template": "Fork {{repo}}.",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.61",
+    "legacy_id": "myBenchmark.61",
+    "site": "gitlab",
+    "intent": "Fork ChatGPT.",
+    "intent_template": "Fork {{repo}}.",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.62",
+    "legacy_id": "myBenchmark.62",
+    "site": "gitlab",
+    "intent": "Fork MetaSeq.",
+    "intent_template": "Fork {{repo}}.",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.63",
+    "legacy_id": "myBenchmark.63",
+    "site": "gitlab",
+    "intent": "Make the LICENSE of byteblaze/cloud-to-butt to MIT license.",
+    "intent_template": "Make the LICENSE of {{repo}} to MIT license.",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.64",
+    "legacy_id": "myBenchmark.64",
+    "site": "gitlab",
+    "intent": "Make the LICENSE of byteblaze/accessible-html-content-patterns to Apache License",
+    "intent_template": "Make the LICENSE of {{repo}} to Apache License",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.65",
+    "legacy_id": "myBenchmark.65",
+    "site": "gitlab",
+    "intent": "Make the LICENSE of byteblaze/a11y-syntax-highlighting to one that mandates all copies and derivative works to be under the same license",
+    "intent_template": "Make the LICENSE of {{repo}} to one that mandates all copies and derivative works to be under the same license",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.66",
+    "legacy_id": "myBenchmark.66",
+    "site": "gitlab",
+    "intent": "Make the LICENSE of byteblaze/dotfiles to MIT license.",
+    "intent_template": "Make the LICENSE of {{repo}} to MIT license.",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.67",
+    "legacy_id": "myBenchmark.67",
+    "site": "gitlab",
+    "intent": "Set my gitlab status as Busy.",
+    "intent_template": "Set my gitlab status as {{status}}.",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.68",
+    "legacy_id": "myBenchmark.68",
+    "site": "gitlab",
+    "intent": "Set my gitlab status as Enjoying life.",
+    "intent_template": "Set my gitlab status as {{status}}.",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.69",
+    "legacy_id": "myBenchmark.69",
+    "site": "gitlab",
+    "intent": "Set my gitlab status as Playing Badminton.",
+    "intent_template": "Set my gitlab status as {{status}}.",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.7",
+    "legacy_id": "myBenchmark.7",
+    "site": "gitlab",
+    "intent": "Display the list of issues in the umano/AndroidSlidingUpPanel repository that have labels related to BUG",
+    "intent_template": "Display the list of issues in the {{repo}} repository that have labels related to {{label}}",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.70",
+    "legacy_id": "myBenchmark.70",
+    "site": "gitlab",
+    "intent": "Set my gitlab status as Resting due to leg injury.",
+    "intent_template": "Set my gitlab status as {{status}}.",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.71",
+    "legacy_id": "myBenchmark.71",
+    "site": "gitlab",
+    "intent": "Set my gitlab status as Out of Office.",
+    "intent_template": "Set my gitlab status as {{status}}.",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.72",
+    "legacy_id": "myBenchmark.72",
+    "site": "gitlab",
+    "intent": "Update the project site's title to \"GIVE ME SPACE\"",
+    "intent_template": "Update the project site's title to \"{{title}}\"",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.73",
+    "legacy_id": "myBenchmark.73",
+    "site": "gitlab",
+    "intent": "Update the project site's title to \"Welcome to my site\"",
+    "intent_template": "Update the project site's title to \"{{title}}\"",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.74",
+    "legacy_id": "myBenchmark.74",
+    "site": "gitlab",
+    "intent": "Update the project site's title to \"Not an interesting site\"",
+    "intent_template": "Update the project site's title to \"{{title}}\"",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.75",
+    "legacy_id": "myBenchmark.75",
+    "site": "gitlab",
+    "intent": "Update the project site's title to \"Title Wanted\"",
+    "intent_template": "Update the project site's title to \"{{title}}\"",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.76",
+    "legacy_id": "myBenchmark.76",
+    "site": "gitlab",
+    "intent": "Update the project site's title to \"Hello\"",
+    "intent_template": "Update the project site's title to \"{{title}}\"",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.77",
+    "legacy_id": "myBenchmark.77",
+    "site": "gitlab",
+    "intent": "Assign the issue regarding 404 in a11yproject to Roshanjossey.",
+    "intent_template": "Assign the issue regarding {{issue}} in {{repo}} to {{account}}.",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.78",
+    "legacy_id": "myBenchmark.78",
+    "site": "gitlab",
+    "intent": "Assign the issue regarding linking to an accessibility statement in a11y-webring.club to Rohan.",
+    "intent_template": "Assign the issue regarding {{issue}} in {{repo}} to {{account}}.",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.79",
+    "legacy_id": "myBenchmark.79",
+    "site": "gitlab",
+    "intent": "set the homepage URL on my GitLab profile to https://egg.tart.com",
+    "intent_template": "set the homepage URL on my GitLab profile to {{url}}",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.8",
+    "legacy_id": "myBenchmark.8",
+    "site": "gitlab",
+    "intent": "How many commits did kilian make to a11yproject on 3/5/2023?",
+    "intent_template": "How many commits did {{user}} make to {{repo}} on {{date}}?",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.80",
+    "legacy_id": "myBenchmark.80",
+    "site": "gitlab",
+    "intent": "set the homepage URL on my GitLab profile to https://helloworld.xyz",
+    "intent_template": "set the homepage URL on my GitLab profile to {{url}}",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.81",
+    "legacy_id": "myBenchmark.81",
+    "site": "gitlab",
+    "intent": "set the homepage URL on my GitLab profile to a11yproject.contributor.me",
+    "intent_template": "set the homepage URL on my GitLab profile to {{url}}",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.82",
+    "legacy_id": "myBenchmark.82",
+    "site": "gitlab",
+    "intent": "set the homepage URL on my GitLab profile to www.byteblaze.com",
+    "intent_template": "set the homepage URL on my GitLab profile to {{url}}",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.83",
+    "legacy_id": "myBenchmark.83",
+    "site": "gitlab",
+    "intent": "set the homepage URL on my GitLab profile to byteblaze.github.io",
+    "intent_template": "set the homepage URL on my GitLab profile to {{url}}",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.84",
+    "legacy_id": "myBenchmark.84",
+    "site": "gitlab",
+    "intent": "Set up a new, empty repository with the name chatgpt_plugin?",
+    "intent_template": "Set up a new, empty repository with the name {{project_name}}?",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.85",
+    "legacy_id": "myBenchmark.85",
+    "site": "gitlab",
+    "intent": "Set up a new, empty repository with the name awesome_llm_reading?",
+    "intent_template": "Set up a new, empty repository with the name {{project_name}}?",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.86",
+    "legacy_id": "myBenchmark.86",
+    "site": "gitlab",
+    "intent": "Set up a new, empty repository with the name awesome_program_aided_reasoning?",
+    "intent_template": "Set up a new, empty repository with the name {{project_name}}?",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.87",
+    "legacy_id": "myBenchmark.87",
+    "site": "gitlab",
+    "intent": "Set up a new, empty repository with the name webagent?",
+    "intent_template": "Set up a new, empty repository with the name {{project_name}}?",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.88",
+    "legacy_id": "myBenchmark.88",
+    "site": "gitlab",
+    "intent": "Set up a new, empty repository with the name awesome_webagent?",
+    "intent_template": "Set up a new, empty repository with the name {{project_name}}?",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.89",
+    "legacy_id": "myBenchmark.89",
+    "site": "gitlab",
+    "intent": "Invite yjlou as collaborator to solarized-prism-theme",
+    "intent_template": "Invite {{collaborator_account_list}} as collaborator to {{repo}}",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.9",
+    "legacy_id": "myBenchmark.9",
+    "site": "gitlab",
+    "intent": "How many commits did Eric make to a11yproject on 3/2?",
+    "intent_template": "How many commits did {{user}} make to {{repo}} on {{date}}?",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.90",
+    "legacy_id": "myBenchmark.90",
+    "site": "gitlab",
+    "intent": "Abishek wants to check my dotfile configurations. Please invite him to the repo as a guest.",
+    "intent_template": "{{name}} wants to check my dotfile configurations. Please invite him to the repo as a guest.",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.91",
+    "legacy_id": "myBenchmark.91",
+    "site": "gitlab",
+    "intent": "yjlou wants to check my dotfile configurations. Please invite him to the repo as a guest.",
+    "intent_template": "{{name}} wants to check my dotfile configurations. Please invite him to the repo as a guest.",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.92",
+    "legacy_id": "myBenchmark.92",
+    "site": "gitlab",
+    "intent": "Koushik wants to check my dotfile configurations. Please invite him to the repo as a guest.",
+    "intent_template": "{{name}} wants to check my dotfile configurations. Please invite him to the repo as a guest.",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.93",
+    "legacy_id": "myBenchmark.93",
+    "site": "gitlab",
+    "intent": "Jakub Klinkovsk\u00fd wants to check my dotfile configurations. Please invite him to the repo as a guest.",
+    "intent_template": "{{name}} wants to check my dotfile configurations. Please invite him to the repo as a guest.",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.94",
+    "legacy_id": "myBenchmark.94",
+    "site": "gitlab",
+    "intent": "Vinta wants to check my dotfile configurations. Please invite him to the repo as a guest.",
+    "intent_template": "{{name}} wants to check my dotfile configurations. Please invite him to the repo as a guest.",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.95",
+    "legacy_id": "myBenchmark.95",
+    "site": "gitlab",
+    "intent": "Fork all repos from facebook.",
+    "intent_template": "Fork {{repo}}.",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.96",
+    "legacy_id": "myBenchmark.96",
+    "site": "gitlab",
+    "intent": "Star the top five most stared repos in Gitlab",
+    "intent_template": "Star the top {{number}} most stared repos in Gitlab",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.97",
+    "legacy_id": "myBenchmark.97",
+    "site": "gitlab",
+    "intent": "Star the top eight most stared repos in Gitlab",
+    "intent_template": "Star the top {{number}} most stared repos in Gitlab",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.98",
+    "legacy_id": "myBenchmark.98",
+    "site": "gitlab",
+    "intent": "Star the top four most stared repos in Gitlab",
+    "intent_template": "Star the top {{number}} most stared repos in Gitlab",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.gitlab.99",
+    "legacy_id": "myBenchmark.99",
+    "site": "gitlab",
+    "intent": "Star the top three most stared repos in Gitlab",
+    "intent_template": "Star the top {{number}} most stared repos in Gitlab",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.0",
+    "legacy_id": "myBenchmark.0",
+    "site": "magento",
+    "intent": "What is the top-1 best-selling product in 2022",
+    "intent_template": "What is the top-{{n}} best-selling product in {{year}}",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.1",
+    "legacy_id": "myBenchmark.1",
+    "site": "magento",
+    "intent": "What is the top-1 best-selling brand in Quarter 1 2022",
+    "intent_template": "What is the top-{{n}} best-selling brand in {{period}}",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.10",
+    "legacy_id": "myBenchmark.10",
+    "site": "magento",
+    "intent": "List the top 2 search terms in my store",
+    "intent_template": "List the top {{n}} search terms in my store",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.100",
+    "legacy_id": "myBenchmark.100",
+    "site": "magento",
+    "intent": "Draft a new marketing price rule for Mother's day sale that offers $15 discount on checkout for all customers",
+    "intent_template": "Draft a new marketing price rule for {{topic}} that offers {{rule}} for all customers",
+    "eval_types": [
+      "program_html",
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.101",
+    "legacy_id": "myBenchmark.101",
+    "site": "magento",
+    "intent": "Draft a new marketing price rule for Pride Month that offers 45% off on all products for all customers",
+    "intent_template": "Draft a new marketing price rule for {{topic}} that offers {{rule}} for all customers",
+    "eval_types": [
+      "program_html",
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.102",
+    "legacy_id": "myBenchmark.102",
+    "site": "magento",
+    "intent": "Draft a new marketing price rule for Thanks giving sale that offers $40 discount on checkout for all customers",
+    "intent_template": "Draft a new marketing price rule for {{topic}} that offers {{rule}} for all customers",
+    "eval_types": [
+      "program_html",
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.103",
+    "legacy_id": "myBenchmark.103",
+    "site": "magento",
+    "intent": "Today is 3/15/2023, generate a sales order report for last month",
+    "intent_template": "Today is 3/15/2023, generate a {{report}} {{time_span}}",
+    "eval_types": [
+      "program_html",
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.104",
+    "legacy_id": "myBenchmark.104",
+    "site": "magento",
+    "intent": "Today is 3/15/2023, generate a sales order report over the last 45 days",
+    "intent_template": "Today is 3/15/2023, generate a {{report}} {{time_span}}",
+    "eval_types": [
+      "program_html",
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.105",
+    "legacy_id": "myBenchmark.105",
+    "site": "magento",
+    "intent": "Today is 3/15/2023, generate a refund report for Q1",
+    "intent_template": "Today is 3/15/2023, generate a {{report}} {{time_span}}",
+    "eval_types": [
+      "program_html",
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.106",
+    "legacy_id": "myBenchmark.106",
+    "site": "magento",
+    "intent": "Today is 3/15/2023, generate a sales order report for last year",
+    "intent_template": "Today is 3/15/2023, generate a {{report}} {{time_span}}",
+    "eval_types": [
+      "program_html",
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.107",
+    "legacy_id": "myBenchmark.107",
+    "site": "magento",
+    "intent": "Today is 3/15/2023, generate a tax report for this year",
+    "intent_template": "Today is 3/15/2023, generate a {{report}} {{time_span}}",
+    "eval_types": [
+      "program_html",
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.108",
+    "legacy_id": "myBenchmark.108",
+    "site": "magento",
+    "intent": "Create an orders report from beginning of May 2021 to end of March 2022",
+    "intent_template": "Create an {{type}} report from {{start_date}} to {{end_date}}",
+    "eval_types": [
+      "program_html",
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.109",
+    "legacy_id": "myBenchmark.109",
+    "site": "magento",
+    "intent": "Create a shipping report from 08/05/2022 to 03/01/2023",
+    "intent_template": "Create a {{type}} report from {{start_date}} to {{end_date}}",
+    "eval_types": [
+      "program_html",
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.11",
+    "legacy_id": "myBenchmark.11",
+    "site": "magento",
+    "intent": "List the top 3 search terms in my store",
+    "intent_template": "List the top {{n}} search terms in my store",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.110",
+    "legacy_id": "myBenchmark.110",
+    "site": "magento",
+    "intent": "Create a product view report from 07/05/2021 to 05/31/2023",
+    "intent_template": "Create a {{type}} report from {{start_date}} to {{end_date}}",
+    "eval_types": [
+      "program_html",
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.111",
+    "legacy_id": "myBenchmark.111",
+    "site": "magento",
+    "intent": "Create a coupons report from 05/01/2021 to 05/15/2023",
+    "intent_template": "Create a {{type}} report from {{start_date}} to {{end_date}}",
+    "eval_types": [
+      "program_html",
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.112",
+    "legacy_id": "myBenchmark.112",
+    "site": "magento",
+    "intent": "Create a best sellers report from 05/01/2022 to 05/31/2023",
+    "intent_template": "Create a {{type}} report from {{start_date}} to {{end_date}}",
+    "eval_types": [
+      "program_html",
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.113",
+    "legacy_id": "myBenchmark.113",
+    "site": "magento",
+    "intent": "Increase the price of black fitness tshirts from Desiree with size XS by 37%",
+    "intent_template": "{{action}} the price of {{config}} by {{amount}}",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.12",
+    "legacy_id": "myBenchmark.12",
+    "site": "magento",
+    "intent": "Which customer has completed the most number of orders in the entire history?",
+    "intent_template": "Which customer has completed the {{quantifier}} number of orders in the entire history?",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.13",
+    "legacy_id": "myBenchmark.13",
+    "site": "magento",
+    "intent": "Which customer(s) has completed the second most number of orders in the entire history?",
+    "intent_template": "Which customer(s) has completed the {{quantifier}} number of orders in the entire history?",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.14",
+    "legacy_id": "myBenchmark.14",
+    "site": "magento",
+    "intent": "Which customer has completed the fifth most number of orders in the entire history?",
+    "intent_template": "Which customer has completed the {{quantifier}} number of orders in the entire history?",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.15",
+    "legacy_id": "myBenchmark.15",
+    "site": "magento",
+    "intent": "What is the total count of Pending reviews amongst all the reviews?",
+    "intent_template": "What is the total count of {{status}} reviews amongst all the reviews?",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.16",
+    "legacy_id": "myBenchmark.16",
+    "site": "magento",
+    "intent": "What is the total count of Approved reviews amongst all the reviews?",
+    "intent_template": "What is the total count of {{status}} reviews amongst all the reviews?",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.17",
+    "legacy_id": "myBenchmark.17",
+    "site": "magento",
+    "intent": "What is the total count of Not Approved reviews amongst all the reviews?",
+    "intent_template": "What is the total count of {{status}} reviews amongst all the reviews?",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.18",
+    "legacy_id": "myBenchmark.18",
+    "site": "magento",
+    "intent": "Presents the monthly count of successful orders from May to December 2022 in MM:COUNT format",
+    "intent_template": "Presents the monthly count of successful orders {{period}} in MM:COUNT format",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.19",
+    "legacy_id": "myBenchmark.19",
+    "site": "magento",
+    "intent": "Presents the monthly count of successful orders 01/2023-05/2023 in MM:COUNT format",
+    "intent_template": "Presents the monthly count of successful orders {{period}} in MM:COUNT format",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.2",
+    "legacy_id": "myBenchmark.2",
+    "site": "magento",
+    "intent": "What is the top-1 best-selling product type in Quarter 1 2022",
+    "intent_template": "What is the top-{{n}} best-selling product type in {{period}}",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.20",
+    "legacy_id": "myBenchmark.20",
+    "site": "magento",
+    "intent": "Presents the monthly count of successful orders from Jan to December 2022 in MM:COUNT format",
+    "intent_template": "Presents the monthly count of successful orders {{period}} in MM:COUNT format",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.21",
+    "legacy_id": "myBenchmark.21",
+    "site": "magento",
+    "intent": "Presents the monthly count of successful orders from Jan to Nov 2022 in MM:COUNT format",
+    "intent_template": "Presents the monthly count of successful orders {{period}} in MM:COUNT format",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.22",
+    "legacy_id": "myBenchmark.22",
+    "site": "magento",
+    "intent": "Presents the monthly count of successful orders from Feb to Nov 2022 in MM:COUNT format",
+    "intent_template": "Presents the monthly count of successful orders {{period}} in MM:COUNT format",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.23",
+    "legacy_id": "myBenchmark.23",
+    "site": "magento",
+    "intent": "What's the total number of items sold in the most recent 2 orders?",
+    "intent_template": "What's the total number of items sold in the most recent {{k}} orders?",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.24",
+    "legacy_id": "myBenchmark.24",
+    "site": "magento",
+    "intent": "What's the total number of items sold in the most recent 4 orders?",
+    "intent_template": "What's the total number of items sold in the most recent {{k}} orders?",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.25",
+    "legacy_id": "myBenchmark.25",
+    "site": "magento",
+    "intent": "What's the total number of items sold in the most recent 5 orders?",
+    "intent_template": "What's the total number of items sold in the most recent {{k}} orders?",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.26",
+    "legacy_id": "myBenchmark.26",
+    "site": "magento",
+    "intent": "What's the total number of items sold in the most recent 7 orders?",
+    "intent_template": "What's the total number of items sold in the most recent {{k}} orders?",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.27",
+    "legacy_id": "myBenchmark.27",
+    "site": "magento",
+    "intent": "Show all customers",
+    "intent_template": "Show all customers",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.28",
+    "legacy_id": "myBenchmark.28",
+    "site": "magento",
+    "intent": "Give me the brand of the products that have 3 units left",
+    "intent_template": "Give me the {{Attribute}} of the products that have {{N}} units left",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.29",
+    "legacy_id": "myBenchmark.29",
+    "site": "magento",
+    "intent": "Give me the product names and the sizes of the products that have 2-3 units left",
+    "intent_template": "Give me the {{Attribute}} of the products that have {{N}} units left",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.3",
+    "legacy_id": "myBenchmark.3",
+    "site": "magento",
+    "intent": "What are the top-2 best-selling product in 2022",
+    "intent_template": "What are the top-{{n}} best-selling product in {{year}}",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.30",
+    "legacy_id": "myBenchmark.30",
+    "site": "magento",
+    "intent": "Give me the SKU of the products that have 1-3 units left",
+    "intent_template": "Give me the {{Attribute}} of the products that have {{N}} units left",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.31",
+    "legacy_id": "myBenchmark.31",
+    "site": "magento",
+    "intent": "Get the total payment amount of the last 2 completed orders",
+    "intent_template": "Get the total payment amount of the last {{N}} {{status}} orders",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.32",
+    "legacy_id": "myBenchmark.32",
+    "site": "magento",
+    "intent": "Get the total payment amount of the last 5 completed orders",
+    "intent_template": "Get the total payment amount of the last {{N}} {{status}} orders",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.33",
+    "legacy_id": "myBenchmark.33",
+    "site": "magento",
+    "intent": "Get the total payment amount of the last 5 pending orders",
+    "intent_template": "Get the total payment amount of the last {{N}} {{status}} orders",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.34",
+    "legacy_id": "myBenchmark.34",
+    "site": "magento",
+    "intent": "Compare the payment difference of the last 4 cancelled orders and completed orders",
+    "intent_template": "Compare the payment difference of the last {{N}} {{status_1}} orders and {{status_2}} orders",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.35",
+    "legacy_id": "myBenchmark.35",
+    "site": "magento",
+    "intent": "Get the total payment amount of the last 5 non-cancelled orders",
+    "intent_template": "Get the total payment amount of the last {{N}} {{status}} orders",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.36",
+    "legacy_id": "myBenchmark.36",
+    "site": "magento",
+    "intent": "Get the customer name of the most recent cancelled order",
+    "intent_template": "Get the {{attribute}} of the {{status}} order",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.37",
+    "legacy_id": "myBenchmark.37",
+    "site": "magento",
+    "intent": "Get the order ID of the newest pending order",
+    "intent_template": "Get the {{attribute}} of the {{status}} order",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.38",
+    "legacy_id": "myBenchmark.38",
+    "site": "magento",
+    "intent": "Get the billing name of the oldest complete order",
+    "intent_template": "Get the {{attribute}} of the {{status}} order",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.39",
+    "legacy_id": "myBenchmark.39",
+    "site": "magento",
+    "intent": "Get the customer name of the earliest fraud suspect order",
+    "intent_template": "Get the {{attribute}} of the {{status}} order",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.4",
+    "legacy_id": "myBenchmark.4",
+    "site": "magento",
+    "intent": "Tell me the the number of reviews that our store received by far that mention term \"disappointed\"",
+    "intent_template": "Tell me the the number of reviews that our store received by far that mention term \"{{term}}\"",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.40",
+    "legacy_id": "myBenchmark.40",
+    "site": "magento",
+    "intent": "Get the date of the most recent cancelled order",
+    "intent_template": "Get the {{attribute}} of the {{status}} order",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.41",
+    "legacy_id": "myBenchmark.41",
+    "site": "magento",
+    "intent": "Get the purchase date and order id of the most recent pending order",
+    "intent_template": "Get the {{attribute}} of the {{status}} order",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.42",
+    "legacy_id": "myBenchmark.42",
+    "site": "magento",
+    "intent": "Find the customer name and email with phone number +1 2058812302",
+    "intent_template": "Find the customer name and email with phone number {{PhoneNum}}",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.43",
+    "legacy_id": "myBenchmark.43",
+    "site": "magento",
+    "intent": "Find the customer name and email with phone number 2137418080",
+    "intent_template": "Find the customer name and email with phone number {{PhoneNum}}",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.44",
+    "legacy_id": "myBenchmark.44",
+    "site": "magento",
+    "intent": "Find the customer name and email with phone number 2065555555",
+    "intent_template": "Find the customer name and email with phone number {{PhoneNum}}",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.45",
+    "legacy_id": "myBenchmark.45",
+    "site": "magento",
+    "intent": "Find the customer name and email with phone number 8015551212",
+    "intent_template": "Find the customer name and email with phone number {{PhoneNum}}",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.46",
+    "legacy_id": "myBenchmark.46",
+    "site": "magento",
+    "intent": "Find the customer name and email with phone number 555-229-3326",
+    "intent_template": "Find the customer name and email with phone number {{PhoneNum}}",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.47",
+    "legacy_id": "myBenchmark.47",
+    "site": "magento",
+    "intent": "Tell me the name of the customer who has the most cancellations in the history",
+    "intent_template": "Tell me the {{attribute}} of the customer who has the most cancellations in the history",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.48",
+    "legacy_id": "myBenchmark.48",
+    "site": "magento",
+    "intent": "Tell me the email address, name, phone number of the customer who has the most cancellations in the history",
+    "intent_template": "Tell me the {{attribute}} of the customer who has the most cancellations in the history",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.49",
+    "legacy_id": "myBenchmark.49",
+    "site": "magento",
+    "intent": "Tell me the product SKUs in the most recent cancelled orders of the customer who has the most cancellations in the history",
+    "intent_template": "Tell me the {{attribute}} of the customer who has the most cancellations in the history",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.5",
+    "legacy_id": "myBenchmark.5",
+    "site": "magento",
+    "intent": "Tell me the the number of reviews that our store received by far that mention term \"satisfied\"",
+    "intent_template": "Tell me the the number of reviews that our store received by far that mention term \"{{term}}\"",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.50",
+    "legacy_id": "myBenchmark.50",
+    "site": "magento",
+    "intent": "Tell me the total spend on products in the most recent cancelled orders of the customer who has the most cancellations in the history",
+    "intent_template": "Tell me the {{attribute}} of the customer who has the most cancellations in the history",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.51",
+    "legacy_id": "myBenchmark.51",
+    "site": "magento",
+    "intent": "Tell me the total number of cancellations of the customer who has the most cancellations in the history",
+    "intent_template": "Tell me the {{attribute}} of the customer who has the most cancellations in the history",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.52",
+    "legacy_id": "myBenchmark.52",
+    "site": "magento",
+    "intent": "How many reviews our shop received by far?",
+    "intent_template": "How many reviews our shop received {{time}}?",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.53",
+    "legacy_id": "myBenchmark.53",
+    "site": "magento",
+    "intent": "How many reviews our shop received in Apr 2023?",
+    "intent_template": "How many reviews our shop received {{time}}?",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.54",
+    "legacy_id": "myBenchmark.54",
+    "site": "magento",
+    "intent": "How many reviews our shop received during 2022?",
+    "intent_template": "How many reviews our shop received {{time}}?",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.55",
+    "legacy_id": "myBenchmark.55",
+    "site": "magento",
+    "intent": "How many reviews our shop received from the beginning of the shop?",
+    "intent_template": "How many reviews our shop received {{time}}?",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.56",
+    "legacy_id": "myBenchmark.56",
+    "site": "magento",
+    "intent": "How many reviews our shop received in May 2023?",
+    "intent_template": "How many reviews our shop received {{time}}?",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.57",
+    "legacy_id": "myBenchmark.57",
+    "site": "magento",
+    "intent": "Reduce the price of this product by $5",
+    "intent_template": "{{action}} the price of this product by {{amount}}",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.58",
+    "legacy_id": "myBenchmark.58",
+    "site": "magento",
+    "intent": "Reduce the price of this product by 10%",
+    "intent_template": "{{action}} the price of this product by {{amount}}",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.59",
+    "legacy_id": "myBenchmark.59",
+    "site": "magento",
+    "intent": "Reduce the price of this product by 15%",
+    "intent_template": "{{action}} the price of this product by {{amount}}",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.6",
+    "legacy_id": "myBenchmark.6",
+    "site": "magento",
+    "intent": "Tell me the the number of reviews that our store received by far that mention term \"decent\"",
+    "intent_template": "Tell me the the number of reviews that our store received by far that mention term \"{{term}}\"",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.60",
+    "legacy_id": "myBenchmark.60",
+    "site": "magento",
+    "intent": "Increase the price of this product by $11.5",
+    "intent_template": "{{action}} the price of this product by {{amount}}",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.61",
+    "legacy_id": "myBenchmark.61",
+    "site": "magento",
+    "intent": "Increase the price of this product by 10%",
+    "intent_template": "{{action}} the price of this product by {{amount}}",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.62",
+    "legacy_id": "myBenchmark.62",
+    "site": "magento",
+    "intent": "Increase the price of this product by 15%",
+    "intent_template": "{{action}} the price of this product by {{amount}}",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.63",
+    "legacy_id": "myBenchmark.63",
+    "site": "magento",
+    "intent": "Cancel order 302",
+    "intent_template": "Cancel order {{id}}",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.64",
+    "legacy_id": "myBenchmark.64",
+    "site": "magento",
+    "intent": "Cancel order 307",
+    "intent_template": "Cancel order {{id}}",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.65",
+    "legacy_id": "myBenchmark.65",
+    "site": "magento",
+    "intent": "Cancel order 299",
+    "intent_template": "Cancel order {{id}}",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.66",
+    "legacy_id": "myBenchmark.66",
+    "site": "magento",
+    "intent": "Cancel order 301",
+    "intent_template": "Cancel order {{id}}",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.67",
+    "legacy_id": "myBenchmark.67",
+    "site": "magento",
+    "intent": "Cancel order 305",
+    "intent_template": "Cancel order {{id}}",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.68",
+    "legacy_id": "myBenchmark.68",
+    "site": "magento",
+    "intent": "Change the page title of \"404 Not Found\" page on my site to \"Bruh bro you clicked the wrong page\".",
+    "intent_template": "Change the page title of \"{{old-heading}}\" page on my site to \"{{heading}}\".",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.69",
+    "legacy_id": "myBenchmark.69",
+    "site": "magento",
+    "intent": "Change the page title of \"Enable Cookies\" page on my site to \"Cookie monster coming to your place\".",
+    "intent_template": "Change the page title of \"{{old-heading}}\" page on my site to \"{{heading}}\".",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.7",
+    "legacy_id": "myBenchmark.7",
+    "site": "magento",
+    "intent": "Tell me the the number of reviews that our store received by far that mention term \"not useful\"",
+    "intent_template": "Tell me the the number of reviews that our store received by far that mention term \"{{term}}\"",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.70",
+    "legacy_id": "myBenchmark.70",
+    "site": "magento",
+    "intent": "Change the page title of \"Home Page\" page on my site to \"This is the home page!! Leave here!!\".",
+    "intent_template": "Change the page title of \"{{old-heading}}\" page on my site to \"{{heading}}\".",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.71",
+    "legacy_id": "myBenchmark.71",
+    "site": "magento",
+    "intent": "Change the page title of \"Privacy Policy\" page on my site to \"No privacy policy is needed is this dystopian world\".",
+    "intent_template": "Change the page title of \"{{old-heading}}\" page on my site to \"{{heading}}\".",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.72",
+    "legacy_id": "myBenchmark.72",
+    "site": "magento",
+    "intent": "Change the page title of \"About us\" page on my site to \"Secret\".",
+    "intent_template": "Change the page title of \"{{old-heading}}\" page on my site to \"{{heading}}\".",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.73",
+    "legacy_id": "myBenchmark.73",
+    "site": "magento",
+    "intent": "Make Taurus Elements Shell as out of stock",
+    "intent_template": "Make {{product}} as out of stock",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.74",
+    "legacy_id": "myBenchmark.74",
+    "site": "magento",
+    "intent": "Make Gobi HeatTec Tee as out of stock",
+    "intent_template": "Make {{product}} as out of stock",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.75",
+    "legacy_id": "myBenchmark.75",
+    "site": "magento",
+    "intent": "Make rocco gym tank as out of stock",
+    "intent_template": "Make {{product}} as out of stock",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.76",
+    "legacy_id": "myBenchmark.76",
+    "site": "magento",
+    "intent": "Make Selene yoga hoodie as out of stock",
+    "intent_template": "Make {{product}} as out of stock",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.77",
+    "legacy_id": "myBenchmark.77",
+    "site": "magento",
+    "intent": "Make Aeon capri as out of stock",
+    "intent_template": "Make {{product}} as out of stock",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.78",
+    "legacy_id": "myBenchmark.78",
+    "site": "magento",
+    "intent": "Modify the address of order #299 to 456 Oak Avenue, Apartment 5B, New York, NY, 10001",
+    "intent_template": "Modify the address of order #{{order_id}} to {{address}}",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.79",
+    "legacy_id": "myBenchmark.79",
+    "site": "magento",
+    "intent": "Modify the address of order #65 to 789 Pine Lane, San Francisco, CA, 94102",
+    "intent_template": "Modify the address of order #{{order_id}} to {{address}}",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.8",
+    "legacy_id": "myBenchmark.8",
+    "site": "magento",
+    "intent": "Tell me the the number of reviews that our store received by far that mention term \"best\"",
+    "intent_template": "Tell me the the number of reviews that our store received by far that mention term \"{{term}}\"",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.80",
+    "legacy_id": "myBenchmark.80",
+    "site": "magento",
+    "intent": "Modify the address of order #301 to 321 Birch Boulevard, Suite 200, Dallas, TX, 75201",
+    "intent_template": "Modify the address of order #{{order_id}} to {{address}}",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.81",
+    "legacy_id": "myBenchmark.81",
+    "site": "magento",
+    "intent": "Modify the address of order #125 to 654 Elm Drive, Apartment 12, Miami, FL, 33101",
+    "intent_template": "Modify the address of order #{{order_id}} to {{address}}",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.82",
+    "legacy_id": "myBenchmark.82",
+    "site": "magento",
+    "intent": "Modify the address of order #300 to 987 Cedar Court, Los Angeles, CA, 90012",
+    "intent_template": "Modify the address of order #{{order_id}} to {{address}}",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.83",
+    "legacy_id": "myBenchmark.83",
+    "site": "magento",
+    "intent": "Add a new color option brown to the size S of Phoebe Zipper Sweatshirt",
+    "intent_template": "Add a new {{option}} option {{value}} to the {{base_setting}} of {{product}}",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.84",
+    "legacy_id": "myBenchmark.84",
+    "site": "magento",
+    "intent": "Add a new color blue to size S and M of Frankie Sweatshirt",
+    "intent_template": "Add a new {{option}} {{value}} to {{base_setting}} of {{product}}",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.85",
+    "legacy_id": "myBenchmark.85",
+    "site": "magento",
+    "intent": "Add a new size XXXL to green Minerva LumaTech V-Tee",
+    "intent_template": "Add a new {{option}} {{value}} to {{base_setting}} {{product}}",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.86",
+    "legacy_id": "myBenchmark.86",
+    "site": "magento",
+    "intent": "Add a new size XXS to blue and purple Nona Fitness Tank",
+    "intent_template": "Add a new {{option}} {{value}} to {{base_setting}} {{product}}",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.87",
+    "legacy_id": "myBenchmark.87",
+    "site": "magento",
+    "intent": "Add new size 30 and 31 to all color variants of Diana Tights",
+    "intent_template": "Add new {{option}} {{value}} to {{base_setting}} of {{product}}",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.88",
+    "legacy_id": "myBenchmark.88",
+    "site": "magento",
+    "intent": "Lookup orders that are suspected of being fraudulent",
+    "intent_template": "Lookup orders that are {{status}}",
+    "eval_types": [
+      "program_html",
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.89",
+    "legacy_id": "myBenchmark.89",
+    "site": "magento",
+    "intent": "Lookup orders that are processing",
+    "intent_template": "Lookup orders that are {{status}}",
+    "eval_types": [
+      "program_html",
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.9",
+    "legacy_id": "myBenchmark.9",
+    "site": "magento",
+    "intent": "List the top 1 search terms in my store",
+    "intent_template": "List the top {{n}} search terms in my store",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.90",
+    "legacy_id": "myBenchmark.90",
+    "site": "magento",
+    "intent": "Lookup orders that are canceled",
+    "intent_template": "Lookup orders that are {{status}}",
+    "eval_types": [
+      "program_html",
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.91",
+    "legacy_id": "myBenchmark.91",
+    "site": "magento",
+    "intent": "Lookup orders that are completed",
+    "intent_template": "Lookup orders that are {{status}}",
+    "eval_types": [
+      "program_html",
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.92",
+    "legacy_id": "myBenchmark.92",
+    "site": "magento",
+    "intent": "Lookup orders that are on hold",
+    "intent_template": "Lookup orders that are {{status}}",
+    "eval_types": [
+      "program_html",
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.93",
+    "legacy_id": "myBenchmark.93",
+    "site": "magento",
+    "intent": "Add a simple product named Energy-Bulk Women Shirt with 50 in stock, available in size S and color blue, priced at $60",
+    "intent_template": "Add a simple product named {{product}} with {{stock}} in stock, available in size {{size}} and color {{color}}, priced at ${{price}}",
+    "eval_types": [
+      "program_html",
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.94",
+    "legacy_id": "myBenchmark.94",
+    "site": "magento",
+    "intent": "Add a simple product named Energy-Bulk Man Yoga Pant with 50 in stock, available in size 38 and color yellow, priced at $69.99",
+    "intent_template": "Add a simple product named {{product}} with {{stock}} in stock, available in size {{size}} and color {{color}}, priced at ${{price}}",
+    "eval_types": [
+      "program_html",
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.95",
+    "legacy_id": "myBenchmark.95",
+    "site": "magento",
+    "intent": "Add a simple product named FancyBoy Man Causal Jeans with 42 in stock, available in size 34 and color Blue, priced at $169.99",
+    "intent_template": "Add a simple product named {{product}} with {{stock}} in stock, available in size {{size}} and color {{color}}, priced at ${{price}}",
+    "eval_types": [
+      "program_html",
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.96",
+    "legacy_id": "myBenchmark.96",
+    "site": "magento",
+    "intent": "Add a simple product named Swaatch Smart Watch with 42 in stock, available in size uni-size and color Blue, priced at $769.99",
+    "intent_template": "Add a simple product named {{product}} with {{stock}} in stock, available in size {{size}} and color {{color}}, priced at ${{price}}",
+    "eval_types": [
+      "program_html",
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.97",
+    "legacy_id": "myBenchmark.97",
+    "site": "magento",
+    "intent": "Add a simple product named Lelelumon Yoga Mat with 42 in stock, available in size uni-size and color black, priced at $769.99",
+    "intent_template": "Add a simple product named {{product}} with {{stock}} in stock, available in size {{size}} and color {{color}}, priced at ${{price}}",
+    "eval_types": [
+      "program_html",
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.98",
+    "legacy_id": "myBenchmark.98",
+    "site": "magento",
+    "intent": "Draft a new marketing price rule for spring sale that offers a 20 percent discount site-wide for all customers",
+    "intent_template": "Draft a new marketing price rule for {{topic}} that offers {{rule}} for all customers",
+    "eval_types": [
+      "program_html",
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.magento.99",
+    "legacy_id": "myBenchmark.99",
+    "site": "magento",
+    "intent": "Draft a new marketing price rule for fall discount that offers $10 discount on checkout for all customers",
+    "intent_template": "Draft a new marketing price rule for {{topic}} that offers {{rule}} for all customers",
+    "eval_types": [
+      "program_html",
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.0",
+    "legacy_id": "myBenchmark.0",
+    "site": "wordpress",
+    "intent": "Find the article titled 'Building A PC, Part IX: Downsizing'.",
+    "intent_template": "Find the article titled {{title}}.",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.1",
+    "legacy_id": "myBenchmark.1",
+    "site": "wordpress",
+    "intent": "Find the article titled 'Jimmy Kimmel takes aim at Trump in \u2018alternative Christmas message\u2019 to UK'.",
+    "intent_template": "Find the article titled {{title}}.",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.10",
+    "legacy_id": "myBenchmark.10",
+    "site": "wordpress",
+    "intent": "Identify the publish date and the title of second most post on the homepage.",
+    "intent_template": "Identify the {{info1}} and the {{info2}} of {{adj}} post on the homepage.",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.11",
+    "legacy_id": "myBenchmark.11",
+    "site": "wordpress",
+    "intent": "Identify the publish date and the title of third most post on the homepage.",
+    "intent_template": "Identify the {{info1}} and the {{info2}} of {{adj}} post on the homepage.",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.12",
+    "legacy_id": "myBenchmark.12",
+    "site": "wordpress",
+    "intent": "Identify the category and the publish date of bottom post on the homepage.",
+    "intent_template": "Identify the {{info1}} and the {{info2}} of {{adj}} post on the homepage.",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.13",
+    "legacy_id": "myBenchmark.13",
+    "site": "wordpress",
+    "intent": "Identify the title and the category of bottom post on the homepage.",
+    "intent_template": "Identify the {{info1}} and the {{info2}} of {{adj}} post on the homepage.",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.14",
+    "legacy_id": "myBenchmark.14",
+    "site": "wordpress",
+    "intent": "Identify the publish date and the title of second-to-last post on the homepage.",
+    "intent_template": "Identify the {{info1}} and the {{info2}} of {{adj}} post on the homepage.",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.15",
+    "legacy_id": "myBenchmark.15",
+    "site": "wordpress",
+    "intent": "Identify the title and the category of third-to-last post on the homepage.",
+    "intent_template": "Identify the {{info1}} and the {{info2}} of {{adj}} post on the homepage.",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.16",
+    "legacy_id": "myBenchmark.16",
+    "site": "wordpress",
+    "intent": "Use the site search bar to search for the keyword 'Tracing', and click on the second result.",
+    "intent_template": "Use the site search bar to search for the keyword {{target_word}}, and click on the {{adj}} result.",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.17",
+    "legacy_id": "myBenchmark.17",
+    "site": "wordpress",
+    "intent": "Use the site search bar to search for the keyword 'Collector', and click on the first result.",
+    "intent_template": "Use the site search bar to search for the keyword {{target_word}}, and click on the {{adj}} result.",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.18",
+    "legacy_id": "myBenchmark.18",
+    "site": "wordpress",
+    "intent": "Use the site search bar to search for the keyword 'reveals', and click on the third result.",
+    "intent_template": "Use the site search bar to search for the keyword {{target_word}}, and click on the {{adj}} result.",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.19",
+    "legacy_id": "myBenchmark.19",
+    "site": "wordpress",
+    "intent": "Use the site search bar to search for the keyword 'GPT', and click on the third result.",
+    "intent_template": "Use the site search bar to search for the keyword {{target_word}}, and click on the {{adj}} result.",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.2",
+    "legacy_id": "myBenchmark.2",
+    "site": "wordpress",
+    "intent": "Find the article titled 'Making Your Code Base Better Will Make Your Code Coverage Worse'.",
+    "intent_template": "Find the article titled {{title}}.",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.20",
+    "legacy_id": "myBenchmark.20",
+    "site": "wordpress",
+    "intent": "Use the site search bar to search for the keyword 'DeepSeek', and click on the bottom result.",
+    "intent_template": "Use the site search bar to search for the keyword {{target_word}}, and click on the {{adj}} result.",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.21",
+    "legacy_id": "myBenchmark.21",
+    "site": "wordpress",
+    "intent": "Use the site search bar to search for the keyword 'playbook', and click on the second-to-last result.",
+    "intent_template": "Use the site search bar to search for the keyword {{target_word}}, and click on the {{adj}} result.",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.22",
+    "legacy_id": "myBenchmark.22",
+    "site": "wordpress",
+    "intent": "Use the site search bar to search for the keyword 'diabetes', and click on the bottom result.",
+    "intent_template": "Use the site search bar to search for the keyword {{target_word}}, and click on the {{adj}} result.",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.23",
+    "legacy_id": "myBenchmark.23",
+    "site": "wordpress",
+    "intent": "Use the site search bar to search for the keyword 'crypto', and click on the third-to-last result.",
+    "intent_template": "Use the site search bar to search for the keyword {{target_word}}, and click on the {{adj}} result.",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.24",
+    "legacy_id": "myBenchmark.24",
+    "site": "wordpress",
+    "intent": "Navigate to the 'sports' category page.",
+    "intent_template": "Navigate to the {{category}} category page.",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.25",
+    "legacy_id": "myBenchmark.25",
+    "site": "wordpress",
+    "intent": "Navigate to the 'technology' category page.",
+    "intent_template": "Navigate to the {{category}} category page.",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.26",
+    "legacy_id": "myBenchmark.26",
+    "site": "wordpress",
+    "intent": "Navigate to the 'politics' category page.",
+    "intent_template": "Navigate to the {{category}} category page.",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.27",
+    "legacy_id": "myBenchmark.27",
+    "site": "wordpress",
+    "intent": "Navigate to the 'entertainment' category page.",
+    "intent_template": "Navigate to the {{category}} category page.",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.28",
+    "legacy_id": "myBenchmark.28",
+    "site": "wordpress",
+    "intent": "Navigate to the 'science' category page.",
+    "intent_template": "Navigate to the {{category}} category page.",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.29",
+    "legacy_id": "myBenchmark.29",
+    "site": "wordpress",
+    "intent": "Navigate to the 'general' category page.",
+    "intent_template": "Navigate to the {{category}} category page.",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.3",
+    "legacy_id": "myBenchmark.3",
+    "site": "wordpress",
+    "intent": "Find the article titled 'Pope Leo urges 'courage' to end Ukraine war in first Christmas address'.",
+    "intent_template": "Find the article titled {{title}}.",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.30",
+    "legacy_id": "myBenchmark.30",
+    "site": "wordpress",
+    "intent": "Navigate to the 'business' category page.",
+    "intent_template": "Navigate to the {{category}} category page.",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.31",
+    "legacy_id": "myBenchmark.31",
+    "site": "wordpress",
+    "intent": "Navigate to the 'health' category page.",
+    "intent_template": "Navigate to the {{category}} category page.",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.32",
+    "legacy_id": "myBenchmark.32",
+    "site": "wordpress",
+    "intent": "Find the link to the 'Next Post' and click it.",
+    "intent_template": "Find the link to the {{element}} and click it.",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.33",
+    "legacy_id": "myBenchmark.33",
+    "site": "wordpress",
+    "intent": "Find the link to the 'Previous Post' and click it.",
+    "intent_template": "Find the link to the {{element}} and click it.",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.34",
+    "legacy_id": "myBenchmark.34",
+    "site": "wordpress",
+    "intent": "Find the link to the 'Home' and click it.",
+    "intent_template": "Find the link to the {{element}} and click it.",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.35",
+    "legacy_id": "myBenchmark.35",
+    "site": "wordpress",
+    "intent": "Find the link to the 'Comments' of the top post and click it.",
+    "intent_template": "Find the link to the {{element}} of the top post and click it.",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.36",
+    "legacy_id": "myBenchmark.36",
+    "site": "wordpress",
+    "intent": "Go to the 'In World First, Chinese Surgeons Save Patient\u2019s Ear With Graft Onto Foot' post and leave a comment saying: 'Excellent write-up!'.",
+    "intent_template": "Go to the {{title}} post and leave a comment saying: {{content}}.",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.37",
+    "legacy_id": "myBenchmark.37",
+    "site": "wordpress",
+    "intent": "Go to the 'Rivalries And Rumours: How The New Order Of The Murdoch Dynasty Is Playing Out' post and leave a comment saying: 'Well written and easy to understand.'.",
+    "intent_template": "Go to the {{title}} post and leave a comment saying: {{content}}.",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.38",
+    "legacy_id": "myBenchmark.38",
+    "site": "wordpress",
+    "intent": "Go to the 'How to get rid of unwanted Christmas presents - without being found out' post and leave a comment saying: 'Interesting perspective.'.",
+    "intent_template": "Go to the {{title}} post and leave a comment saying: {{content}}.",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.39",
+    "legacy_id": "myBenchmark.39",
+    "site": "wordpress",
+    "intent": "Go to the 'Settle Down, Nerds. AI Is A Normal Technology' post and leave a comment saying: 'Appreciate the detailed explanation.'.",
+    "intent_template": "Go to the {{title}} post and leave a comment saying: {{content}}.",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.4",
+    "legacy_id": "myBenchmark.4",
+    "site": "wordpress",
+    "intent": "Find the article titled 'Lightning-As-A-Service For Agriculture'.",
+    "intent_template": "Find the article titled {{title}}.",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.40",
+    "legacy_id": "myBenchmark.40",
+    "site": "wordpress",
+    "intent": "Go to the 'Why Do I Have No Energy? The Science-Backed Energy Management Framework For Overwhelmed High-Achievers' post and leave a comment saying: 'Thank you for this helpful guide.'.",
+    "intent_template": "Go to the {{title}} post and leave a comment saying: {{content}}.",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.41",
+    "legacy_id": "myBenchmark.41",
+    "site": "wordpress",
+    "intent": "Go to the 'I Ditched VS Code For The Open-Source VSCodium, And I Have No Regrets' post and leave a comment saying: 'This gives me a new angle to consider.'.",
+    "intent_template": "Go to the {{title}} post and leave a comment saying: {{content}}.",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.42",
+    "legacy_id": "myBenchmark.42",
+    "site": "wordpress",
+    "intent": "Go to the 'JavaScript SpeechSynthesis API' post and leave a comment saying: 'Thanks, this solved my problem.'.",
+    "intent_template": "Go to the {{title}} post and leave a comment saying: {{content}}.",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.43",
+    "legacy_id": "myBenchmark.43",
+    "site": "wordpress",
+    "intent": "Go to the '40 of our most helpful AI tips from 2025' post and leave a comment saying: 'Great article!'.",
+    "intent_template": "Go to the {{title}} post and leave a comment saying: {{content}}.",
+    "eval_types": [
+      "program_html"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.44",
+    "legacy_id": "myBenchmark.44",
+    "site": "wordpress",
+    "intent": "Find the 'Recent Posts' section and click on the link corresponding to second most recent one.",
+    "intent_template": "Find the {{element}} section and click on the link corresponding to {{adj}} recent one.",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.45",
+    "legacy_id": "myBenchmark.45",
+    "site": "wordpress",
+    "intent": "Find the 'Archives' section and click on the link corresponding to second most recent one.",
+    "intent_template": "Find the {{element}} section and click on the link corresponding to {{adj}} recent one.",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.46",
+    "legacy_id": "myBenchmark.46",
+    "site": "wordpress",
+    "intent": "Find the 'Archives' section and click on the link corresponding to third most recent one.",
+    "intent_template": "Find the {{element}} section and click on the link corresponding to {{adj}} recent one.",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.47",
+    "legacy_id": "myBenchmark.47",
+    "site": "wordpress",
+    "intent": "Find the 'Recent Posts' section and click on the link corresponding to most recent one.",
+    "intent_template": "Find the {{element}} section and click on the link corresponding to {{adj}} recent one.",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.48",
+    "legacy_id": "myBenchmark.48",
+    "site": "wordpress",
+    "intent": "Find the 'Categories' section and click on the link corresponding to third one.",
+    "intent_template": "Find the {{element}} section and click on the link corresponding to {{adj}} one.",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.49",
+    "legacy_id": "myBenchmark.49",
+    "site": "wordpress",
+    "intent": "Find the 'Archives' section and click on the link corresponding to fourth most recent one.",
+    "intent_template": "Find the {{element}} section and click on the link corresponding to {{adj}} recent one.",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.5",
+    "legacy_id": "myBenchmark.5",
+    "site": "wordpress",
+    "intent": "Find the article titled 'Treating your agents like microservices'.",
+    "intent_template": "Find the article titled {{title}}.",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.50",
+    "legacy_id": "myBenchmark.50",
+    "site": "wordpress",
+    "intent": "Navigate to the tag archive for 'microsoft'.",
+    "intent_template": "Navigate to the tag archive for {{tag}}.",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.51",
+    "legacy_id": "myBenchmark.51",
+    "site": "wordpress",
+    "intent": "Navigate to the tag archive for 'community'.",
+    "intent_template": "Navigate to the tag archive for {{tag}}.",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.52",
+    "legacy_id": "myBenchmark.52",
+    "site": "wordpress",
+    "intent": "Navigate to the tag archive for 'javascript'.",
+    "intent_template": "Navigate to the tag archive for {{tag}}.",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.53",
+    "legacy_id": "myBenchmark.53",
+    "site": "wordpress",
+    "intent": "Navigate to the tag archive for 'shopify'.",
+    "intent_template": "Navigate to the tag archive for {{tag}}.",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.54",
+    "legacy_id": "myBenchmark.54",
+    "site": "wordpress",
+    "intent": "Navigate to the tag archive for 'pain'.",
+    "intent_template": "Navigate to the tag archive for {{tag}}.",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.55",
+    "legacy_id": "myBenchmark.55",
+    "site": "wordpress",
+    "intent": "Navigate to the tag archive for 'volunteer'.",
+    "intent_template": "Navigate to the tag archive for {{tag}}.",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.56",
+    "legacy_id": "myBenchmark.56",
+    "site": "wordpress",
+    "intent": "Navigate to the tag archive for 'webdev'.",
+    "intent_template": "Navigate to the tag archive for {{tag}}.",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.57",
+    "legacy_id": "myBenchmark.57",
+    "site": "wordpress",
+    "intent": "Navigate to the tag archive for 'engineering'.",
+    "intent_template": "Navigate to the tag archive for {{tag}}.",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.58",
+    "legacy_id": "myBenchmark.58",
+    "site": "wordpress",
+    "intent": "Scroll to the bottom of the homepage and navigate to page 2 of the blog feed.",
+    "intent_template": "Scroll to the bottom of the homepage and navigate to page {{page_num}} of the blog feed.",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.59",
+    "legacy_id": "myBenchmark.59",
+    "site": "wordpress",
+    "intent": "Scroll to the bottom of the homepage and navigate to page 3 of the blog feed.",
+    "intent_template": "Scroll to the bottom of the homepage and navigate to page {{page_num}} of the blog feed.",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.6",
+    "legacy_id": "myBenchmark.6",
+    "site": "wordpress",
+    "intent": "Find the article titled 'NASA Astronaut Nick Hague Retires'.",
+    "intent_template": "Find the article titled {{title}}.",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.60",
+    "legacy_id": "myBenchmark.60",
+    "site": "wordpress",
+    "intent": "Scroll to the bottom of the homepage and navigate to page 4 of the blog feed.",
+    "intent_template": "Scroll to the bottom of the homepage and navigate to page {{page_num}} of the blog feed.",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.61",
+    "legacy_id": "myBenchmark.61",
+    "site": "wordpress",
+    "intent": "Scroll to the bottom of the homepage and navigate to page 5 of the blog feed.",
+    "intent_template": "Scroll to the bottom of the homepage and navigate to page {{page_num}} of the blog feed.",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.62",
+    "legacy_id": "myBenchmark.62",
+    "site": "wordpress",
+    "intent": "Scroll to the bottom of the homepage and navigate to page 6 of the blog feed.",
+    "intent_template": "Scroll to the bottom of the homepage and navigate to page {{page_num}} of the blog feed.",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.63",
+    "legacy_id": "myBenchmark.63",
+    "site": "wordpress",
+    "intent": "Open the article 'Americast' and check if it contains an image related to 'Americast'.",
+    "intent_template": "Open the article {{title}} and check if it contains an image related to {{keyword}}.",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.64",
+    "legacy_id": "myBenchmark.64",
+    "site": "wordpress",
+    "intent": "Open the article 'Downing Street insists negotiations over US-UK tech deal still live' and check if it contains an image related to 'live'.",
+    "intent_template": "Open the article {{title}} and check if it contains an image related to {{keyword}}.",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.65",
+    "legacy_id": "myBenchmark.65",
+    "site": "wordpress",
+    "intent": "Open the article 'One in three using AI for emotional support and conversation, UK says' and check if it contains an image related to 'Getty Images'.",
+    "intent_template": "Open the article {{title}} and check if it contains an image related to {{keyword}}.",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.66",
+    "legacy_id": "myBenchmark.66",
+    "site": "wordpress",
+    "intent": "Open the article 'Vibe coding needs a spec, too' and check if it contains an image related to 'code'.",
+    "intent_template": "Open the article {{title}} and check if it contains an image related to {{keyword}}.",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.67",
+    "legacy_id": "myBenchmark.67",
+    "site": "wordpress",
+    "intent": "Open the article 'Beijing extends Mars mission lead; stranded astronauts back home: China\u2019s year in space' and check if it contains an image related to 'Shenzhou-20'.",
+    "intent_template": "Open the article {{title}} and check if it contains an image related to {{keyword}}.",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.68",
+    "legacy_id": "myBenchmark.68",
+    "site": "wordpress",
+    "intent": "Open the article 'Social supermarket 'helps me to afford Christmas'' and check if it contains an image related to 'Jazz Gough''.",
+    "intent_template": "Open the article {{title}} and check if it contains an image related to {{keyword}}.",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.69",
+    "legacy_id": "myBenchmark.69",
+    "site": "wordpress",
+    "intent": "Open the article 'Ruby 4.0 update brings ZJIT, isolation features, and more' and check if it contains an image related to 'iPad Mini'.",
+    "intent_template": "Open the article {{title}} and check if it contains an image related to {{keyword}}.",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.7",
+    "legacy_id": "myBenchmark.7",
+    "site": "wordpress",
+    "intent": "Find the article titled '40 Of Our Most Helpful AI Tips From 2025'.",
+    "intent_template": "Find the article titled {{title}}.",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.70",
+    "legacy_id": "myBenchmark.70",
+    "site": "wordpress",
+    "intent": "Open the article 'Disrupting yourself in the age of AI' and check if it contains an image related to 'AI'.",
+    "intent_template": "Open the article {{title}} and check if it contains an image related to {{keyword}}.",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.71",
+    "legacy_id": "myBenchmark.71",
+    "site": "wordpress",
+    "intent": "Find the 'Archives' widget and click on the link for 'June 2024'.",
+    "intent_template": "Find the 'Archives' widget and click on the link for {{month_year}}.",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.72",
+    "legacy_id": "myBenchmark.72",
+    "site": "wordpress",
+    "intent": "Find the 'Archives' widget and click on the link for 'May 2023'.",
+    "intent_template": "Find the 'Archives' widget and click on the link for {{month_year}}.",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.73",
+    "legacy_id": "myBenchmark.73",
+    "site": "wordpress",
+    "intent": "Find the 'Archives' widget and click on the link for 'January 2025'.",
+    "intent_template": "Find the 'Archives' widget and click on the link for {{month_year}}.",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.74",
+    "legacy_id": "myBenchmark.74",
+    "site": "wordpress",
+    "intent": "Find the 'Archives' widget and click on the link for 'November 2025'.",
+    "intent_template": "Find the 'Archives' widget and click on the link for {{month_year}}.",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.75",
+    "legacy_id": "myBenchmark.75",
+    "site": "wordpress",
+    "intent": "Find the 'Archives' widget and click on the link for 'December 2017'.",
+    "intent_template": "Find the 'Archives' widget and click on the link for {{month_year}}.",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.76",
+    "legacy_id": "myBenchmark.76",
+    "site": "wordpress",
+    "intent": "Find the 'Archives' widget and click on the link for 'February 2019'.",
+    "intent_template": "Find the 'Archives' widget and click on the link for {{month_year}}.",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.77",
+    "legacy_id": "myBenchmark.77",
+    "site": "wordpress",
+    "intent": "Find the 'Archives' widget and click on the link for 'March 2022'.",
+    "intent_template": "Find the 'Archives' widget and click on the link for {{month_year}}.",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.78",
+    "legacy_id": "myBenchmark.78",
+    "site": "wordpress",
+    "intent": "Find the 'Archives' widget and click on the link for 'April 2023'.",
+    "intent_template": "Find the 'Archives' widget and click on the link for {{month_year}}.",
+    "eval_types": [
+      "url_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.8",
+    "legacy_id": "myBenchmark.8",
+    "site": "wordpress",
+    "intent": "Identify the publish date and the title of most recent post on the homepage.",
+    "intent_template": "Identify the {{info1}} and the {{info2}} of {{adj}} post on the homepage.",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  },
+  {
+    "family_id": "skillshift.wordpress.9",
+    "legacy_id": "myBenchmark.9",
+    "site": "wordpress",
+    "intent": "Identify the category and the publish date of top post on the homepage.",
+    "intent_template": "Identify the {{info1}} and the {{info2}} of {{adj}} post on the homepage.",
+    "eval_types": [
+      "string_match"
+    ],
+    "versions": [
+      "v1",
+      "v2"
+    ]
+  }
+]

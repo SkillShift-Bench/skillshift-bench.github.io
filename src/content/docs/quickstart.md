@@ -1,0 +1,101 @@
+---
+title: "Quickstart"
+order: 1
+slug: quickstart
+---
+
+## 1. Install
+
+```bash
+git clone https://github.com/SkillShift-Bench/skillshift-bench
+cd skillshift-bench
+pip install -e ".[run]"
+python -m playwright install chromium
+```
+
+The bare `pip install -e .` gives you the aggregation and validation path with
+no browser stack — enough to check a `results.json` before opening a pull
+request, and enough for CI.
+
+Verify the checkout without Docker, a GPU or an API key:
+
+```bash
+python scripts/smoke_test.py
+```
+
+## 2. Bring up one website
+
+Full instructions are in [environments.md](/docs/environments). The short version
+for GitLab 12.0 (the `src` context):
+
+```bash
+git clone https://github.com/SkillShift-Bench/skillshift-envs
+cd skillshift-envs && ./setup.sh --site gitlab --condition src
+export GITLAB_V1=http://localhost:8080
+```
+
+A condition implies a version — `src`, `src-perc` and `src-exec` all run against
+v1 — so `--version v1` is accepted as a synonym. Add `--dry-run` to see every
+command it would run first. With a checkout beside this one, `skillshift env up
+--site gitlab --condition src` drives the same script.
+
+GitLab takes several minutes to become ready on a cold start. Check with:
+
+```bash
+skillshift env status
+```
+
+## 3. Configure the model
+
+```bash
+export my_api_key=...          # your key
+export my_base_url=https://api.openai.com/v1
+export my_model=gpt-5-mini-2025-08-07
+```
+
+## 4. Run one task
+
+```bash
+skillshift run --agent reference \
+    --site gitlab --condition src \
+    --tasks skillshift.gitlab.v1.0 \
+    --out runs/first
+```
+
+`reference` is the built-in no-skill ReAct agent — the calibration anchor, not a
+competitive method. To run your own, see [custom-agent.md](/docs/custom-agent).
+
+## 5. Check the environment before you trust a number
+
+```bash
+skillshift calibrate
+```
+
+Thirty pinned task families under all six conditions, with the no-skill
+reference agent, compared against a published anchor. It is what separates "my
+method is weak" from "my GitLab came up as the wrong version". The anchor is not
+published yet, so today this exits 2 and says so; see
+[calibration.md](/docs/calibration).
+
+## 6. Run a condition, then report
+
+```bash
+skillshift run --agent reference --site gitlab --condition tgt-exec --out runs/demo
+skillshift report runs/demo --out submission/ --name "Reference ReAct" --model "$my_model"
+skillshift validate submission/results.json
+```
+
+`report` writes three files. `results.json` and `run_receipt.json` are what you
+submit; `per_task.jsonl` stays on your machine — see
+[results-policy.md](/docs/results-policy).
+
+## Task ids
+
+Canonical: `skillshift.<site>.<v1|v2>.<index>`, for example
+`skillshift.gitlab.v1.9`. The version-free form `skillshift.gitlab.9` names the
+aligned task family and picks its version from `--condition`.
+
+The artifact's `myBenchmark.<n>` ids still work but are deprecated: they are not
+self-describing, because each site numbers its tasks from zero, so
+`myBenchmark.9` means a different task on each site. Pass `--site` with them.
+`data/tasks/id_map.csv` maps every id in both directions.

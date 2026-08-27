@@ -1,0 +1,110 @@
+{
+  "schema_version": "1.0",
+  "submission": {
+    "name": "ASI",
+    "date": "2026-08-26",
+    "contact": null,
+    "method": {
+      "name": "Agent Skill Induction",
+      "description": "Induces executable programmatic skills and calls them as actions.",
+      "paper_url": "https://openreview.net/forum?id=lsAY6fWsog",
+      "code_url": null
+    },
+    "model": {
+      "id": "Claude Haiku 4.5",
+      "temperature": null,
+      "vision": null
+    },
+    "provenance": {
+      "label": "reported-only",
+      "source": "experiment results.md",
+      "code_released": false
+    },
+    "repro_command": null
+  },
+  "harness_version": "n/a",
+  "metrics": {
+    "SR": {
+      "websites": {
+        "gitlab": 16.76,
+        "magento": 22.72,
+        "wordpress": 58.44
+      },
+      "conditions": {
+        "src": 50.6,
+        "src-perc": 44.55,
+        "src-exec": 19.29,
+        "tgt": 39.62,
+        "tgt-perc": 32.25,
+        "tgt-exec": 9.53
+      },
+      "overall": 32.64
+    },
+    "AS": {
+      "websites": {
+        "gitlab": 8.49,
+        "magento": 8.68,
+        "wordpress": 5.37
+      },
+      "conditions": {
+        "src": 6.14,
+        "src-perc": 6.94,
+        "src-exec": 8.66,
+        "tgt": 6.92,
+        "tgt-perc": 7.49,
+        "tgt-exec": 8.91
+      },
+      "overall": 7.51
+    },
+    "ASC": {
+      "websites": {
+        "gitlab": 0.05,
+        "magento": 0.14,
+        "wordpress": 0.14
+      },
+      "conditions": {
+        "src": 0.14,
+        "src-perc": 0.15,
+        "src-exec": 0.12,
+        "tgt": 0.09,
+        "tgt-perc": 0.1,
+        "tgt-exec": 0.05
+      },
+      "overall": 0.11
+    },
+    "SFR": {
+      "websites": {
+        "gitlab": 0.0,
+        "magento": 77.71,
+        "wordpress": 14.42
+      },
+      "conditions": {
+        "src": 13.62,
+        "src-perc": 26.67,
+        "src-exec": 55.56,
+        "tgt": 23.51,
+        "tgt-perc": 31.58,
+        "tgt-exec": 33.33
+      },
+      "overall": 30.71
+    }
+  },
+  "n": {
+    "websites": {
+      "gitlab": 162,
+      "magento": 114,
+      "wordpress": 79
+    },
+    "conditions": {
+      "src": 355,
+      "src-perc": 355,
+      "src-exec": 355,
+      "tgt": 355,
+      "tgt-perc": 355,
+      "tgt-exec": 355
+    },
+    "skill_calls": null
+  },
+  "reasons": {},
+  "notes": "Transcribed from experiment_results/results.md. Website and condition values are unweighted means of the same eighteen cells, so they agree with the overall value by construction."
+}

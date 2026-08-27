@@ -24,3 +24,8 @@ venv/
 .vscode/
 .idea/
 .claude/
+
+# Astro site
+node_modules/
+dist/
+.astro/

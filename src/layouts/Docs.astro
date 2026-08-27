@@ -1,0 +1,70 @@
+---
+import Base from "./Base.astro";
+import OsWindow from "../components/OsWindow.astro";
+import { DOC_LINKS } from "../lib/copy";
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+const path = Astro.url.pathname.replace(/\/$/, "");
+---
+
+<Base title={title} docs>
+  <div
+    class="mx-auto grid max-w-6xl gap-8 px-4 py-8 md:grid-cols-[13.5rem_minmax(0,1fr)]"
+  >
+    <aside class="md:sticky md:top-20 md:self-start">
+      <details class="md:hidden">
+        <summary class="btn-ghost cursor-pointer">In this guide</summary>
+        <nav aria-label="Docs" class="hard-card mt-2 p-3">
+          <ul class="space-y-2 text-sm">
+            {
+              DOC_LINKS.map((item) => (
+                <li>
+                  <a
+                    href={item.href}
+                    aria-current={path === item.href ? "page" : undefined}
+                    class:list={[path === item.href && "font-semibold"]}
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </nav>
+      </details>
+      <nav aria-label="Docs" class="hard-card hidden p-3 md:block">
+        <p class="mb-2 font-mono text-xs uppercase tracking-wide">Guide</p>
+        <ul class="space-y-2 text-sm">
+          {
+            DOC_LINKS.map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  aria-current={path === item.href ? "page" : undefined}
+                  class:list={[
+                    "block border-l-4 pl-3",
+                    path === item.href
+                      ? "border-pink font-semibold"
+                      : "border-transparent",
+                  ]}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+    </aside>
+    <OsWindow filename="docs.manual" badge="Guide">
+      <article class="prose-docs scroll-mt-20">
+        <h1 class="mb-6 font-sans text-3xl">{title}</h1>
+        <slot />
+      </article>
+    </OsWindow>
+  </div>
+</Base>

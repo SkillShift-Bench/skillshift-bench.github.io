@@ -1,0 +1,24 @@
+---
+interface Props {
+  filename: string;
+  badge?: string;
+  class?: string;
+}
+
+const { filename, badge, class: className } = Astro.props;
+---
+
+<section class:list={["os-window", className]}>
+  <header class="os-titlebar">
+    <span class="os-lights" aria-hidden="true">
+      <i class="is-stop"></i>
+      <i class="is-wait"></i>
+      <i class="is-go"></i>
+    </span>
+    <span class="os-file">{filename}</span>
+    {badge && <span class="os-badge">{badge}</span>}
+  </header>
+  <div class="os-body">
+    <slot />
+  </div>
+</section>

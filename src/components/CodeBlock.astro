@@ -1,0 +1,21 @@
+---
+interface Props {
+  filename: string;
+  code: string;
+}
+
+const { filename, code } = Astro.props;
+---
+
+<figure class="code-window">
+  <header class="code-titlebar">
+    <span class="os-lights" aria-hidden="true">
+      <i class="is-stop"></i>
+      <i class="is-wait"></i>
+      <i class="is-go"></i>
+    </span>
+    <span class="code-file">{filename}</span>
+    <button type="button" class="code-copy" aria-label="Copy code">Copy</button>
+  </header>
+  <pre><code>{code}</code></pre>
+</figure>
