@@ -1,8 +1,23 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="SkillShift-Bench">
-  <rect width="32" height="32" fill="#E7E2D6"/>
-  <rect x="3" y="12" width="4" height="8" rx="1" fill="#3D5A73"/>
-  <rect x="8" y="12" width="4" height="8" rx="1" fill="#3D5A73"/>
-  <rect x="13" y="12" width="4" height="8" rx="1" fill="#B9B3A8"/>
-  <rect x="18" y="12" width="4" height="8" rx="1" fill="#B44122"/>
-  <rect x="23" y="12" width="4" height="8" rx="1" fill="#B44122"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="SkillShift-Bench" shape-rendering="crispEdges">
+  <title>SkillShift-Bench</title>
+  <style>
+    .p { fill: #f7f1e3; }
+    .i { fill: #111111; }
+    .o { fill: #e23a1a; }
+    .f { fill: none; stroke: #111111; stroke-width: 2; }
+    @media (prefers-color-scheme: dark) {
+      .p { fill: #1c1830; }
+      .i { fill: #f4efe4; }
+      .o { fill: #ff6a45; }
+      .f { stroke: #f4efe4; }
+    }
+  </style>
+  <rect class="p" width="32" height="32" />
+  <rect class="f" x="1" y="1" width="30" height="30" />
+  <rect class="i" x="4" y="7" width="3" height="20" />
+  <rect class="i" x="8" y="11" width="3" height="16" />
+  <rect class="o" x="12" y="19" width="3" height="8" />
+  <rect class="i" x="16" y="13" width="3" height="14" />
+  <rect class="i" x="20" y="15" width="3" height="12" />
+  <rect class="o" x="24" y="21" width="3" height="6" />
 </svg>

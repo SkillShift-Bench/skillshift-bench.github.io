@@ -50,6 +50,15 @@ const label = missing
     top: 0;
     left: 0;
     bottom: 0;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition-property: transform;
+    transition-duration: 300ms;
+    transition-timing-function: ease-out;
+  }
+  .score-bar.is-in .score-bar-src,
+  .score-bar.is-in .score-bar-exec {
+    transform: scaleX(1);
   }
   .score-bar-src {
     background: color-mix(in srgb, var(--steel) 38%, var(--plate));
@@ -62,3 +71,30 @@ const label = missing
     color: var(--stamp);
   }
 </style>
+
+<script>
+  function revealScoreBars() {
+    const bars = [
+      ...document.querySelectorAll<HTMLElement>(".score-bar:not(.is-in)"),
+    ];
+    if (!bars.length) return;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced || !("IntersectionObserver" in window)) {
+      bars.forEach((bar) => bar.classList.add("is-in"));
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entries, obs) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          entry.target.classList.add("is-in");
+          obs.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.15 },
+    );
+    bars.forEach((bar) => io.observe(bar));
+  }
+
+  revealScoreBars();
+</script>

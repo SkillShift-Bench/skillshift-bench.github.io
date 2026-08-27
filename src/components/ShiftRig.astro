@@ -661,5 +661,13 @@ const objects = [
     paint();
   }
 
-  document.querySelectorAll<HTMLElement>(".shift-rig").forEach(bind);
+  function bindRigs() {
+    document.querySelectorAll<HTMLElement>(".shift-rig").forEach((root) => {
+      if (root.dataset.bound) return;
+      root.dataset.bound = "1";
+      bind(root);
+    });
+  }
+
+  bindRigs();
 </script>

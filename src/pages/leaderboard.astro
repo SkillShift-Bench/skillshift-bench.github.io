@@ -148,83 +148,20 @@ const initialModel = MODEL_LISTINGS.some((l) => l.model === requestedModel)
 </style>
 
 <script>
-  const params = new URLSearchParams(location.search);
-  const ignored = document.getElementById("sfr-ignored");
-  let sort = (params.get("sort") || "sr").toLowerCase();
-  if (sort === "sfr") {
-    ignored?.removeAttribute("hidden");
-    sort = "sr";
-  }
-  if (!["sr", "as", "asc"].includes(sort)) sort = "sr";
-  const dir = params.get("dir") === "asc" ? "asc" : "desc";
-  const listingIds = [
-    ...document.querySelectorAll<HTMLElement>("[data-listing]"),
-  ].map((el) => el.dataset.listing || "");
-  let model = params.get("model") || "";
-  const legacyBank = params.get("bank") || "";
-  if (!model) {
-    if (legacyBank === "mini") model = "gpt-5-mini";
-    else model = "mixed";
-  }
-  if (!listingIds.includes(model)) model = listingIds[0] || "mixed";
-
-  document.querySelectorAll<HTMLElement>("[data-listing]").forEach((section) => {
-    section.hidden = section.dataset.listing !== model;
-  });
-
-  function num(el: Element, key: string): number | null {
-    const raw = (el as HTMLElement).dataset[key];
-    if (raw === undefined || raw === "") return null;
-    const n = Number(raw);
-    return Number.isFinite(n) ? n : null;
-  }
-
-  function sortHost(host: Element) {
-    const rows = [...host.querySelectorAll("[data-entry]")];
-    rows.sort((a, b) => {
-      const av = num(a, sort);
-      const bv = num(b, sort);
-      if (av === null && bv === null) return 0;
-      if (av === null) return 1;
-      if (bv === null) return -1;
-      return dir === "desc" ? bv - av : av - bv;
-    });
-    rows.forEach((row, i) => {
-      host.append(row);
-      const rank = row.querySelector("[data-rank]");
-      if (rank) rank.textContent = String(i + 1);
-    });
-  }
-
-  document.querySelectorAll(".board-table").forEach(sortHost);
-
-  document.querySelectorAll<HTMLElement>("[data-overall]").forEach((el) => {
-    el.hidden = el.dataset.overall !== sort;
-  });
-  document.querySelectorAll("[data-overall-head]").forEach((el) => {
-    el.textContent = sort.toUpperCase();
-    el.setAttribute("aria-sort", dir === "asc" ? "ascending" : "descending");
-  });
-
-  function setOpen(row: HTMLElement, open: boolean) {
+  function setOpen(row: HTMLElement, open: boolean, instant = false) {
     const btn = row.querySelector<HTMLButtonElement>(".row-toggle");
     const detail = row.querySelector<HTMLElement>(".board-detail");
     if (!btn || !detail) return;
+    row.classList.toggle("is-instant", instant);
     btn.setAttribute("aria-expanded", String(open));
-    detail.hidden = !open;
     row.classList.toggle("is-open", open);
+    if (open) detail.removeAttribute("inert");
+    else detail.setAttribute("inert", "");
   }
 
-  document.querySelectorAll<HTMLElement>("[data-entry]").forEach((row) => {
-    const btn = row.querySelector<HTMLButtonElement>(".row-toggle");
-    btn?.addEventListener("click", () => {
-      const open = btn.getAttribute("aria-expanded") !== "true";
-      setOpen(row, open);
-    });
-  });
-
-  const hash = location.hash.slice(1);
-  if (hash) {
+  function openFromHash() {
+    const hash = location.hash.slice(1);
+    if (!hash) return;
     const decoded = decodeURIComponent(hash);
     let target = document.getElementById(decoded);
     if (!target?.hasAttribute("data-entry")) {
@@ -232,37 +169,120 @@ const initialModel = MODEL_LISTINGS.some((l) => l.model === requestedModel)
         `[data-entry][data-slug="${CSS.escape(decoded)}"]`,
       );
     }
-    if (target?.hasAttribute("data-entry")) {
-      const listing = target.closest<HTMLElement>("[data-listing]");
-      if (listing?.dataset.listing) {
-        model = listing.dataset.listing;
-        document.querySelectorAll<HTMLElement>("[data-listing]").forEach((section) => {
-          section.hidden = section.dataset.listing !== model;
-        });
-      }
-      setOpen(target, true);
-      target.scrollIntoView({ block: "start" });
+    if (!target?.hasAttribute("data-entry")) return;
+    const listing = target.closest<HTMLElement>("[data-listing]");
+    if (listing?.dataset.listing) {
+      document.querySelectorAll<HTMLElement>("[data-listing]").forEach((section) => {
+        section.hidden = section.dataset.listing !== listing.dataset.listing;
+      });
     }
+    setOpen(target, true, true);
+    target.scrollIntoView({ block: "start" });
   }
 
-  document.querySelectorAll<HTMLAnchorElement>("[data-q]").forEach((a) => {
-    const [k, v] = (a.dataset.q || "=").split("=");
-    if (k === "sort" && v === sort) {
-      a.classList.add("is-active");
-      a.setAttribute("aria-current", "true");
+  function initBoard() {
+    const board = document.getElementById("board");
+    if (!board) return;
+
+    if (!board.dataset.bound) {
+      board.dataset.bound = "1";
+
+      const params = new URLSearchParams(location.search);
+      const ignored = document.getElementById("sfr-ignored");
+      let sort = (params.get("sort") || "sr").toLowerCase();
+      if (sort === "sfr") {
+        ignored?.removeAttribute("hidden");
+        sort = "sr";
+      }
+      if (!["sr", "as", "asc"].includes(sort)) sort = "sr";
+      const dir = params.get("dir") === "asc" ? "asc" : "desc";
+      const listingIds = [
+        ...document.querySelectorAll<HTMLElement>("[data-listing]"),
+      ].map((el) => el.dataset.listing || "");
+      let model = params.get("model") || "";
+      const legacyBank = params.get("bank") || "";
+      if (!model) {
+        if (legacyBank === "mini") model = "gpt-5-mini";
+        else model = "mixed";
+      }
+      if (!listingIds.includes(model)) model = listingIds[0] || "mixed";
+
+      document.querySelectorAll<HTMLElement>("[data-listing]").forEach((section) => {
+        section.hidden = section.dataset.listing !== model;
+      });
+
+      function num(el: Element, key: string): number | null {
+        const raw = (el as HTMLElement).dataset[key];
+        if (raw === undefined || raw === "") return null;
+        const n = Number(raw);
+        return Number.isFinite(n) ? n : null;
+      }
+
+      function sortHost(host: Element) {
+        const rows = [...host.querySelectorAll("[data-entry]")];
+        rows.sort((a, b) => {
+          const av = num(a, sort);
+          const bv = num(b, sort);
+          if (av === null && bv === null) return 0;
+          if (av === null) return 1;
+          if (bv === null) return -1;
+          return dir === "desc" ? bv - av : av - bv;
+        });
+        rows.forEach((row, i) => {
+          host.append(row);
+          const rank = row.querySelector("[data-rank]");
+          if (rank) rank.textContent = String(i + 1);
+        });
+      }
+
+      document.querySelectorAll(".board-table").forEach(sortHost);
+
+      document.querySelectorAll<HTMLElement>("[data-overall]").forEach((el) => {
+        el.hidden = el.dataset.overall !== sort;
+      });
+      document.querySelectorAll("[data-overall-head]").forEach((el) => {
+        el.textContent = sort.toUpperCase();
+        el.setAttribute("aria-sort", dir === "asc" ? "ascending" : "descending");
+      });
+
+      document.querySelectorAll<HTMLElement>("[data-entry]").forEach((row) => {
+        const btn = row.querySelector<HTMLButtonElement>(".row-toggle");
+        btn?.addEventListener("click", () => {
+          const open = btn.getAttribute("aria-expanded") !== "true";
+          setOpen(row, open);
+        });
+      });
+
+      document.querySelectorAll<HTMLAnchorElement>("[data-q]").forEach((a) => {
+        const [k, v] = (a.dataset.q || "=").split("=");
+        if (k === "sort" && v === sort) {
+          a.classList.add("is-active");
+          a.setAttribute("aria-current", "true");
+        }
+        if (k === "model" && v === model) {
+          a.classList.add("is-active");
+          a.setAttribute("aria-current", "true");
+        }
+        a.addEventListener("click", (event) => {
+          event.preventDefault();
+          if (k === "sort" && v === "sfr") return;
+          const url = new URL(location.href);
+          url.searchParams.set(k, v);
+          if (k === "model") url.searchParams.delete("bank");
+          history.replaceState(null, "", url);
+          location.reload();
+        });
+      });
     }
-    if (k === "model" && v === model) {
-      a.classList.add("is-active");
-      a.setAttribute("aria-current", "true");
-    }
-    a.addEventListener("click", (event) => {
-      event.preventDefault();
-      if (k === "sort" && v === "sfr") return;
-      const url = new URL(location.href);
-      url.searchParams.set(k, v);
-      if (k === "model") url.searchParams.delete("bank");
-      history.replaceState(null, "", url);
-      location.reload();
-    });
-  });
+
+    openFromHash();
+  }
+
+  const w = window as Window & { __ssbBoardHash?: boolean };
+  if (!w.__ssbBoardHash) {
+    w.__ssbBoardHash = true;
+    window.addEventListener("hashchange", openFromHash);
+  }
+
+  initBoard();
 </script>

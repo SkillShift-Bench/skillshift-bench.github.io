@@ -174,17 +174,43 @@ function optionFor(payload: SlopeChartPayload) {
   };
 }
 
+type LiveChart = {
+  el: HTMLElement;
+  chart: ReturnType<typeof echarts.init>;
+  ro: ResizeObserver;
+  mo: MutationObserver;
+};
+
+const liveCharts: LiveChart[] = [];
+
+function disposeLiveCharts() {
+  for (const item of liveCharts) {
+    item.ro.disconnect();
+    item.mo.disconnect();
+    if (!item.chart.isDisposed()) item.chart.dispose();
+    delete item.el.dataset.chartBound;
+  }
+  liveCharts.length = 0;
+}
+
 function bind(el: HTMLElement) {
   if (el.dataset.chartBound) return;
   el.dataset.chartBound = "1";
   const raw = el.dataset.slopeChart;
   if (!raw) return;
   const payload = JSON.parse(raw) as SlopeChartPayload;
+  echarts.getInstanceByDom(el)?.dispose();
   const chart = echarts.init(el, undefined, { renderer: "canvas" });
-  const paint = () => chart.setOption(optionFor(payload), true);
+  const paint = () => {
+    if (chart.isDisposed()) return;
+    chart.setOption(optionFor(payload), true);
+  };
   paint();
 
-  const ro = new ResizeObserver(() => chart.resize());
+  const ro = new ResizeObserver(() => {
+    if (chart.isDisposed()) return;
+    chart.resize();
+  });
   ro.observe(el);
 
   const mo = new MutationObserver(paint);
@@ -192,8 +218,10 @@ function bind(el: HTMLElement) {
     attributes: true,
     attributeFilter: ["data-theme"],
   });
+  liveCharts.push({ el, chart, ro, mo });
 }
 
 export function mountSlopeCharts() {
+  disposeLiveCharts();
   document.querySelectorAll<HTMLElement>("[data-slope-chart]").forEach(bind);
 }

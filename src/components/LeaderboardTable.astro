@@ -120,8 +120,10 @@ const metrics = ["SR", "AS", "ASC", "SFR"] as const;
                   />
                 </td>
               </tr>
-              <tr class="board-detail" id={detailId} hidden>
+              <tr class="board-detail" id={detailId} inert>
                 <td colspan="7">
+                  <div class="expand-clip">
+                    <div class="expand-inner">
                   <div class="expand-body">
                     <fieldset class="metric-switch">
                       <legend class="text-xs uppercase tracking-wide text-stamp">
@@ -191,6 +193,8 @@ const metrics = ["SR", "AS", "ASC", "SFR"] as const;
                       </p>
                     )}
                     <p class="mt-3 text-sm">{entry.json.notes}</p>
+                  </div>
+                    </div>
                   </div>
                 </td>
               </tr>
@@ -314,22 +318,42 @@ const metrics = ["SR", "AS", "ASC", "SFR"] as const;
   .board-table .board-detail td {
     padding: 0;
     background: color-mix(in srgb, var(--titlebar) 35%, var(--plate));
-    border-bottom: 2px solid var(--ink);
+    border-bottom: 0;
     vertical-align: top;
+    line-height: 0;
+  }
+  .board-table tbody.is-open .board-detail td {
+    border-bottom: 2px solid var(--ink);
+    line-height: inherit;
+  }
+  .expand-clip {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition-property: grid-template-rows;
+    transition-duration: 200ms;
+    transition-timing-function: ease-out;
+  }
+  .expand-inner {
+    min-height: 0;
+    overflow: hidden;
   }
   .expand-body {
     padding: 1rem 0.9rem 1.1rem;
+    opacity: 0;
+    transition-property: opacity;
+    transition-duration: 200ms;
+    transition-timing-function: ease;
   }
-  .board-detail:not([hidden]) .expand-body {
-    animation: board-fade 200ms ease;
+  .board-table tbody.is-open .expand-clip {
+    grid-template-rows: 1fr;
   }
-  @keyframes board-fade {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
+  .board-table tbody.is-open .expand-body {
+    opacity: 1;
+  }
+  .board-table tbody.is-instant .expand-clip,
+  .board-table tbody.is-instant .expand-body,
+  .board-table tbody.is-instant .row-toggle::before {
+    transition-duration: 0ms;
   }
   .row-toggle {
     display: inline-flex;
@@ -348,12 +372,17 @@ const metrics = ["SR", "AS", "ASC", "SFR"] as const;
   }
   .row-toggle::before {
     content: "▸";
+    display: inline-block;
     font-family: var(--font-mono);
     font-size: 0.75rem;
     color: var(--stamp);
+    transform: rotate(0deg);
+    transition-property: transform;
+    transition-duration: 200ms;
+    transition-timing-function: ease-out;
   }
   .board-table tbody.is-open .row-toggle::before {
-    content: "▾";
+    transform: rotate(90deg);
   }
   .method-meta {
     display: flex;
@@ -369,8 +398,10 @@ const metrics = ["SR", "AS", "ASC", "SFR"] as const;
     color: var(--stamp);
   }
   @media (prefers-reduced-motion: reduce) {
-    .expand-body {
-      animation: none;
+    .expand-clip,
+    .expand-body,
+    .row-toggle::before {
+      transition-duration: 0ms;
     }
   }
 </style>
