@@ -25,26 +25,10 @@ const { payload, class: className } = Astro.props;
     if (w.__ssbSlopeLazy) return;
     w.__ssbSlopeLazy = true;
 
-    const run = () =>
-      import("../lib/slope-chart").then((mod) => mod.mountSlopeCharts());
-
-    if (
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
-      !("IntersectionObserver" in window)
-    ) {
-      run();
-      return;
-    }
-
-    const io = new IntersectionObserver(
-      (entries, obs) => {
-        if (!entries.some((entry) => entry.isIntersecting)) return;
-        obs.disconnect();
-        run();
-      },
-      { rootMargin: "240px 0px", threshold: 0.01 },
-    );
-    roots.forEach((el) => io.observe(el));
+    // Fetch the ECharts chunk as soon as the page is interactive so scrolling
+    // to the slope section does not wait on a 576 KB download. First paint
+    // still only pays this 1.6 KB loader.
+    import("../lib/slope-chart").then((mod) => mod.mountSlopeCharts());
   }
 
   loadSlopeCharts();

@@ -241,9 +241,13 @@ function bind(el: HTMLElement) {
   };
 
   let io: IntersectionObserver | null = null;
-  if (prefersReducedMotion() || !("IntersectionObserver" in window)) {
+  const rect = el.getBoundingClientRect();
+  const nearView =
+    rect.top < window.innerHeight + 480 && rect.bottom > -80;
+
+  if (prefersReducedMotion() || !("IntersectionObserver" in window) || nearView) {
     revealed = true;
-    paint(false);
+    paint(!prefersReducedMotion() && nearView);
   } else {
     paint(false);
     io = new IntersectionObserver(
@@ -254,7 +258,7 @@ function bind(el: HTMLElement) {
           obs.unobserve(entry.target);
         }
       },
-      { threshold: 0.22, rootMargin: "0px 0px -8% 0px" },
+      { threshold: 0.01, rootMargin: "320px 0px 0px 0px" },
     );
     io.observe(el);
   }
