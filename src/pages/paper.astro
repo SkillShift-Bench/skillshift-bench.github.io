@@ -1,46 +1,237 @@
 ---
 import Base from "../layouts/Base.astro";
+import CodeBlock from "../components/CodeBlock.astro";
 import OsWindow from "../components/OsWindow.astro";
 import {
-  ARXIV_STAMP,
   BIBTEX,
+  PAPER_ABSTRACT,
+  PAPER_AFFILIATIONS,
   PAPER_AUTHORS,
+  PAPER_CONTRIBUTIONS,
+  PAPER_CORRESPONDING,
+  PAPER_EMAIL,
+  PAPER_FIGURE_CAPTION,
+  PAPER_FINDINGS,
+  PAPER_METHODS,
   PAPER_TITLE,
 } from "../lib/copy";
 ---
 
-<Base title="Paper">
-  <OsWindow filename="paper.cover" badge="Waiting">
-    <p class="font-mono text-xs uppercase tracking-[0.14em]">Waiting channel</p>
-    <h1 class="mt-2 max-w-3xl font-serif text-3xl leading-snug">{PAPER_TITLE}</h1>
-    <p class="mt-3">{PAPER_AUTHORS}</p>
-    <p class="sticker is-canary mt-6">{ARXIV_STAMP}</p>
-    <p class="mt-6 max-w-2xl font-serif">
-      AWM 50.07 → src-exec 22.45 → tgt-exec 16.90. Learned skills hold on the
-      original site and fail when execution is the thing that moved. When an arXiv
-      identifier exists, this stamp becomes the identifier and a PDF link; the
-      layout does not change.
+<Base title="Paper" description={PAPER_TITLE}>
+  <OsWindow filename="paper.cover" badge="Camera-ready">
+    <h1 class="paper-title font-serif text-3xl leading-snug md:text-4xl">
+      {PAPER_TITLE}
+    </h1>
+    <ul class="author-line mt-5">
+      {
+        PAPER_AUTHORS.map((author) => (
+          <li>
+            <span>{author.name}</span>
+            <sup>
+              {author.marks}
+              {author.corresponding ? "*" : ""}
+            </sup>
+          </li>
+        ))
+      }
+    </ul>
+    <ol class="affil-list mt-3">
+      {
+        PAPER_AFFILIATIONS.map((affil, i) => (
+          <li>
+            <span class="affil-n" aria-hidden="true">
+              {i + 1}
+            </span>
+            {affil}
+          </li>
+        ))
+      }
+    </ol>
+    <p class="mt-3 font-mono text-sm">{PAPER_EMAIL}</p>
+    <p class="mt-2 font-mono text-xs text-stamp">* {PAPER_CORRESPONDING}</p>
+    <p class="mt-6 flex flex-wrap gap-3">
+      <span
+        class="btn-canary is-forthcoming text-xs"
+        role="link"
+        aria-disabled="true">PDF forthcoming</span
+      >
+      <a class="btn-ghost text-xs" href="#cite">Cite ↓</a>
     </p>
-    <p class="mt-3 font-mono text-sm">ACL Anthology identifier not assigned yet.</p>
   </OsWindow>
 
-  <OsWindow class="mt-10" filename="paper.figures" badge="Appendix">
-    <figure class="paper-fig">
+  <OsWindow class="mt-10" filename="paper.abstract" badge="Abstract">
+    <h2 class="text-xl">Abstract</h2>
+    <p class="abstract-body mt-3 font-serif">{PAPER_ABSTRACT}</p>
+  </OsWindow>
+
+  <OsWindow class="mt-10" filename="paper.contrib" badge="3 items">
+    <h2 class="text-xl">Contributions</h2>
+    <ol class="contrib-grid mt-5">
+      {
+        PAPER_CONTRIBUTIONS.map((item) => (
+          <li class="hard-card p-3">
+            <p class="font-mono text-xs uppercase tracking-wide">{item.tag}</p>
+            <p class="mt-2 text-sm paper-prose">{item.text}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </OsWindow>
+
+  <OsWindow class="mt-10" filename="paper.figure" badge="Fig. 1">
+    <h2 class="text-xl">Shift modes</h2>
+    <figure class="paper-fig mt-5">
       <img
         src="/figures/shift.svg"
-        alt="Paper figure of three controlled shift modes"
+        alt="Three controlled shift modes: Contextual, Perceptual, and Execution"
         width="1600"
         height="791"
         loading="lazy"
       />
-      <figcaption>
-        Paper figure: Contextual, Perceptual, and Execution shifts.
-      </figcaption>
+      <figcaption class="paper-prose">{PAPER_FIGURE_CAPTION}</figcaption>
     </figure>
   </OsWindow>
 
+  <OsWindow class="mt-10" filename="paper.findings" badge="RQ1 · RQ3">
+    <h2 class="text-xl">Findings</h2>
+    <p class="paper-prose mt-2 text-sm">{PAPER_FINDINGS.lede}</p>
+    <div class="finding-row mt-5">
+      {
+        PAPER_FINDINGS.pooled.map((row) => (
+          <div class:list={["hard-card p-3", row.label === "Execution" && "is-exec"]}>
+            <p class="font-mono text-xs uppercase tracking-wide">{row.label}</p>
+            <p class="mt-1 font-serif text-2xl tabular">
+              {row.sr}<span class="text-base">%</span>
+            </p>
+            <p class="mt-1 font-mono text-xs text-stamp">pooled SR</p>
+          </div>
+        ))
+      }
+    </div>
+    <div class="hard-card mt-4 p-3">
+      <p class="font-mono text-xs uppercase tracking-wide">Fixed library · GPT-5 mini</p>
+      <p class="mt-2 text-sm">
+        ASI {PAPER_FINDINGS.mpcr.asi}% → MPCR {PAPER_FINDINGS.mpcr.mpcr}%
+        <span class="sticker is-canary ml-2 align-middle"
+          >+{PAPER_FINDINGS.mpcr.relative}%</span
+        >
+      </p>
+    </div>
+  </OsWindow>
+
+  <OsWindow class="mt-10" filename="paper.method" badge="SWOP · MPCR">
+    <h2 class="text-xl">Method</h2>
+    <div class="method-grid mt-5">
+      {
+        PAPER_METHODS.map((method) => (
+          <div class="hard-card p-3">
+            <p class="flex flex-wrap items-baseline gap-2">
+              <span class="font-semibold">{method.name}</span>
+              <span class="sticker is-plate">{method.badge}</span>
+            </p>
+            <p class="mt-1 font-mono text-xs text-stamp">{method.expand}</p>
+            <p class="mt-2 text-sm paper-prose">{method.text}</p>
+          </div>
+        ))
+      }
+    </div>
+  </OsWindow>
+
   <OsWindow class="mt-10" filename="cite.bib" badge="BibTeX">
-    <h2 class="text-xl">BibTeX</h2>
-    <pre class="mt-3 overflow-x-auto border-[3px] border-ink bg-titlebar p-4 font-mono text-sm"><code>{BIBTEX}</code></pre>
+    <h2 id="cite" class="text-xl">Cite</h2>
+    <div class="mt-4">
+      <CodeBlock filename="bib" code={BIBTEX} />
+    </div>
   </OsWindow>
 </Base>
+
+<style>
+  .paper-title {
+    width: 100%;
+    max-width: none;
+    text-wrap: wrap;
+  }
+
+  .paper-prose,
+  .abstract-body {
+    width: 100%;
+    max-width: none;
+    text-align: justify;
+    text-wrap: wrap;
+    hyphens: auto;
+  }
+
+  .author-line {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 1.25rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 1.05rem;
+  }
+
+  .author-line sup {
+    margin-left: 0.15em;
+    font-family: var(--font-mono);
+    font-size: 0.7em;
+    letter-spacing: 0.02em;
+  }
+
+  .affil-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 0.9rem;
+  }
+
+  .affil-list li {
+    display: flex;
+    gap: 0.6rem;
+    margin-top: 0.2rem;
+  }
+
+  .affil-n {
+    flex: 0 0 1.1rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    line-height: 1.5rem;
+  }
+
+  .contrib-grid,
+  .method-grid,
+  .finding-row {
+    display: grid;
+    gap: 0.85rem;
+  }
+
+  @media (min-width: 768px) {
+    .contrib-grid,
+    .method-grid,
+    .finding-row {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .method-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  .finding-row .is-exec {
+    outline: 3px solid var(--oxide);
+    outline-offset: -3px;
+  }
+
+  .btn-canary.is-forthcoming {
+    cursor: not-allowed;
+    opacity: 0.72;
+    box-shadow: var(--hard);
+    transform: none;
+  }
+
+  .btn-canary.is-forthcoming:hover,
+  .btn-canary.is-forthcoming:active {
+    transform: none;
+    box-shadow: var(--hard);
+  }
+</style>

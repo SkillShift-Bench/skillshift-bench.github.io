@@ -114,16 +114,6 @@ const sitesUnmeasured = siteCells.every((s) => s.cell.kind === "unmeasured");
   </div>
 
   <div class="shift-board">
-    <div class="shift-cols" aria-hidden="true">
-      <span class="shift-corner"></span>
-      {
-        SHIFT_COLS.map((col) => (
-          <span class:list={["shift-col-lab", col.exec && "is-exec"]}>
-            {col.label}
-          </span>
-        ))
-      }
-    </div>
     {
       ROWS.map((row) => (
         <div class="shift-row">
@@ -188,13 +178,16 @@ const sitesUnmeasured = siteCells.every((s) => s.cell.kind === "unmeasured");
   }
 
   .slot-name,
-  .shift-col-lab,
   .socket-shift {
     font-size: 0.7rem;
     letter-spacing: 0.06em;
     text-transform: uppercase;
     font-weight: 600;
     color: var(--stamp);
+  }
+
+  .socket.is-exec .socket-shift {
+    color: var(--oxide);
   }
 
   .overall-kicker {
@@ -263,23 +256,12 @@ const sitesUnmeasured = siteCells.every((s) => s.cell.kind === "unmeasured");
     gap: 0.45rem;
   }
 
-  .shift-cols,
   .shift-row {
     display: grid;
     grid-template-columns: 2.6rem repeat(3, minmax(0, 1fr));
     column-gap: 1.25rem;
     row-gap: 0.45rem;
     align-items: stretch;
-  }
-
-  .shift-col-lab {
-    display: flex;
-    align-items: flex-end;
-    padding: 0 0.15rem 0.15rem;
-  }
-
-  .shift-col-lab.is-exec {
-    color: var(--oxide);
   }
 
   .shift-row-lab {
@@ -293,7 +275,7 @@ const sitesUnmeasured = siteCells.every((s) => s.cell.kind === "unmeasured");
   }
 
   .socket-shift {
-    display: none;
+    display: block;
   }
 
   .slot-value {
@@ -352,10 +334,6 @@ const sitesUnmeasured = siteCells.every((s) => s.cell.kind === "unmeasured");
       column-gap: 0.75rem;
     }
 
-    .shift-cols {
-      display: none;
-    }
-
     .shift-row {
       grid-template-columns: 2.2rem repeat(3, minmax(0, 1fr));
       column-gap: 0.75rem;
@@ -364,10 +342,6 @@ const sitesUnmeasured = siteCells.every((s) => s.cell.kind === "unmeasured");
     .site-row {
       grid-template-columns: repeat(3, minmax(0, 1fr));
       column-gap: 0.75rem;
-    }
-
-    .socket-shift {
-      display: block;
     }
 
     .slot-value {
@@ -428,7 +402,7 @@ const sitesUnmeasured = siteCells.every((s) => s.cell.kind === "unmeasured");
     }
     el.textContent = from.toFixed(2);
     const start = performance.now();
-    const duration = 280;
+    const duration = 250;
     const tick = (now: number) => {
       const t = Math.min(1, (now - start) / duration);
       const eased = 1 - (1 - t) * (1 - t);
@@ -447,11 +421,12 @@ const sitesUnmeasured = siteCells.every((s) => s.cell.kind === "unmeasured");
     void faceplate.offsetWidth;
     if (reducedMotion()) return;
     faceplate.classList.add("is-insert");
-    const done = 200 + sockets.length * 40 + 40;
+    const done = 250 + sockets.length * 40 + 40;
     window.setTimeout(() => faceplate.classList.remove("is-insert"), done);
   }
 
   function onSwitchChange(host: Element) {
+    (host as HTMLElement).classList.add("is-fp-swap");
     const faceplate = visibleFaceplate(host);
     if (!faceplate) return;
     const overall = overallEl(faceplate);

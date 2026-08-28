@@ -146,7 +146,7 @@ body::before {
 h1,
 h2,
 h3 {
-  text-wrap: pretty;
+  text-wrap: wrap;
   font-weight: 600;
   letter-spacing: -0.03em;
   scroll-margin-top: 5rem;
@@ -169,8 +169,8 @@ img {
 
 .brand-mark {
   display: block;
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
   flex-shrink: 0;
   shape-rendering: crispEdges;
 }
@@ -195,17 +195,17 @@ html[data-theme="dark"] .site-header .btn-canary {
   color: #ffffff;
 }
 
-.site-nav a {
-  transition-property: background-color, color, border-color;
-  transition-duration: 150ms;
-  transition-timing-function: ease-out;
+.site-nav a,
+.site-header details a {
+  text-decoration: none;
 }
 
-.site-nav a[aria-current="page"] {
-  outline: var(--line) solid var(--canary);
-  outline-offset: 4px;
+.site-header .site-nav a[aria-current="page"],
+.site-header details a[aria-current="page"],
+html[data-theme="dark"] .site-header .site-nav a[aria-current="page"],
+html[data-theme="dark"] .site-header details a[aria-current="page"] {
   background: var(--canary);
-  color: var(--ink);
+  color: #111111;
 }
 
 .btn-canary,
@@ -262,6 +262,7 @@ html[data-theme="dark"] .site-header .btn-canary {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.06em;
+  text-decoration: none;
 }
 
 .btn-ghost:hover,
@@ -337,6 +338,27 @@ html[data-theme="dark"] .site-header .btn-canary {
 
 .os-body {
   padding: 1.1rem 1.15rem 1.25rem;
+}
+
+.os-body h1,
+.os-body h2,
+.os-body h3,
+.os-body p,
+.os-body dd,
+.os-body figcaption,
+.os-body aside,
+.os-body li {
+  max-width: none;
+}
+
+.os-body p,
+.os-body dd,
+.os-body figcaption,
+.os-body aside p,
+.os-body li {
+  text-align: justify;
+  text-wrap: wrap;
+  hyphens: auto;
 }
 
 .os-body .hard-card {
@@ -525,29 +547,10 @@ html[data-theme="dark"] .site-header .btn-canary {
   transition-delay: 0s, 0s;
 }
 
-@keyframes exec-settle {
-  from {
-    background-color: color-mix(in srgb, var(--oxide) 38%, var(--plate));
-  }
-  to {
-    background-color: color-mix(in srgb, var(--oxide) 22%, var(--plate));
-  }
-}
-
-.series-switch:has(input[data-series="awm"]:checked) .plate-panel[data-series="awm"] .socket.is-exec:not(.is-empty),
-.series-switch:has(input[data-series="asi"]:checked) .plate-panel[data-series="asi"] .socket.is-exec:not(.is-empty),
-.series-switch:has(input[data-series="walt"]:checked) .plate-panel[data-series="walt"] .socket.is-exec:not(.is-empty),
-.series-switch:has(input[data-series="skillweaver"]:checked) .plate-panel[data-series="skillweaver"] .socket.is-exec:not(.is-empty),
-.series-switch:has(input[data-series="mpcr"]:checked) .plate-panel[data-series="mpcr"] .socket.is-exec:not(.is-empty),
-.series-switch:has(input[data-series="asi-mini"]:checked) .plate-panel[data-series="asi-mini"] .socket.is-exec:not(.is-empty),
-.metric-switch:has(input[value="SR"]:checked) [data-metric="SR"] .socket.is-exec:not(.is-empty),
-.metric-switch:has(input[value="AS"]:checked) [data-metric="AS"] .socket.is-exec:not(.is-empty),
-.metric-switch:has(input[value="ASC"]:checked) [data-metric="ASC"] .socket.is-exec:not(.is-empty),
-.metric-switch:has(input[value="SFR"]:checked) [data-metric="SFR"] .socket.is-exec:not(.is-empty) {
-  animation-name: exec-settle;
-  animation-duration: 200ms;
-  animation-timing-function: ease-out;
-  animation-iteration-count: 1;
+.series-switch.is-fp-swap .plate-panel,
+.metric-switch.is-fp-swap .metric-plates > [data-metric] {
+  transition-duration: 0ms, 0s;
+  transition-delay: 0s, 0s;
 }
 
 .readout-key {
@@ -646,10 +649,17 @@ html[data-theme="dark"] .site-header .btn-canary {
 
 .prose-docs {
   font-family: var(--font-serif);
-  max-width: 42rem;
+  max-width: none;
   overflow-x: auto;
   padding-right: 6px;
   padding-bottom: 6px;
+}
+
+.prose-docs p,
+.prose-docs li {
+  text-align: justify;
+  text-wrap: wrap;
+  hyphens: auto;
 }
 
 .prose-docs h2,
@@ -1097,7 +1107,7 @@ details > summary::-webkit-details-marker {
 
 .faceplate.is-insert .socket {
   animation-name: socket-insert;
-  animation-duration: 200ms;
+  animation-duration: 250ms;
   animation-timing-function: ease-out;
   animation-fill-mode: both;
   animation-delay: calc(var(--sock-i, 0) * 40ms);
