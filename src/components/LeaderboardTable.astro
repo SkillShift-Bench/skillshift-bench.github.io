@@ -2,7 +2,6 @@
 import Faceplate from "./Faceplate.astro";
 import LabelChip from "./LabelChip.astro";
 import ScoreBar from "./ScoreBar.astro";
-import { cellsForMetric } from "../lib/cells";
 import {
   execDrop,
   formatCell,
@@ -15,20 +14,26 @@ import {
   entryRowId,
   type LeaderboardEntry,
 } from "../lib/submissions";
+import { SLOT_IDS, SLOT_LABELS, type Cell } from "../lib/constants";
 
 interface Props {
   listingId: string;
   title: string;
   lede: string;
   entries: LeaderboardEntry[];
-  hidden?: boolean;
 }
 
-const { listingId, title, lede, entries, hidden = false } = Astro.props;
+const { listingId, title, lede, entries } = Astro.props;
 const metrics = ["SR", "AS", "ASC", "SFR"] as const;
+const unmeasuredCells: Cell[] = SLOT_IDS.map((slot) => ({
+  kind: "unmeasured",
+  value: null,
+  text: "",
+  a11y: `${SLOT_LABELS[slot]}: unmeasured`,
+}));
 ---
 
-<section id={`listing-${listingId}`} data-listing={listingId} hidden={hidden}>
+<section id={`listing-${listingId}`} data-listing={listingId}>
   <h2 class="text-xl">{title}</h2>
   <p class="mt-1 text-sm text-stamp">{lede}</p>
   <div class="board-scroll mt-4">
@@ -142,16 +147,7 @@ const metrics = ["SR", "AS", "ASC", "SFR"] as const;
                           </label>
                         ))}
                       </div>
-                      <div class="metric-plates mt-3">
-                        {metrics.map((m) => (
-                          <div data-metric={m}>
-                            <Faceplate
-                              cells={cellsForMetric(entry.json, m)}
-                              metric={m}
-                            />
-                          </div>
-                        ))}
-                      </div>
+                      <div class="metric-plates mt-3"></div>
                     </fieldset>
                     <dl class="mt-4 grid gap-2 text-sm md:grid-cols-2">
                       <div>
@@ -204,9 +200,12 @@ const metrics = ["SR", "AS", "ASC", "SFR"] as const;
       }
     </table>
   </div>
+  <template id="faceplate-template">
+    <Faceplate cells={unmeasuredCells} metric="SR" />
+  </template>
 </section>
 
-<style>
+<style is:global>
   .board-scroll {
     overflow-x: auto;
     border: var(--line) solid var(--ink);

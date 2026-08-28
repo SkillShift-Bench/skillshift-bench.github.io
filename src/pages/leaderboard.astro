@@ -4,9 +4,11 @@ import LeaderboardTable from "../components/LeaderboardTable.astro";
 import OsWindow from "../components/OsWindow.astro";
 import { SFR_SORT_HELPER, MODEL_LISTING_HELP } from "../lib/copy";
 import { MODEL_LISTINGS } from "../lib/submissions";
+import { safeJson, toBoardPayload } from "../lib/board-payload";
 import digests from "../data/digests.json";
 
 const digestEntries = Object.entries(digests as Record<string, string>);
+const boardPayload = toBoardPayload();
 
 const requestedModel =
   Astro.url.searchParams.get("model") ||
@@ -14,6 +16,9 @@ const requestedModel =
 const initialModel = MODEL_LISTINGS.some((l) => l.model === requestedModel)
   ? requestedModel
   : (MODEL_LISTINGS[0]?.model ?? "per-model");
+const initialListing =
+  MODEL_LISTINGS.find((listing) => listing.model === initialModel) ??
+  MODEL_LISTINGS[0];
 ---
 
 <Base title="Leaderboard">
@@ -68,17 +73,22 @@ const initialModel = MODEL_LISTINGS.some((l) => l.model === requestedModel)
 
     <div id="board" class="mt-8 space-y-12">
       {
-        MODEL_LISTINGS.map((listing) => (
+        initialListing && (
           <LeaderboardTable
-            listingId={listing.model}
-            title={listing.title}
-            lede={listing.lede}
-            entries={listing.entries}
-            hidden={listing.model !== initialModel}
+            listingId={initialListing.model}
+            title={initialListing.title}
+            lede={initialListing.lede}
+            entries={initialListing.entries}
           />
-        ))
+        )
       }
     </div>
+    <script
+      is:inline
+      id="board-data"
+      type="application/json"
+      set:html={safeJson(boardPayload)}
+    />
   </OsWindow>
 
   <OsWindow class="mt-10" filename="env.digests" badge="skillshift-envs">
@@ -148,206 +158,6 @@ const initialModel = MODEL_LISTINGS.some((l) => l.model === requestedModel)
 </style>
 
 <script>
-  function reducedMotion() {
-    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  }
-
-  function setOpen(row: HTMLElement, open: boolean, instant = false) {
-    const btn = row.querySelector<HTMLButtonElement>(".row-toggle");
-    const detail = row.querySelector<HTMLElement>(".board-detail");
-    if (!btn || !detail) return;
-    row.classList.toggle("is-instant", instant);
-    btn.setAttribute("aria-expanded", String(open));
-    row.classList.toggle("is-open", open);
-    if (open) detail.removeAttribute("inert");
-    else detail.setAttribute("inert", "");
-  }
-
-  function openFromHash() {
-    const hash = location.hash.slice(1);
-    if (!hash) return;
-    const decoded = decodeURIComponent(hash);
-    let target = document.getElementById(decoded);
-    if (!target?.hasAttribute("data-entry")) {
-      target = document.querySelector(
-        `[data-entry][data-slug="${CSS.escape(decoded)}"]`,
-      );
-    }
-    if (!target?.hasAttribute("data-entry")) return;
-    const listing = target.closest<HTMLElement>("[data-listing]");
-    if (listing?.dataset.listing) {
-      document.querySelectorAll<HTMLElement>("[data-listing]").forEach((section) => {
-        section.hidden = section.dataset.listing !== listing.dataset.listing;
-      });
-    }
-    setOpen(target, true, true);
-    target.scrollIntoView({ block: "start" });
-  }
-
-  function num(el: Element, key: string): number | null {
-    const raw = (el as HTMLElement).dataset[key];
-    if (raw === undefined || raw === "") return null;
-    const n = Number(raw);
-    return Number.isFinite(n) ? n : null;
-  }
-
-  function parseBoardState() {
-    const params = new URLSearchParams(location.search);
-    const ignored = document.getElementById("sfr-ignored");
-    let sort = (params.get("sort") || "sr").toLowerCase();
-    if (sort === "sfr") {
-      ignored?.removeAttribute("hidden");
-      sort = "sr";
-    } else {
-      ignored?.setAttribute("hidden", "");
-    }
-    if (!["sr", "as", "asc"].includes(sort)) sort = "sr";
-    const dir = params.get("dir") === "asc" ? "asc" : "desc";
-    const listingIds = [
-      ...document.querySelectorAll<HTMLElement>("[data-listing]"),
-    ].map((el) => el.dataset.listing || "");
-    let model = params.get("model") || "";
-    const legacyBank = params.get("bank") || "";
-    if (!model) {
-      if (legacyBank === "mini") model = "gpt-5-mini";
-      else model = "per-model";
-    }
-    if (!listingIds.includes(model)) model = listingIds[0] || "per-model";
-    return { sort, dir, model };
-  }
-
-  function sortHost(host: Element, sort: string, dir: string) {
-    const rows = [...host.querySelectorAll("[data-entry]")];
-    rows.sort((a, b) => {
-      const av = num(a, sort);
-      const bv = num(b, sort);
-      if (av === null && bv === null) return 0;
-      if (av === null) return 1;
-      if (bv === null) return -1;
-      return dir === "desc" ? bv - av : av - bv;
-    });
-    rows.forEach((row, i) => {
-      host.append(row);
-      const rank = row.querySelector("[data-rank]");
-      if (rank) rank.textContent = String(i + 1);
-    });
-  }
-
-  function flipSort(host: Element, sort: string, dir: string) {
-    const rows = [...host.querySelectorAll<HTMLElement>("[data-entry]")];
-    if (reducedMotion() || rows.length === 0) {
-      sortHost(host, sort, dir);
-      return;
-    }
-    const tops = new Map(rows.map((row) => [row, row.getBoundingClientRect().top]));
-    sortHost(host, sort, dir);
-    rows.forEach((row) => {
-      const from = tops.get(row);
-      if (from === undefined) return;
-      const dy = from - row.getBoundingClientRect().top;
-      if (Math.abs(dy) < 0.5) return;
-      row.classList.add("is-flip");
-      row.style.transition = "none";
-      row.style.transform = `translateY(${dy}px)`;
-      void row.offsetWidth;
-      row.style.transition = "";
-      row.style.transform = "";
-      const done = (event: TransitionEvent) => {
-        if (event.propertyName !== "transform") return;
-        row.classList.remove("is-flip");
-        row.removeEventListener("transitionend", done);
-      };
-      row.addEventListener("transitionend", done);
-    });
-  }
-
-  function replayScoreBars(scope: ParentNode) {
-    scope.querySelectorAll(".score-bar").forEach((bar) => {
-      bar.classList.remove("is-in");
-    });
-    document.dispatchEvent(new Event("ssb:reveal-bars"));
-  }
-
-  function applyBoard(opts: { flip: boolean }) {
-    const { sort, dir, model } = parseBoardState();
-
-    document.querySelectorAll<HTMLElement>("[data-listing]").forEach((section) => {
-      section.hidden = section.dataset.listing !== model;
-    });
-
-    document.querySelectorAll(".board-table").forEach((host) => {
-      const listing = host.closest<HTMLElement>("[data-listing]");
-      const visible = Boolean(listing && !listing.hidden);
-      if (opts.flip && visible) flipSort(host, sort, dir);
-      else sortHost(host, sort, dir);
-    });
-
-    document.querySelectorAll<HTMLElement>("[data-overall]").forEach((el) => {
-      el.hidden = el.dataset.overall !== sort;
-    });
-    document.querySelectorAll("[data-overall-head]").forEach((el) => {
-      el.textContent = sort.toUpperCase();
-      el.setAttribute("aria-sort", dir === "asc" ? "ascending" : "descending");
-    });
-
-    document.querySelectorAll<HTMLAnchorElement>("[data-q]").forEach((a) => {
-      const [k, v] = (a.dataset.q || "=").split("=");
-      a.classList.remove("is-active");
-      a.removeAttribute("aria-current");
-      if (k === "sort" && v === sort) {
-        a.classList.add("is-active");
-        a.setAttribute("aria-current", "true");
-      }
-      if (k === "model" && v === model) {
-        a.classList.add("is-active");
-        a.setAttribute("aria-current", "true");
-      }
-    });
-
-    const visibleListing = document.querySelector<HTMLElement>(
-      `[data-listing="${CSS.escape(model)}"]`,
-    );
-    if (visibleListing) replayScoreBars(visibleListing);
-  }
-
-  function initBoard() {
-    const board = document.getElementById("board");
-    if (!board) return;
-
-    if (!board.dataset.bound) {
-      board.dataset.bound = "1";
-
-      document.querySelectorAll<HTMLElement>("[data-entry]").forEach((row) => {
-        const btn = row.querySelector<HTMLButtonElement>(".row-toggle");
-        btn?.addEventListener("click", () => {
-          const open = btn.getAttribute("aria-expanded") !== "true";
-          setOpen(row, open);
-        });
-      });
-
-      document.querySelectorAll<HTMLAnchorElement>("[data-q]").forEach((a) => {
-        a.addEventListener("click", (event) => {
-          event.preventDefault();
-          const [k, v] = (a.dataset.q || "=").split("=");
-          if (k === "sort" && v === "sfr") return;
-          const url = new URL(location.href);
-          url.searchParams.set(k, v);
-          if (k === "model") url.searchParams.delete("bank");
-          history.replaceState(null, "", url);
-          applyBoard({ flip: k === "sort" });
-        });
-      });
-    }
-
-    applyBoard({ flip: false });
-    openFromHash();
-  }
-
-  const w = window as Window & { __ssbBoardHash?: boolean };
-  if (!w.__ssbBoardHash) {
-    w.__ssbBoardHash = true;
-    window.addEventListener("hashchange", openFromHash);
-  }
-
+  import { initBoard } from "../lib/board-client";
   initBoard();
 </script>

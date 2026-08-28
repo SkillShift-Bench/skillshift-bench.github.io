@@ -18,7 +18,34 @@ const { payload, class: className } = Astro.props;
 </div>
 
 <script>
-  import { mountSlopeCharts } from "../lib/slope-chart";
+  function loadSlopeCharts() {
+    const roots = document.querySelectorAll("[data-slope-chart]");
+    if (!roots.length) return;
+    const w = window as Window & { __ssbSlopeLazy?: boolean };
+    if (w.__ssbSlopeLazy) return;
+    w.__ssbSlopeLazy = true;
 
-  mountSlopeCharts();
+    const run = () =>
+      import("../lib/slope-chart").then((mod) => mod.mountSlopeCharts());
+
+    if (
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+      !("IntersectionObserver" in window)
+    ) {
+      run();
+      return;
+    }
+
+    const io = new IntersectionObserver(
+      (entries, obs) => {
+        if (!entries.some((entry) => entry.isIntersecting)) return;
+        obs.disconnect();
+        run();
+      },
+      { rootMargin: "240px 0px", threshold: 0.01 },
+    );
+    roots.forEach((el) => io.observe(el));
+  }
+
+  loadSlopeCharts();
 </script>
