@@ -82,11 +82,12 @@ import {
     <h2 class="text-xl">Shift modes</h2>
     <figure class="paper-fig mt-5">
       <img
-        src="/figures/shift.svg"
+        class="paper-fig-img"
         alt="Three controlled shift modes: Contextual, Perceptual, and Execution"
         width="1600"
         height="791"
-        loading="lazy"
+        decoding="async"
+        data-src="/figures/shift.svg"
       />
       <figcaption class="paper-prose">{PAPER_FIGURE_CAPTION}</figcaption>
     </figure>
@@ -235,3 +236,42 @@ import {
     box-shadow: var(--hard);
   }
 </style>
+
+<script is:inline>
+  (function () {
+    var img = document.querySelector(".paper-fig-img");
+    if (!img || !img.dataset.src) return;
+    var src = img.dataset.src;
+    function load() {
+      if (img.getAttribute("src")) return;
+      img.src = src;
+    }
+    var reduced =
+      window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var mark = document.querySelector(".stage-wordmark");
+    if (reduced || !mark) {
+      load();
+      return;
+    }
+    function afterWrite() {
+      var path = mark.querySelector("path");
+      var ms = path
+        ? parseFloat(path.style.getPropertyValue("--write-ms")) || 0
+        : 0;
+      window.setTimeout(load, ms + 120);
+    }
+    if (mark.classList.contains("is-in")) {
+      afterWrite();
+      return;
+    }
+    var obs = new MutationObserver(function () {
+      if (mark.classList.contains("is-in")) {
+        obs.disconnect();
+        afterWrite();
+      }
+    });
+    obs.observe(mark, { attributes: true, attributeFilter: ["class"] });
+    window.setTimeout(load, 5000);
+  })();
+</script>

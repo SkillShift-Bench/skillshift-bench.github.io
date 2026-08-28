@@ -78,6 +78,9 @@ export default defineConfig({
   base: "/",
   output: "static",
   trailingSlash: "never",
+  devToolbar: {
+    enabled: false,
+  },
   vite: {
     plugins: [tailwindcss()],
   },

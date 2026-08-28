@@ -1,5 +1,6 @@
 ---
 import BrandMark from "../components/BrandMark.astro";
+import StageWordmark from "../components/StageWordmark.astro";
 import "../styles/global.css";
 import { NAV, SITE_TITLE } from "../lib/copy";
 
@@ -28,6 +29,13 @@ const path = Astro.url.pathname.replace(/\/$/, "") || "/";
     <link
       rel="preload"
       href="/fonts/instrument-sans-600.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/source-serif-4-400.woff2"
       as="font"
       type="font/woff2"
       crossorigin
@@ -128,9 +136,7 @@ const path = Astro.url.pathname.replace(/\/$/, "") || "/";
         </div>
       </div>
     </header>
-    <p class="stage-wordmark" aria-hidden="true">
-      SKILLSHIFT
-    </p>
+    <StageWordmark />
     <div class="stage-banner" aria-hidden="true"></div>
     <main
       id="main"
@@ -151,6 +157,37 @@ const path = Astro.url.pathname.replace(/\/$/, "") || "/";
         <span class="sticker is-plate">10 / slot</span>
       </div>
     </footer>
+    <script is:inline>
+      (function () {
+        var mark = document.querySelector(".stage-wordmark");
+        if (!mark || mark.classList.contains("is-in")) return;
+        var reduced =
+          window.matchMedia &&
+          window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (reduced) {
+          mark.classList.add("is-in");
+          return;
+        }
+        var UNITS_PER_MS = 1.05;
+        var MIN_MS = 120;
+        var target = 0;
+        var paths = mark.querySelectorAll("path");
+        paths.forEach(function (p) {
+          var len = p.getTotalLength();
+          p.style.strokeDasharray = String(len);
+          p.style.strokeDashoffset = String(len);
+          var ms = Math.max(MIN_MS, len / UNITS_PER_MS);
+          if (ms > target) target = ms;
+        });
+        paths.forEach(function (p) {
+          p.style.setProperty("--write-ms", Math.round(target) + "ms");
+          p.style.setProperty("--write-delay", "0ms");
+        });
+        window.requestAnimationFrame(function () {
+          mark.classList.add("is-in");
+        });
+      })();
+    </script>
     <script is:inline>
       (function () {
         var btn = document.querySelector("[data-theme-toggle]");

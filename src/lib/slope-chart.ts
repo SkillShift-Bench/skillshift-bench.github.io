@@ -69,14 +69,33 @@ function execBands(index: number) {
   };
 }
 
-function optionFor(payload: SlopeChartPayload) {
+function yMax(payload: SlopeChartPayload) {
+  const vals = payload.series.flatMap((s) =>
+    s.data.filter((v): v is number => v != null),
+  );
+  const peak = vals.length ? Math.max(...vals) : 60;
+  return Math.max(10, Math.ceil(peak / 10) * 10);
+}
+
+function prefersReducedMotion() {
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
+function optionFor(
+  payload: SlopeChartPayload,
+  opts: { reveal: boolean; animate: boolean },
+) {
   const t = theme();
-  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const reduced = prefersReducedMotion();
+  const play = opts.animate && opts.reveal && !reduced;
 
   return {
     color: LINE_COLORS,
     backgroundColor: "transparent",
-    animation: !reduced,
+    animation: play,
+    animationDuration: play ? 720 : 0,
+    animationDurationUpdate: 0,
+    animationEasing: "cubicOut" as const,
     textStyle: {
       color: t.ink,
       fontFamily: "Instrument Sans, ui-sans-serif, system-ui, sans-serif",
@@ -140,6 +159,7 @@ function optionFor(payload: SlopeChartPayload) {
           fontFamily: "IBM Plex Mono, ui-monospace, monospace",
         },
         min: 0,
+        max: yMax(payload),
         axisLine: { show: true, lineStyle: { color: t.ink, width: 2 } },
         axisLabel: {
           color: t.stamp,
@@ -151,13 +171,16 @@ function optionFor(payload: SlopeChartPayload) {
       },
     ],
     series: payload.series.map((s, i) => {
-      const data = s.data.map((v) => (v === null ? null : Number(v.toFixed(2))));
+      const data = opts.reveal
+        ? s.data.map((v) => (v === null ? null : Number(v.toFixed(2))))
+        : [];
       return {
         name: s.name,
         type: "line" as const,
         smooth: !reduced,
         symbol: "circle",
         showSymbol: false,
+        animationDelay: play ? i * 90 : 0,
         lineStyle: {
           width: 2.5,
           color: LINE_COLORS[i % LINE_COLORS.length],
@@ -179,6 +202,7 @@ type LiveChart = {
   chart: ReturnType<typeof echarts.init>;
   ro: ResizeObserver;
   mo: MutationObserver;
+  io: IntersectionObserver | null;
 };
 
 const liveCharts: LiveChart[] = [];
@@ -187,6 +211,7 @@ function disposeLiveCharts() {
   for (const item of liveCharts) {
     item.ro.disconnect();
     item.mo.disconnect();
+    item.io?.disconnect();
     if (!item.chart.isDisposed()) item.chart.dispose();
     delete item.el.dataset.chartBound;
   }
@@ -201,11 +226,38 @@ function bind(el: HTMLElement) {
   const payload = JSON.parse(raw) as SlopeChartPayload;
   echarts.getInstanceByDom(el)?.dispose();
   const chart = echarts.init(el, undefined, { renderer: "canvas" });
-  const paint = () => {
+  let revealed = false;
+
+  const paint = (animate: boolean) => {
     if (chart.isDisposed()) return;
-    chart.setOption(optionFor(payload), true);
+    chart.setOption(optionFor(payload, { reveal: revealed, animate }), true);
   };
-  paint();
+
+  const reveal = () => {
+    if (revealed) return;
+    revealed = true;
+    if (!chart.isDisposed()) chart.clear();
+    paint(true);
+  };
+
+  let io: IntersectionObserver | null = null;
+  if (prefersReducedMotion() || !("IntersectionObserver" in window)) {
+    revealed = true;
+    paint(false);
+  } else {
+    paint(false);
+    io = new IntersectionObserver(
+      (entries, obs) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          reveal();
+          obs.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.22, rootMargin: "0px 0px -8% 0px" },
+    );
+    io.observe(el);
+  }
 
   const ro = new ResizeObserver(() => {
     if (chart.isDisposed()) return;
@@ -213,12 +265,12 @@ function bind(el: HTMLElement) {
   });
   ro.observe(el);
 
-  const mo = new MutationObserver(paint);
+  const mo = new MutationObserver(() => paint(false));
   mo.observe(document.documentElement, {
     attributes: true,
     attributeFilter: ["data-theme"],
   });
-  liveCharts.push({ el, chart, ro, mo });
+  liveCharts.push({ el, chart, ro, mo, io });
 }
 
 export function mountSlopeCharts() {

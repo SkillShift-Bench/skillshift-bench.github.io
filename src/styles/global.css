@@ -130,17 +130,43 @@ body::before {
   right: 0;
   z-index: 0;
   margin: 0;
-  display: block;
-  width: 100%;
-  font-size: clamp(4.5rem, 22vw, 14rem);
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  line-height: 0.82;
-  text-align: center;
-  color: transparent;
-  -webkit-text-stroke: 2px color-mix(in srgb, var(--ink) 28%, transparent);
-  white-space: nowrap;
   pointer-events: none;
+}
+
+.stage-wordmark:not(.is-in) .stage-wordmark-type {
+  opacity: 0;
+}
+
+.stage-wordmark-type {
+  display: block;
+  width: min(100%, calc(clamp(4.5rem, 22vw, 14rem) * 8.388));
+  height: auto;
+  margin-inline: auto;
+  overflow: visible;
+}
+
+.stage-wordmark path {
+  fill: none;
+  stroke: color-mix(in srgb, var(--ink) 28%, transparent);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: miter;
+  stroke-miterlimit: 2.4;
+  vector-effect: non-scaling-stroke;
+}
+
+.stage-wordmark.is-in path {
+  animation-name: wordmark-write;
+  animation-duration: var(--write-ms, 170ms);
+  animation-delay: var(--write-delay, 0ms);
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+@keyframes wordmark-write {
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 
 h1,
@@ -1156,5 +1182,16 @@ details > summary::-webkit-details-marker {
   .faceplate.is-insert .socket,
   [data-entry].is-flip {
     transform: none;
+  }
+
+  .stage-wordmark:not(.is-in) .stage-wordmark-type,
+  .stage-wordmark.is-in .stage-wordmark-type {
+    opacity: 1;
+  }
+
+  .stage-wordmark path,
+  .stage-wordmark.is-in path {
+    stroke-dashoffset: 0;
+    animation: none;
   }
 }
