@@ -205,7 +205,7 @@ def build_entry(
                 "vision": None,
             },
             "provenance": {
-                "label": "reported-only",
+                "label": "verified-paper",
                 "source": "experiment results.md",
                 "code_released": False,
             },

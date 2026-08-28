@@ -62,7 +62,7 @@ const metrics = ["SR", "AS", "ASC", "SFR"] as const;
           const sr = overallAttr(entry, "SR");
           const as = overallAttr(entry, "AS");
           const asc = overallAttr(entry, "ASC");
-          const rowId = entryRowId(entry);
+          const rowId = `${listingId}--${entryRowId(entry)}`;
           const detailId = `${rowId}-detail`;
           const deltaKind =
             drop.delta === null ? "empty" : drop.delta < 0 ? "drop" : "gain";

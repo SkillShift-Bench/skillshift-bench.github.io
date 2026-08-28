@@ -49,8 +49,8 @@ skillshift env status
 
 ```bash
 export my_api_key=...          # your key
-export my_base_url=https://api.openai.com/v1
-export my_model=gpt-5-mini-2025-08-07
+export my_base_url=...         # your base URL
+export my_model=...            # your model
 ```
 
 ## 4. Run one task

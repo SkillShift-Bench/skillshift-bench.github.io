@@ -67,7 +67,6 @@ export function sortEntries(
 }
 
 export function displayLabel(label: Label): string {
-  if (label === "verified-paper") return "verified (paper)";
   return label;
 }
 
@@ -80,21 +79,25 @@ export const MINI_ENTRIES = sortEntries(
 );
 
 const MODEL_CHIP_ORDER = [
+  "per-model",
   "mixed",
   "deepseek-v3.2",
   "gpt-5-mini",
   "claude",
 ];
 
+export const PER_MODEL_LISTING_ID = "per-model";
+
 export function entryRowId(entry: LeaderboardEntry): string {
   return entry.filename.replace(/\.json$/, "");
 }
 
 export function displayModel(model: string): string {
+  if (model === "per-model") return "Per-model";
   if (model === "mixed") return "Mixed";
   if (model === "deepseek-v3.2") return "DeepSeek-V3.2";
   if (model === "gpt-5-mini") return "GPT-5 mini";
-  if (model === "claude") return "Claude";
+  if (model === "claude") return "Claude Haiku 4.5";
   return model;
 }
 
@@ -107,6 +110,9 @@ export type ModelListing = {
 };
 
 function listingLede(model: string): string {
+  if (model === "per-model") {
+    return "AWM, ASI, SkillWeaver, WALT on DeepSeek-V3.2, GPT-5 mini, and Claude Haiku 4.5, ranked together. MPCR is GPT-5 mini only. Mixed pooled runs are listed separately.";
+  }
   if (model === "mixed") {
     return "AWM, ASI, SkillWeaver, WALT. Pooled backbones; MPCR is not in this listing.";
   }
@@ -120,11 +126,22 @@ function listingLede(model: string): string {
 }
 
 function listingTitle(model: string): string {
+  if (model === "per-model") return "Each method on each model";
   if (model === "mixed") return "Mixed backbones — Table 1 listing";
   return `${displayModel(model)} listing`;
 }
 
 export const MODEL_LISTINGS: ModelListing[] = (() => {
+  const perModel: ModelListing = {
+    model: PER_MODEL_LISTING_ID,
+    label: displayModel(PER_MODEL_LISTING_ID),
+    title: listingTitle(PER_MODEL_LISTING_ID),
+    lede: listingLede(PER_MODEL_LISTING_ID),
+    entries: sortEntries(
+      ENTRIES.filter((e) => e.model !== "mixed"),
+      "SR",
+    ),
+  };
   const mixed: ModelListing = {
     model: "mixed",
     label: displayModel("mixed"),
@@ -153,5 +170,9 @@ export const MODEL_LISTINGS: ModelListing[] = (() => {
         "SR",
       ),
     }));
-  return mixed.entries.length > 0 ? [mixed, ...others] : others;
+  return [
+    perModel,
+    ...(mixed.entries.length > 0 ? [mixed] : []),
+    ...others,
+  ];
 })();

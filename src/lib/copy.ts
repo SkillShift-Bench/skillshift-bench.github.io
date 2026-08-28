@@ -98,7 +98,7 @@ export const INCOMPARABLE =
   "Entries are not automatically comparable across backbones.";
 
 export const MODEL_LISTING_HELP =
-  "One ranking per chip. Mixed has no MPCR. MPCR is listed under GPT-5 mini.";
+  "Per-model ranks each method on each backbone. Mixed is pooled. MPCR is GPT-5 mini only.";
 
 export const NAV = [
   { href: "/", label: "Home" },

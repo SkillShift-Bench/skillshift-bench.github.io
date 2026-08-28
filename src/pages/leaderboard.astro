@@ -10,10 +10,10 @@ const digestEntries = Object.entries(digests as Record<string, string>);
 
 const requestedModel =
   Astro.url.searchParams.get("model") ||
-  (Astro.url.searchParams.get("bank") === "mini" ? "gpt-5-mini" : "mixed");
+  (Astro.url.searchParams.get("bank") === "mini" ? "gpt-5-mini" : "per-model");
 const initialModel = MODEL_LISTINGS.some((l) => l.model === requestedModel)
   ? requestedModel
-  : (MODEL_LISTINGS[0]?.model ?? "mixed");
+  : (MODEL_LISTINGS[0]?.model ?? "per-model");
 ---
 
 <Base title="Leaderboard">
@@ -121,7 +121,7 @@ const initialModel = MODEL_LISTINGS.some((l) => l.model === requestedModel)
   }
   .ctrl-help {
     margin: 0.4rem 0 0;
-    max-width: 28rem;
+    max-width: none;
     font-size: 0.75rem;
     color: var(--stamp);
   }
@@ -210,9 +210,9 @@ const initialModel = MODEL_LISTINGS.some((l) => l.model === requestedModel)
     const legacyBank = params.get("bank") || "";
     if (!model) {
       if (legacyBank === "mini") model = "gpt-5-mini";
-      else model = "mixed";
+      else model = "per-model";
     }
-    if (!listingIds.includes(model)) model = listingIds[0] || "mixed";
+    if (!listingIds.includes(model)) model = listingIds[0] || "per-model";
     return { sort, dir, model };
   }
 

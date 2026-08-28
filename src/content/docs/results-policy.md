@@ -70,5 +70,5 @@ decoration.
 
 The four compared methods (AWM, ASI, SkillWeaver, WALT) are **not** re-released
 here. Their leaderboard entries are transcribed from the paper's Table 1 and
-labelled `reported-only`, with the original repositories and our integration
-details recorded in [baselines.md](/docs/baselines).
+labelled `verified-paper`, with the original repositories named in
+[baselines.md](/docs/baselines).
