@@ -168,7 +168,7 @@ const objects = [
       <text x="212" y="95" fill="var(--plate)" font-size="13">Activity</text>
     </g>
     <g class="xfade chrome-tgt">
-      <text x="36" y="95" fill="var(--canary)" font-size="13" font-weight="600"
+      <text x="36" y="95" fill="var(--plate)" font-size="13" font-weight="600"
         >Home</text
       >
       <text x="108" y="95" fill="var(--plate)" font-size="13">Explore</text>
@@ -191,26 +191,36 @@ const objects = [
             fill="var(--plate)"
             stroke="var(--ink)"
             stroke-width="3"></rect>
-          <text x="12" y="28" fill="var(--ink)" font-size="13" font-weight="600">
+          <text x="12" y="24" fill="var(--ink)" font-size="13" font-weight="600">
             {obj.label}
           </text>
           <text
-            class="xfade loc-src mono"
+            class="loc-src mono"
+            data-glitch="src"
+            data-loc={obj.srcLoc}
             x="12"
-            y="52"
-            fill="var(--stamp)"
+            y="48"
             font-size="11">
-            {obj.srcLoc}
+            - {obj.srcLoc}
           </text>
+          <line
+            class="loc-strike"
+            x1="12"
+            y1="44"
+            x2="136"
+            y2="44"
+            stroke="var(--ink)"
+            stroke-width="2"></line>
           <text
-            class="xfade loc-tgt mono"
+            class="loc-tgt mono"
+            data-glitch="tgt"
+            data-loc={obj.tgtLoc}
             x="12"
-            y="52"
-            fill="var(--stamp)"
+            y="66"
             font-size="11">
-            {obj.tgtLoc}
+            + {obj.tgtLoc}
           </text>
-          <text class="mono" x="12" y="84" fill="var(--ink)" font-size="10">
+          <text class="mono" x="12" y="88" fill="var(--ink)" font-size="10">
             same object
           </text>
         </g>
@@ -224,23 +234,36 @@ const objects = [
         fill="var(--titlebar)"
         stroke="var(--ink)"
         stroke-width="3"></rect>
-      <text x="10" y="22" fill="var(--ink)" font-size="11" font-weight="600"
+      <text x="10" y="20" fill="var(--ink)" font-size="11" font-weight="600"
         >DOM evidence</text
       >
-      <text class="xfade loc-src mono" x="10" y="48" fill="var(--stamp)" font-size="11">
-        ul &gt; li.card
+      <text class="loc-src mono" data-glitch="src" data-loc="ul > li.card" x="10" y="40" font-size="10">
+        - ul &gt; li.card
       </text>
-      <text class="xfade loc-src mono" x="10" y="66" fill="var(--stamp)" font-size="11">
-        button#new-project
+      <line
+        class="loc-strike"
+        x1="10"
+        y1="36"
+        x2="146"
+        y2="36"
+        stroke="var(--ink)"
+        stroke-width="2"></line>
+      <text class="loc-tgt mono" data-glitch="tgt" data-loc="div > div > span" x="10" y="54" font-size="10">
+        + div &gt; div &gt; span
       </text>
-      <text class="xfade loc-tgt mono" x="10" y="48" fill="var(--stamp)" font-size="11">
-        div &gt; div &gt; span
+      <text class="loc-src mono" data-glitch="src" data-loc="button#new-project" x="10" y="72" font-size="10">
+        - button#new-project
       </text>
-      <text class="xfade loc-tgt mono" x="10" y="66" fill="var(--stamp)" font-size="11">
-        [data-testid=n]
-      </text>
-      <text class="mono" x="10" y="88" fill="var(--ink)" font-size="10">
-        objects stay aligned
+      <line
+        class="loc-strike"
+        x1="10"
+        y1="68"
+        x2="146"
+        y2="68"
+        stroke="var(--ink)"
+        stroke-width="2"></line>
+      <text class="loc-tgt mono" data-glitch="tgt" data-loc="[data-testid=n]" x="10" y="86" font-size="10">
+        + [data-testid=n]
       </text>
     </g>
 
@@ -307,70 +330,79 @@ const objects = [
         shift.
       </p>
       <div class="sliders">
-        <div class="slider">
+        <div class="slider" style="--shift: var(--ctx)">
           <label class="slider-name" for="shift-ctx">Contextual</label>
           <span class="slider-ends" aria-hidden="true">
             <span>source chrome</span>
             <span>target chrome</span>
           </span>
-          <input
-            id="shift-ctx"
-            type="range"
-            name="contextual"
-            data-shift="ctx"
-            min="0"
-            max="100"
-            value="0"
-            step="1"
-            aria-valuetext="source chrome"
-            aria-describedby="shift-rig-hint-ctx"
-          />
+          <div class="slider-range">
+            <input
+              id="shift-ctx"
+              type="range"
+              name="contextual"
+              data-shift="ctx"
+              min="0"
+              max="100"
+              value="0"
+              step="1"
+              aria-valuetext="source chrome"
+              aria-describedby="shift-rig-hint-ctx"
+            />
+            <span class="slider-knob" aria-hidden="true"></span>
+          </div>
           <span class="sr-only" id="shift-rig-hint-ctx">
             Moves routes, window chrome, and object placement. The task goal
             does not change.
           </span>
         </div>
-        <div class="slider">
+        <div class="slider" style="--shift: var(--perc)">
           <label class="slider-name" for="shift-perc">Perceptual</label>
           <span class="slider-ends" aria-hidden="true">
             <span>stable locators</span>
             <span>reshuffled DOM</span>
           </span>
-          <input
-            id="shift-perc"
-            type="range"
-            name="perceptual"
-            data-shift="perc"
-            min="0"
-            max="100"
-            value="0"
-            step="1"
-            aria-valuetext="stable locators"
-            aria-describedby="shift-rig-hint-perc"
-          />
+          <div class="slider-range">
+            <input
+              id="shift-perc"
+              type="range"
+              name="perceptual"
+              data-shift="perc"
+              min="0"
+              max="100"
+              value="0"
+              step="1"
+              aria-valuetext="stable locators"
+              aria-describedby="shift-rig-hint-perc"
+            />
+            <span class="slider-knob" aria-hidden="true"></span>
+          </div>
           <span class="sr-only" id="shift-rig-hint-perc">
             Swaps locator attributes on the same three objects. Placement does
             not move.
           </span>
         </div>
-        <div class="slider is-exec">
+        <div class="slider is-exec" style="--shift: var(--exec)">
           <label class="slider-name" for="shift-exec">Execution</label>
           <span class="slider-ends" aria-hidden="true">
             <span>clear path</span>
             <span>runtime blocked</span>
           </span>
-          <input
-            id="shift-exec"
-            type="range"
-            name="execution"
-            data-shift="exec"
-            min="0"
-            max="100"
-            value="0"
-            step="1"
-            aria-valuetext="clear path"
-            aria-describedby="shift-rig-hint-exec"
-          />
+          <div class="slider-range">
+            <input
+              id="shift-exec"
+              type="range"
+              name="execution"
+              data-shift="exec"
+              min="0"
+              max="100"
+              value="0"
+              step="1"
+              aria-valuetext="clear path"
+              aria-describedby="shift-rig-hint-exec"
+            />
+            <span class="slider-knob" aria-hidden="true"></span>
+          </div>
           <span class="sr-only" id="shift-rig-hint-exec">
             Raises a reproducible runtime blocker over the skill control. Oxide
             marks execution only.
@@ -392,6 +424,11 @@ const objects = [
     --ctx: 0;
     --perc: 0;
     --exec: 0;
+    --loc-add: #0b6e63;
+  }
+
+  :global(html[data-theme="dark"]) .shift-rig {
+    --loc-add: #7ee0d0;
   }
 
   .stage {
@@ -420,9 +457,40 @@ const objects = [
     opacity: var(--ctx);
   }
 
-  .chrome-tgt,
-  .loc-tgt {
+  .chrome-tgt {
     opacity: 0;
+  }
+
+  .loc-src,
+  .loc-tgt,
+  .loc-strike {
+    transform-box: fill-box;
+    transform-origin: 0% 50%;
+  }
+
+  .loc-src {
+    fill: var(--stamp);
+    opacity: calc(1 - var(--perc) * 0.42);
+    transform: translateY(calc(var(--perc) * -4px));
+  }
+
+  .loc-tgt {
+    fill: var(--loc-add);
+    opacity: var(--perc);
+    transform: translateY(calc((1 - var(--perc)) * 8px));
+  }
+
+  .loc-strike {
+    opacity: var(--perc);
+    transform: translateY(calc(var(--perc) * -4px));
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .loc-src,
+    .loc-tgt,
+    .loc-strike {
+      transform: none;
+    }
   }
 
   .exec-layer {
@@ -494,10 +562,42 @@ const objects = [
     letter-spacing: 0.03em;
   }
 
-  .slider input[type="range"] {
+  .slider-range {
     grid-area: range;
+    position: relative;
     width: 100%;
     max-width: 16rem;
+  }
+
+  .slider-knob {
+    position: absolute;
+    top: 50%;
+    left: calc(var(--shift, 0) * (100% - 1.35rem));
+    width: 1.35rem;
+    height: 1.35rem;
+    margin-top: calc(-0.675rem - 1.5px);
+    box-sizing: border-box;
+    background: var(--canary);
+    border: 3px solid var(--ink);
+    box-shadow: 3px 3px 0 var(--ink);
+    pointer-events: none;
+    transition-property: transform, box-shadow;
+    transition-duration: 150ms;
+    transition-timing-function: ease-out;
+  }
+
+  .slider.is-exec .slider-knob {
+    background: var(--oxide);
+  }
+
+  .slider-range.is-press .slider-knob {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0 var(--ink);
+  }
+
+  .slider input[type="range"] {
+    display: block;
+    width: 100%;
     height: 2.25rem;
     margin: 0;
     background: transparent;
@@ -527,14 +627,10 @@ const objects = [
     -webkit-appearance: none;
     width: 1.35rem;
     height: 1.35rem;
-    margin-top: -0.5rem;
-    background: var(--canary);
-    border: 3px solid var(--ink);
-    box-shadow: 3px 3px 0 var(--ink);
-  }
-
-  .slider.is-exec input[type="range"]::-webkit-slider-thumb {
-    background: var(--oxide);
+    margin-top: calc(-0.5rem - 1.5px);
+    background: transparent;
+    border: 3px solid transparent;
+    box-shadow: none;
   }
 
   .slider input[type="range"]::-moz-range-track {
@@ -546,14 +642,16 @@ const objects = [
   .slider input[type="range"]::-moz-range-thumb {
     width: 1.35rem;
     height: 1.35rem;
-    background: var(--canary);
-    border: 3px solid var(--ink);
+    background: transparent;
+    border: 3px solid transparent;
     border-radius: 0;
-    box-shadow: 3px 3px 0 var(--ink);
+    box-shadow: none;
   }
 
-  .slider.is-exec input[type="range"]::-moz-range-thumb {
-    background: var(--oxide);
+  @media (prefers-reduced-motion: reduce) {
+    .slider-range.is-press .slider-knob {
+      transform: none;
+    }
   }
 
   .toolbar {
@@ -592,6 +690,49 @@ const objects = [
     return 1 - (1 - t) * (1 - t);
   }
 
+  const GLITCH = "█▓▒░#@*%!?<>/\\+=01xX$";
+
+  function hash(i: number, frame: number, salt: number) {
+    let x =
+      Math.imul(i + 1, 374761393) ^
+      Math.imul(frame + 1, 668265263) ^
+      Math.imul(salt + 1, 1274126177);
+    x = Math.imul(x ^ (x >>> 13), 1274126177);
+    return x >>> 0;
+  }
+
+  function glyph(i: number, frame: number, salt: number) {
+    return GLITCH[hash(i, frame, salt) % GLITCH.length];
+  }
+
+  function corruptSrc(src: string, t: number, frame: number, salt: number) {
+    if (t <= 0 || t >= 1) return src;
+    const peak = 1 - Math.abs(2 * t - 1);
+    let out = "";
+    for (let i = 0; i < src.length; i++) {
+      const ch = src[i];
+      if (ch === " ") {
+        out += ch;
+        continue;
+      }
+      const noise = (hash(i, frame, salt) % 1000) / 1000;
+      out += noise < peak * 0.94 ? glyph(i, frame, salt) : ch;
+    }
+    return out;
+  }
+
+  function decodeTgt(to: string, t: number, frame: number, salt: number) {
+    if (t <= 0) return to;
+    if (t >= 1) return to;
+    const lock = t * t * to.length;
+    let out = "";
+    for (let i = 0; i < to.length; i++) {
+      if (to[i] === " " || i < lock) out += to[i];
+      else out += glyph(i, frame, salt);
+    }
+    return out;
+  }
+
   function phrase(shift: string, n: number): string {
     if (shift === "exec") {
       if (n === 0) return "clear path";
@@ -608,10 +749,32 @@ const objects = [
   function bind(root: HTMLElement) {
     const live = root.querySelector<HTMLElement>("[data-live]");
     const objs = [...root.querySelectorAll<SVGGElement>("[data-obj]")];
+    const locNodes = [...root.querySelectorAll<SVGTextElement>("[data-glitch]")];
     let raf = 0;
     let cancelled = false;
     let playing = false;
     let played = false;
+    let glitchFrame = 0;
+    let lastGlitchPerc = Number(
+      root.querySelector<HTMLInputElement>('[data-shift="perc"]')?.value || 0,
+    );
+
+    function paintLocators(t: number, frame: number) {
+      const freeze = reducedMotion() || t <= 0 || t >= 1;
+      locNodes.forEach((el, salt) => {
+        const raw = el.dataset.loc || "";
+        const kind = el.dataset.glitch;
+        if (freeze) {
+          el.textContent = kind === "src" ? `- ${raw}` : `+ ${raw}`;
+          return;
+        }
+        if (kind === "src") {
+          el.textContent = `- ${corruptSrc(raw, t, frame, salt)}`;
+        } else {
+          el.textContent = `+ ${decodeTgt(raw, t, frame, salt)}`;
+        }
+      });
+    }
 
     function paint() {
       const values: Record<string, number> = { ctx: 0, perc: 0, exec: 0 };
@@ -640,8 +803,13 @@ const objects = [
       };
       setOp(".chrome-src", values.ctx < 50);
       setOp(".chrome-tgt", values.ctx >= 50);
-      setOp(".loc-src", values.perc < 50);
-      setOp(".loc-tgt", values.perc >= 50);
+      const perc = values.perc;
+      const delta = Math.abs(perc - lastGlitchPerc);
+      lastGlitchPerc = perc;
+      if (delta > 0 && !reducedMotion() && perc > 0 && perc < 100) {
+        glitchFrame += Math.max(1, Math.round(delta * 2));
+      }
+      paintLocators(perc / 100, glitchFrame);
       return values;
     }
 
@@ -735,7 +903,38 @@ const objects = [
       io.observe(root);
     }
 
+    function overKnob(knob: Element, e: PointerEvent) {
+      const box = knob.getBoundingClientRect();
+      return (
+        e.clientX >= box.left &&
+        e.clientX <= box.right &&
+        e.clientY >= box.top &&
+        e.clientY <= box.bottom
+      );
+    }
+
+    function bindKnobPress(input: HTMLInputElement) {
+      const range = input.closest(".slider-range");
+      const knob = range?.querySelector(".slider-knob");
+      if (!(range instanceof HTMLElement) || !knob) return;
+
+      const syncPress = (e: PointerEvent) => {
+        range.classList.toggle("is-press", overKnob(knob, e));
+      };
+
+      input.addEventListener("pointermove", syncPress);
+      input.addEventListener("pointerdown", syncPress);
+      input.addEventListener("pointerup", syncPress);
+      input.addEventListener("pointercancel", () => {
+        range.classList.remove("is-press");
+      });
+      input.addEventListener("pointerleave", () => {
+        range.classList.remove("is-press");
+      });
+    }
+
     root.querySelectorAll<HTMLInputElement>("[data-shift]").forEach((input) => {
+      bindKnobPress(input);
       input.addEventListener("pointerdown", stopForUser);
       input.addEventListener("input", () => {
         stopForUser();
@@ -760,10 +959,19 @@ const objects = [
     armPlay();
   }
 
+  const BIND = "perc-drag-glitch";
+
   function bindRigs() {
-    document.querySelectorAll<HTMLElement>(".shift-rig").forEach((root) => {
-      if (root.dataset.bound) return;
-      root.dataset.bound = "1";
+    document.querySelectorAll<HTMLElement>(".shift-rig").forEach((node) => {
+      let root = node;
+      if (root.dataset.bound === BIND) return;
+      if (root.dataset.bound) {
+        const fresh = root.cloneNode(true) as HTMLElement;
+        delete fresh.dataset.bound;
+        root.replaceWith(fresh);
+        root = fresh;
+      }
+      root.dataset.bound = BIND;
       bind(root);
     });
   }

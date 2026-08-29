@@ -96,26 +96,36 @@ body {
   font-family: var(--font-sans);
   line-height: 1.5;
   background-color: var(--sky);
-  background-image:
-    linear-gradient(var(--sky) 0 58%, transparent 58%),
-    linear-gradient(90deg, rgba(17, 17, 17, 0.18) 1px, transparent 1px),
-    linear-gradient(rgba(17, 17, 17, 0.18) 1px, transparent 1px),
-    linear-gradient(var(--floor), var(--floor));
-  background-size:
-    100% 100%,
-    44px 44px,
-    44px 44px,
-    100% 100%;
-  background-position:
-    0 0,
-    0 58%,
-    0 58%,
-    0 0;
-  background-attachment: fixed;
 }
 
 body::before {
   content: none;
+}
+
+.site-floor {
+  position: fixed;
+  inset: auto 0 0 0;
+  height: 42vh;
+  overflow: hidden;
+  background: var(--floor);
+  perspective: 420px;
+  perspective-origin: 50% 0%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.site-floor-grid {
+  position: absolute;
+  left: -60vw;
+  top: 0;
+  width: 220vw;
+  height: 220vh;
+  transform-origin: 50% 0%;
+  transform: rotateX(60deg);
+  background-image:
+    linear-gradient(90deg, rgba(17, 17, 17, 0.18) 2.5px, transparent 2.5px),
+    linear-gradient(rgba(17, 17, 17, 0.18) 2.5px, transparent 2.5px);
+  background-size: 88px 88px;
 }
 
 .stage-banner {
@@ -131,6 +141,10 @@ body::before {
   z-index: 0;
   margin: 0;
   pointer-events: none;
+}
+
+#main {
+  z-index: 2;
 }
 
 .stage-wordmark:not(.is-in) .stage-wordmark-type {
