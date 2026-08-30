@@ -456,6 +456,22 @@ html[data-theme="dark"] .site-header details a[aria-current="page"] {
   border-bottom: var(--line) solid var(--ink);
 }
 
+.site-footer-mail {
+  color: inherit;
+  text-transform: none;
+  letter-spacing: 0.02em;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.18em;
+}
+
+.site-footer-mail:hover,
+.site-footer-mail:focus-visible {
+  background: var(--canary);
+  color: var(--ink);
+  text-decoration: none;
+}
+
 .series-kicker {
   margin: 0 0 0.65rem;
   font-family: var(--font-mono);
