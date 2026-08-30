@@ -2,7 +2,7 @@
 import BrandMark from "../components/BrandMark.astro";
 import StageWordmark from "../components/StageWordmark.astro";
 import "../styles/global.css";
-import { CONTACT_EMAIL, NAV, SITE_TITLE } from "../lib/copy";
+import { NAV, SITE_TITLE } from "../lib/copy";
 
 interface Props {
   title: string;
@@ -157,9 +157,6 @@ const path = Astro.url.pathname.replace(/\/$/, "") || "/";
         <p>
           {SITE_TITLE} · 355 families · 6 conditions
         </p>
-        <a class="site-footer-mail" href={`mailto:${CONTACT_EMAIL}`}
-          >{CONTACT_EMAIL}</a
-        >
         <span class="sticker is-plate">10 / slot</span>
       </div>
     </footer>

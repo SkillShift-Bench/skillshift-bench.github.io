@@ -39,8 +39,6 @@ export const PAPER_AFFILIATIONS = [
 
 export const PAPER_EMAIL = "{chenby, zhouz, liyf}@lamda.nju.edu.cn";
 
-export const CONTACT_EMAIL = "chenby@lamda.nju.edu.cn";
-
 export const PAPER_CORRESPONDING = "Corresponding authors.";
 
 export const PAPER_ABSTRACT =
